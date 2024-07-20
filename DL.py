@@ -170,7 +170,7 @@ def main(args):
             print('current_best_epoch', current_best_epoch, 'current_best_metric', current_best_metric)
             if epoch > current_best_epoch + max_bearable_epoch:
                 break
-        evaluator.plot_metrics([metric_train_list], [metric_valid_list])
+        evaluator.plot_metrics([train_metric_list], [valid_metric_list])
         return train_metric_list, valid_metric_list
 
     processor = Input_ligand_preprocess(input_ligands_path)
