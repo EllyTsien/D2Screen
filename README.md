@@ -1,6 +1,9 @@
 # DL_docking_pipline
 
 
+## 调用命令
+python DL.py --dataset input.csv --model ADMET --lr 0.001 --batch_size 32
+
 
 ## Getting started
 
