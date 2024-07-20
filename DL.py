@@ -16,7 +16,8 @@ import paddle.nn.functional as F
 from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import warnings
 warnings.filterwarnings('ignore')
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 import paddle.nn as nn
 import models.mlp as mlp
@@ -49,11 +50,6 @@ def main(args):
         input_ligands_path = 'datasets/' + args.dataset
         processed_input_path = 'datasets/train_preprocessed.csv'
 
-
-    import pgl
-    from pahelix.datasets.inmemory_dataset import InMemoryDataset
-    import random
-    from sklearn.model_selection import train_test_split
 
     def collate_fn(data_batch):
         """
@@ -116,7 +112,7 @@ def main(args):
             valid_data_loader = valid_dataset.get_data_loader(
                 batch_size=batch_size, num_workers=1, shuffle=True, collate_fn=collate_fn)
             return train_data_loader, valid_data_loader
-
+        '''
         elif mode == 'test':
             # 推理模式下直接读取test_data_list, 返回test_data_loader
             data_list = pkl.load(open(f'work/test_data_list.pkl', 'rb'))
@@ -125,6 +121,7 @@ def main(args):
             test_data_loader = test_dataset.get_data_loader(
                 batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
             return test_data_loader
+        '''
         
     def trial(model_version, model, batch_size, criterion, scheduler, opt):
         # 创建dataloader
@@ -170,7 +167,7 @@ def main(args):
             print('current_best_epoch', current_best_epoch, 'current_best_metric', current_best_metric)
             if epoch > current_best_epoch + max_bearable_epoch:
                 break
-        evaluator.plot_metrics([train_metric_list], [valid_metric_list])
+        # evaluator.plot_metrics([train_metric_list], [valid_metric_list])
         return train_metric_list, valid_metric_list
 
     processor = Input_ligand_preprocess(input_ligands_path)
@@ -179,42 +176,43 @@ def main(args):
     gem_smile_transfer = GEM_smile_transfer(processed_input_csv)
     gem_smile_transfer.run()
     
-    
+    if args.model == "ADMET":
+        model = mlp.ADMET() 
+    else:
+        raise NotImplementedError("Unknown model")
     # 固定随机种子
     SEED = 1024
     pdl.seed(SEED)
     np.random.seed(SEED)
     random.seed(SEED)
-
-
-
-    if args.model == "ADMET":
-        model = mlp.ADMET() 
-    else:
-        raise NotImplementedError("Unknown model")
-
-
     batch_size = args.batch_size                                                             # batch size
     criterion = nn.CrossEntropyLoss()                                                   # 损失函数
     scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=args.lr, T_max=15)         # 余弦退火学习率
     opt = optimizer.Adam(scheduler, parameters=model.parameters(), weight_decay=1e-5)   # 优化器
-
     metric_train_list, metric_valid_list = trial(model_version='1', model=model, batch_size=batch_size, criterion=criterion, scheduler=scheduler, opt=opt)
     
-    # evaluator = evaluation_train(model, train_data_loader, valid_loader)
-    # evaluator.plot_metrics([metric_train_list], [metric_valid_list])
+    def plot(train, valid, metric, filename):
+        epochs = range(1, len(train) + 1)
+        plt.plot(epochs, train, color="blue", label=f'Training {metric}')
+        plt.plot(epochs, valid, color="orange", label=f'Validation {metric}')
+        plt.title(f'Training and validation {metric}')
+        plt.xlabel('Epochs')
+        plt.ylabel(f'{metric}')
+        plt.legend()
+        plt.savefig(filename)  # Save the plot to a file
+        plt.close()  # Close the plot to free up memory
 
-'''
-    if args.model == "simple_gnn":
-        # Use node_coordinates (2dim) also as input feature
-        model = SimpleGNN(2 + data.graph.nodes.shape[1] + trajectory_dim, gcn_dims=[16], fc_dims=[32, 256])
-        path = '../best_model/' + args.model + '_' + args.dataset + '_' + str(args.min_history) + '_' + str(args.lr)  + '_' + str(args.batch_size) + '_' + args.trajectory_encoding + '_' + \
-                str(model.gcn_dims) + '_'  + str(model.fc_dims) + '_best_model.pth'
-    
-    else:
-        pass
+    metric_train = pd.DataFrame(metric_train_list)
+    metric_valid = pd.DataFrame(metric_valid_list)
 
-'''
+    plot(metric_train['accuracy'], metric_valid['accuracy'], metric='accuracy', filename='performance/accuracy_plot.png')
+    plot(metric_train['ap'], metric_valid['ap'], metric='ap', filename='performance/ap_plot.png')
+    plot(metric_train['auc'], metric_valid['auc'], metric='auc', filename='performance/auc_plot.png')
+    plot(metric_train['f1'], metric_valid['f1'], metric='f1', filename='performance/f1_plot.png')
+    plot(metric_train['precision'], metric_valid['precision'], metric='precision', filename='performance/precision_plot.png')
+    plot(metric_train['recall'], metric_valid['recall'], metric='recall', filename='performance/recall_plot.png')
+
+
 
 if __name__ == "__main__":
     args = parser.parse_args()
