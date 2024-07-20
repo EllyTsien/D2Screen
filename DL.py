@@ -14,6 +14,8 @@ from paddle import optimizer
 from pprint import pprint
 import paddle.nn.functional as F
 from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+import warnings
+warnings.filterwarnings('ignore')
 
 
 import paddle.nn as nn
@@ -147,8 +149,9 @@ def main(args):
             scheduler.step()   # 更新学习率
 
             # 评估模型在训练集、验证集的表现
-            metric_train = evaluator.evaluate(model, train_data_loader)
-            metric_valid = evaluator.evaluate(model, valid_data_loader)
+            evaluator = evaluation_train(model, train_data_loader, valid_data_loader)
+            metric_train = evaluator.evaluate(train_data_loader)
+            metric_valid = evaluator.evaluate(valid_data_loader)
 
             train_metric_list.append(metric_train)
             valid_metric_list.append(metric_valid)
@@ -167,7 +170,7 @@ def main(args):
             print('current_best_epoch', current_best_epoch, 'current_best_metric', current_best_metric)
             if epoch > current_best_epoch + max_bearable_epoch:
                 break
-
+        evaluator.plot_metrics([metric_train_list], [metric_valid_list])
         return train_metric_list, valid_metric_list
 
     processor = Input_ligand_preprocess(input_ligands_path)
@@ -198,8 +201,8 @@ def main(args):
 
     metric_train_list, metric_valid_list = trial(model_version='1', model=model, batch_size=batch_size, criterion=criterion, scheduler=scheduler, opt=opt)
     
-    evaluator = evaluation_train(model, train_data_loader, valid_loader)
-    evaluator.plot_metrics([metric_train_list], [metric_valid_list])
+    # evaluator = evaluation_train(model, train_data_loader, valid_loader)
+    # evaluator.plot_metrics([metric_train_list], [metric_valid_list])
 
 '''
     if args.model == "simple_gnn":
