@@ -22,14 +22,16 @@ import matplotlib.pyplot as plt
 import paddle.nn as nn
 import models.mlp as mlp
 
+
 #
 from preprocess import Input_ligand_preprocess
 from GEM import GEM_smile_transfer
 from evaluation_train import evaluation_train
+from prediction import ModelTester
 
 parser = ArgumentParser()
-parser.add_argument('--model', default=None, type=str, help='Type of model to train (required)')
-parser.add_argument('--dataset', default=None, type=str, help='Choose dataset (required)')
+parser.add_argument('--model', default='ADMET', type=str, help='Type of model to train (required)')
+parser.add_argument('--dataset', default='input.csv', type=str, help='Choose dataset (required)')
 parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples (default: all)')
 parser.add_argument('--seed', default=42, type=int, help='Random seed for reproducibility (default: 42)')
 parser.add_argument('--lr', default=1e-3, type=float, help='Learning rate (default: 1e-3)')
@@ -100,10 +102,10 @@ def main(args):
     def get_data_loader(mode, batch_size):
         if mode == 'train':
             # 训练模式下将train_data_list划分训练集和验证集，返回对应的DataLoader
-            data_list = pkl.load(open(f'work/train_data_list.pkl', 'rb'))  # 读取data_list
+            data_list = pkl.load(open('work/train_data_list.pkl', 'rb'))  # 读取data_list
 
             train_data_list, valid_data_list = train_test_split(data_list, test_size=0.2, random_state=42)
-            print(f'train: {len(train_data_list)}, valid: {len(valid_data_list)}')
+            print('train: {len(train_data_list)}, valid: {len(valid_data_list)}')
 
             train_dataset = InMemoryDataset(train_data_list)
             valid_dataset = InMemoryDataset(valid_data_list)
@@ -112,16 +114,19 @@ def main(args):
             valid_data_loader = valid_dataset.get_data_loader(
                 batch_size=batch_size, num_workers=1, shuffle=True, collate_fn=collate_fn)
             return train_data_loader, valid_data_loader
-        '''
+        
         elif mode == 'test':
             # 推理模式下直接读取test_data_list, 返回test_data_loader
-            data_list = pkl.load(open(f'work/test_data_list.pkl', 'rb'))
+            data_list = pkl.load(open('datasets/ZINC20_processed/test_data_list.pkl', 'rb'))
+            if len(data_list) == 0:
+                raise ValueError("Dataset is empty")
+
 
             test_dataset = InMemoryDataset(data_list)
             test_data_loader = test_dataset.get_data_loader(
                 batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
             return test_data_loader
-        '''
+        
         
     def trial(model_version, model, batch_size, criterion, scheduler, opt):
         # 创建dataloader
@@ -193,11 +198,11 @@ def main(args):
     
     def plot(train, valid, metric, filename):
         epochs = range(1, len(train) + 1)
-        plt.plot(epochs, train, color="blue", label=f'Training {metric}')
-        plt.plot(epochs, valid, color="orange", label=f'Validation {metric}')
-        plt.title(f'Training and validation {metric}')
+        plt.plot(epochs, train, color="blue", label='Training {metric}')
+        plt.plot(epochs, valid, color="orange", label='Validation {metric}')
+        plt.title('Training and validation {metric}')
         plt.xlabel('Epochs')
-        plt.ylabel(f'{metric}')
+        plt.ylabel('{metric}')
         plt.legend()
         plt.savefig(filename)  # Save the plot to a file
         plt.close()  # Close the plot to free up memory
@@ -211,6 +216,28 @@ def main(args):
     plot(metric_train['f1'], metric_valid['f1'], metric='f1', filename='performance/f1_plot.png')
     plot(metric_train['precision'], metric_valid['precision'], metric='precision', filename='performance/precision_plot.png')
     plot(metric_train['recall'], metric_valid['recall'], metric='recall', filename='performance/recall_plot.png')
+    print('evaluation plot saved!')
+    
+    # 将测试集的预测结果保存为result.csv
+    def test(model_version):
+        test_data_loader = get_data_loader(mode='test', batch_size=1024)
+
+        # model = ADMET()
+        model.set_state_dict(pdl.load("weight/" + model_version + ".pkl"))   # 导入训练好的的模型权重
+        model.eval()
+
+        all_result = []
+        for (atom_bond_graph, bond_angle_graph, label_true_batch) in test_data_loader:
+            label_predict_batch = model(atom_bond_graph, bond_angle_graph)
+            label_predict_batch = F.softmax(label_predict_batch)
+            result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
+            all_result.extend(result)image.png
+
+        df = pd.read_csv('datasets/ZINC20_processed/test_nolabel.csv')
+        df['pred'] = all_result
+        df.to_csv('result.csv', index=False)   
+
+    test(model_version='1')
 
 
 
