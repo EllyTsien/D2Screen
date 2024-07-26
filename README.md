@@ -2,7 +2,18 @@
 
 
 ## 调用命令
+
+## step 1: Training a deep learning model
+```
 python DL.py --dataset input.csv --model ADMET --lr 0.001 --batch_size 32
+```
+
+## step 2: transfer smile to pdbqt
+We provide ligand_prep.py for fast convertion of smiles representation of molecules to pdbqt format, which can be put into autodock vina. For conformation optimization, MMFF94 is ussed. All hytrogen is kept. 
+```
+python smile2pdbqt.py
+```
+We highly recommend you to upload your own prepared pdbqt file for more accurate 3D comformation. To do this, upload your pdbqt files under the datasets/ligand_prep/ floder. 
 
 
 ## Getting started

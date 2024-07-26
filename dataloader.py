@@ -73,3 +73,43 @@ def get_data_loader(mode, batch_size):
         test_data_loader = test_dataset.get_data_loader(
             batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
         return test_data_loader
+    
+
+def sort_and_filter_csv(file_path, threshold, output_file_path):
+    """
+    读取CSV文件，根据“pred”这一列的值对数据进行排序，并筛选出“pred”值大于threshold的行，生成新的CSV文件
+    
+    参数:
+    file_path (str): 输入的CSV文件路径
+    threshold (float): 过滤的阈值
+    output_file_path (str): 输出的CSV文件路径
+
+    返回:
+    None
+    """
+    try:
+        # 读取CSV文件
+        df = pd.read_csv(file_path)
+        
+        # 检查是否存在“pred”列
+        if 'pred' not in df.columns:
+            raise ValueError("CSV文件中不存在'pred'这一列")
+        
+        # 根据“pred”这一列的值进行排序
+        sorted_df = df.sort_values(by='pred')
+        
+        # 筛选出“pred”值大于threshold的行
+        filtered_df = sorted_df[sorted_df['pred'] > threshold]
+        
+        # 将结果保存到新的CSV文件
+        filtered_df.to_csv(output_file_path, index=False)
+        
+        print(f"生成的文件已保存到: {output_file_path}")
+    
+    except FileNotFoundError:
+        print(f"文件路径错误或文件不存在: {file_path}")
+    except Exception as e:
+        print(f"发生错误: {e}")
+
+# 使用示例
+# sort_and_filter_csv('your_input_file.csv', 0.5, 'your_output_file.csv')

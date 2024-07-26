@@ -36,6 +36,7 @@ parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples
 parser.add_argument('--seed', default=42, type=int, help='Random seed for reproducibility (default: 42)')
 parser.add_argument('--lr', default=1e-3, type=float, help='Learning rate (default: 1e-3)')
 parser.add_argument('--batch_size', default=32, type=int, help="Batch size (default: 32)")
+parser.add_argument('--threshold', default=0.9, type=float, help="Threshold for predict value (defalt 0.9)")
 
 def main(args):
     np.random.seed(args.seed)
@@ -231,14 +232,55 @@ def main(args):
             label_predict_batch = model(atom_bond_graph, bond_angle_graph)
             label_predict_batch = F.softmax(label_predict_batch)
             result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
-            all_result.extend(result)image.png
+            all_result.extend(result)
 
         df = pd.read_csv('datasets/ZINC20_processed/test_nolabel.csv')
         df['pred'] = all_result
-        df.to_csv('result.csv', index=False)   
+        df.to_csv('datasets/DL_pred/result.csv', index=False)   
 
     test(model_version='1')
 
+    def sort_and_filter_csv(file_path, threshold, output_file_path):
+        """
+        读取CSV文件，根据“pred”这一列的值对数据进行排序，并筛选出“pred”值大于threshold的行，生成新的CSV文件
+
+        参数:
+        file_path (str): 输入的CSV文件路径
+        threshold (float): 过滤的阈值
+        output_file_path (str): 输出的CSV文件路径
+
+        返回:
+        None
+        """
+        try:
+            # 读取CSV文件
+            df = pd.read_csv(file_path)
+
+            # 检查是否存在“pred”列
+            if 'pred' not in df.columns:
+                raise ValueError("CSV文件中不存在'pred'这一列")
+
+            # 根据“pred”这一列的值进行排序
+            sorted_df = df.sort_values(by='pred')
+
+            # 筛选出“pred”值大于threshold的行
+            filtered_df = sorted_df[sorted_df['pred'] > threshold]
+
+            # 将结果保存到新的CSV文件
+            filtered_df.to_csv(output_file_path, index=False)
+
+            print(f"生成的文件已保存到: {output_file_path}")
+
+        except FileNotFoundError:
+            print(f"文件路径错误或文件不存在: {file_path}")
+        except Exception as e:
+            print(f"发生错误: {e}")
+            
+    sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")
+
+
+
+    
 
 
 if __name__ == "__main__":
