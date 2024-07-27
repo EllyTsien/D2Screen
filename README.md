@@ -1,7 +1,27 @@
 # DL_docking_pipline
 
 
-## 调用命令
+## How to start
+
+## Preparation for input data
+
+ 1. train dataset (input.csv) in datasets/input.csv floder
+ ```
+ # formate example
+ID,SMILES,label
+116363,c1ccc(-c2ccccn2)nc1,0
+103573,COc1ccc(-c2cc(=O)c3c(OC)c(OC)c(OC)c(OC)c3o2)cc1,0
+104712,N#Cc1cnc2cnc(NCc3cccnc3)cc2c1Nc1ccc(F)c(Cl)c1,0
+110269,COc1ccc2c(c1)CN(C(=O)CCl)C(c1ccccc1)C2,1
+```
+
+2. receptor.pdbqt
+Preprocessed receptor file in the pdbqt formate under datasets/receptor.pdbqt. Require to remove solvent and crystal ligand. 
+There is a website where you can easily transfer you .pdb file to .pdbqt. 
+```
+https://www.cheminfo.org/Chemistry/Cheminformatics/FormatConverter/index.html
+```
+
 
 ## step 1: Training a deep learning model
 ```
