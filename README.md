@@ -22,6 +22,10 @@ There is a website where you can easily transfer you .pdb file to .pdbqt.
 https://www.cheminfo.org/Chemistry/Cheminformatics/FormatConverter/index.html
 ```
 
+3. native_lig.pdb
+co-crystal ligand structure (pdb format) from the target protein should be put under datasets/target_protein/native_lig.pdb
+This is used for calculation of the grid center and boxsize.
+
 
 ## step 1: Training a deep learning model
 ```
