@@ -76,7 +76,7 @@ def main(args):
                                 if len(fields) >= 4:
                                     score_value = fields[3]
                                     score_file.write(f"{folder_name} {score_value}\n")
-                                break
+                                # break
 
                 except Exception as e:
                     with open(log_file_path, 'w') as log_file:
