@@ -1,0 +1,11 @@
+D,SMILES
+500001,Cc1ccc(CNC2CCCCC2)cc1
+500002,O=C(Nc1cccc2ccccc12)c1ccno1
+500003,C[C@H](CC(=O)O)c1ccc(C(F)(F)F)cc1
+500004,Cc1ccc([C@H](C)NC(=O)c2ccccc2)o1
+500005,CC(C)CSCC(=O)c1ccc(F)cc1
+500006,CCOc1ccc([C@@H](N)C(C)C)cc1C
+500007,Clc1cccc(-c2nccc(Cl)n2)c1
+500008,c1ccc([C@H]2COc3ccccc3N2)cc1
+500009,CCCCCNC(=O)Nc1cccc(C(C)=O)c1
+500010,Cc1cc(Cl)c(OCC2CC2)c(C=O)c1

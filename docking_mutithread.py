@@ -52,7 +52,7 @@ def process_ligand(ligand_file, ligand_dir, score_file_path, receptor_file):
         print(f"Error processing {ligand_file}: {e}\n")
         
 def sort_scores(file_path):
-    # Read file content and compute average scores
+    # Read file content and compute scores
     scores = {}
     
     with open(file_path, 'r') as f:
@@ -66,8 +66,12 @@ def sort_scores(file_path):
                 except ValueError:
                     print(f"Invalid score value: {score}")
 
-    # Compute average scores
-    average_scores = [(name, np.mean(score_list)) for name, score_list in scores.items()]
+    # Compute average of top 5 scores
+    average_scores = []
+    for name, score_list in scores.items():
+        top_scores = sorted(score_list, reverse=True)[:5]
+        avg_score = np.mean(top_scores)
+        average_scores.append((name, avg_score))
 
     # Sort by average score in ascending order
     average_scores.sort(key=lambda x: x[1])
