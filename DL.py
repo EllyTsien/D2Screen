@@ -25,7 +25,7 @@ import models.mlp as mlp
 
 
 #
-from preprocess import Input_ligand_preprocess
+from preprocess import Input_ligand_preprocess, SMILES_Transfer
 from GEM import GEM_smile_transfer
 from evaluation_train import evaluation_train
 from prediction import ModelTester
