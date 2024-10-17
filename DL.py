@@ -19,13 +19,13 @@ warnings.filterwarnings('ignore')
 import seaborn as sns
 import matplotlib.pyplot as plt
 import os
-
+import wandb
 import paddle.nn as nn
 import models.mlp as mlp
 
 
 #
-from preprocess import Input_ligand_preprocess, SMILES_Transfer
+from preprocess import Input_ligand_preprocess
 from GEM import GEM_smile_transfer
 from evaluation_train import evaluation_train
 from prediction import ModelTester
@@ -193,11 +193,10 @@ def sort_and_filter_csv(file_path, threshold, output_file_path):
             
 def plot(train, valid, metric, filename):
     epochs = range(1, len(train) + 1)
-    plt.plot(epochs, train, color="blue", label='Training {metric}')
-    plt.plot(epochs, valid, color="orange", label='Validation {metric}')
-    plt.title('Training and validation {metric}')
-    plt.xlabel('Epochs')
-    plt.ylabel('{metric}')
+    plt.plot(epochs, train, color="blue", label='Training %s' %(metric))
+    plt.plot(epochs, valid, color="orange", label='Validation %s' %(metric))
+    plt.title('Training and validation %s' %(metric))
+    plt.ylabel(metric)
     plt.legend()
     plt.savefig(filename)  # Save the plot to a file
     plt.close()  # Close the plot to free up memory
@@ -205,56 +204,96 @@ def plot(train, valid, metric, filename):
 
 
 def main(args):
-    np.random.seed(args.seed)
-    # torch.random.manual_seed(args.seed)
-    if args.model is None:
-        print("No model specified. Use '--model <model_name>'")
-        exit(-1)
-
-    if args.dataset is None:
-        print("No dataset specified. Use '--dataset <dataset_name>'")
-        exit(-1)
-    else:
-        input_ligands_path = 'datasets/' + args.dataset
-        processed_input_path = 'datasets/train_preprocessed.csv'
-
-
-    processor = Input_ligand_preprocess(input_ligands_path)
-    processor.preprocess() 
-    processed_input_csv = pd.read_csv(processed_input_path)
-    gem_smile_transfer = GEM_smile_transfer(processed_input_csv)
-    gem_smile_transfer.run()
-    
     global model
     if args.model == "ADMET":
         model = mlp.ADMET() 
     else:
         raise NotImplementedError("Unknown model")
-    # 固定随机种子
+    
+    # Initialize wandb with project name and config
+    wandb.init(project=args.project_name, config={
+        "seed": args.seed,
+        "model": args.model,
+        "dataset": args.dataset,
+        "batch_size": args.batch_size,
+        "learning_rate": args.lr,
+        "threshold": args.threshold,
+        "model_details": str(model)
+    })
+    
+    config = wandb.config  # Use wandb config for consistency
+
+    np.random.seed(config.seed)
+    # torch.random.manual_seed(config.seed)
+    
+    if config.model is None:
+        print("No model specified. Use '--model <model_name>'")
+        exit(-1)
+
+    if config.dataset is None:
+        print("No dataset specified. Use '--dataset <dataset_name>'")
+        exit(-1)
+    else:
+        input_ligands_path = 'datasets/' + config.dataset
+        processed_input_path = 'datasets/train_preprocessed.csv'
+    
+    processor = Input_ligand_preprocess(input_ligands_path)
+    processor.preprocess() 
+    processed_input_csv = pd.read_csv(processed_input_path)
+    SMILES_Transfer = SMILES_Transfer(processed_input_csv)
+    SMILES_Transfer.run()
+    
+    
+    if config.model == "ADMET":
+        model = mlp.ADMET() 
+    else:
+        raise NotImplementedError("Unknown model")
+    
+    # Log model architecture
+    wandb.config.update({"model_details": str(model)}, allow_val_change=True)
+    # Fix random seed
     SEED = 1024
-    pdl.seed(SEED)
     np.random.seed(SEED)
     random.seed(SEED)
-    batch_size = args.batch_size                                                             # batch size
-    criterion = nn.CrossEntropyLoss()                                                   # 损失函数
-    scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=args.lr, T_max=15)         # 余弦退火学习率
-    opt = optimizer.Adam(scheduler, parameters=model.parameters(), weight_decay=1e-5)   # 优化器
+    # If using PyTorch
+    # torch.manual_seed(SEED)
+    
+    batch_size = config.batch_size
+    criterion = nn.CrossEntropyLoss() 
+    scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.learning_rate, T_max=15)
+    opt = optimizer.Adam(scheduler, parameters=model.parameters(), weight_decay=1e-5)
+
+    # Train and validate the model
     metric_train_list, metric_valid_list = trial(model_version='1', model=model, batch_size=batch_size, criterion=criterion, scheduler=scheduler, opt=opt)
+    
+    # Convert to DataFrame for plotting
     metric_train = pd.DataFrame(metric_train_list)
     metric_valid = pd.DataFrame(metric_valid_list)
 
-    plot(metric_train['accuracy'], metric_valid['accuracy'], metric='accuracy', filename='performance/accuracy_plot.png')
-    plot(metric_train['ap'], metric_valid['ap'], metric='ap', filename='performance/ap_plot.png')
-    plot(metric_train['auc'], metric_valid['auc'], metric='auc', filename='performance/auc_plot.png')
-    plot(metric_train['f1'], metric_valid['f1'], metric='f1', filename='performance/f1_plot.png')
-    plot(metric_train['precision'], metric_valid['precision'], metric='precision', filename='performance/precision_plot.png')
-    plot(metric_train['recall'], metric_valid['recall'], metric='recall', filename='performance/recall_plot.png')
-    print('evaluation plot saved!')
+    # Log the training and validation metrics in wandb
+    for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
+        wandb.log({
+            f"train_{metric}": metric_train[metric].iloc[-1],  # Log the last value for simplicity
+            f"valid_{metric}": metric_valid[metric].iloc[-1]
+        })
     
-    for index in range(1,4): 
+    # Save performance plots and log them to wandb
+    for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
+        filename = f'performance/{metric}_plot.png'
+        plot(metric_train[metric], metric_valid[metric], metric=metric, filename=filename)
+        wandb.log({f"{metric}_plot": wandb.Image(filename)})
+    
+    print('Evaluation plot saved!')
+    '''
+    # Test and log results
+    for index in range(1, 23): 
         test(model_version='1', index=index)
-    sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")
+    '''
+    # Sort, filter and log the final result
+    sort_and_filter_csv("datasets/DL_pred/result.csv", config.threshold, "datasets/DL_pred/top.csv")
 
+    # Finish the run
+    wandb.finish()
 
 
     
@@ -263,6 +302,7 @@ def main(args):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--model', default='ADMET', type=str, help='Type of model to train (required)')
+    parser.add_argument('--project_name', default='your_project_name', type=str, help='Name your project on the wandb website')
     parser.add_argument('--dataset', default='input.csv', type=str, help='Choose dataset (required)')
     parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples (default: all)')
     parser.add_argument('--seed', default=42, type=int, help='Random seed for reproducibility (default: 42)')
