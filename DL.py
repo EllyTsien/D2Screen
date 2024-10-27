@@ -21,12 +21,10 @@ import matplotlib.pyplot as plt
 import os
 import wandb
 import paddle.nn as nn
-import models.mlp as mlp
-
 
 #
-from preprocess import Input_ligand_preprocess
-from GEM import GEM_smile_transfer
+from finetunemodels import mlp
+from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from evaluation_train import evaluation_train
 from prediction import ModelTester
 
@@ -76,7 +74,7 @@ def get_data_loader(mode, batch_size, index):
         # 训练模式下将train_data_list划分训练集和验证集，返回对应的DataLoader
         data_list = pkl.load(open('work/train_data_list.pkl', 'rb'))  # 读取data_list
         train_data_list, valid_data_list = train_test_split(data_list, test_size=0.2, random_state=42)
-        print('train: {len(train_data_list)}, valid: {len(valid_data_list)}')
+        print(f'train: {len(train_data_list)}, valid: {len(valid_data_list)}')
         train_dataset = InMemoryDataset(train_data_list)
         valid_dataset = InMemoryDataset(valid_data_list)
         train_data_loader = train_dataset.get_data_loader(
@@ -201,74 +199,63 @@ def plot(train, valid, metric, filename):
     plt.savefig(filename)  # Save the plot to a file
     plt.close()  # Close the plot to free up memory
 
-
+def 
 
 def main(args):
-    global model
-    if args.model == "ADMET":
-        model = mlp.ADMET() 
+    # passing parameters
+    global finetune_model
+    if args.finetunemodel == "mlp4":
+        finetune_model = mlp.MLP4()
+    if args.finetunemodel == "mlp6":
+        finetune_model = mlp.MLP6()
     else:
-        raise NotImplementedError("Unknown model")
+        raise NotImplementedError("No model specified. Use '--finetunemodel <model_name>'")
+    
+    if args.dataset is None:
+        print("No dataset specified. Use '--dataset <dataset_name>'")
+        exit(-1)
+    else:
+        input_ligands_path = 'datasets/' + args.dataset
+        processed_input_path = 'datasets/train_preprocessed.csv'
     
     # Initialize wandb with project name and config
     wandb.init(project=args.project_name, config={
         "seed": args.seed,
-        "model": args.model,
+        "finetunemodel": args.finetunemodel,
         "dataset": args.dataset,
         "batch_size": args.batch_size,
         "learning_rate": args.lr,
         "threshold": args.threshold,
-        "model_details": str(model)
+        "model_details": str(finetune_model)
     })
-    
     config = wandb.config  # Use wandb config for consistency
-
+    # Log model architecture
+    wandb.config.update({"model_details": str(finetune_model)}, allow_val_change=True)
     np.random.seed(config.seed)
-    # torch.random.manual_seed(config.seed)
-    
-    if config.model is None:
-        print("No model specified. Use '--model <model_name>'")
-        exit(-1)
+    random.seed(config.seed)
+    batch_size = config.batch_size
 
-    if config.dataset is None:
-        print("No dataset specified. Use '--dataset <dataset_name>'")
-        exit(-1)
-    else:
-        input_ligands_path = 'datasets/' + config.dataset
-        processed_input_path = 'datasets/train_preprocessed.csv'
-    
+    # process train dataset
     processor = Input_ligand_preprocess(input_ligands_path)
     processor.preprocess() 
     processed_input_csv = pd.read_csv(processed_input_path)
-    SMILES_Transfer = SMILES_Transfer(processed_input_csv)
-    SMILES_Transfer.run()
-    
-    
-    if config.model == "ADMET":
-        model = mlp.ADMET() 
-    else:
-        raise NotImplementedError("Unknown model")
-    
-    # Log model architecture
-    wandb.config.update({"model_details": str(model)}, allow_val_change=True)
-    # Fix random seed
-    SEED = 1024
-    np.random.seed(SEED)
-    random.seed(SEED)
-    # If using PyTorch
-    # torch.manual_seed(SEED)
-    
-    batch_size = config.batch_size
+    SMILES_transfer = SMILES_Transfer(processed_input_csv)
+    SMILES_transfer.run()
+
+
     criterion = nn.CrossEntropyLoss() 
     scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.learning_rate, T_max=15)
-    opt = optimizer.Adam(scheduler, parameters=model.parameters(), weight_decay=1e-5)
+    opt = optimizer.Adam(scheduler, parameters=finetune_model.parameters(), weight_decay=1e-5)
 
     # Train and validate the model
-    metric_train_list, metric_valid_list = trial(model_version='1', model=model, batch_size=batch_size, criterion=criterion, scheduler=scheduler, opt=opt)
+    metric_train_list, metric_valid_list = trial(model_version='1', model=finetune_model, batch_size=batch_size, criterion=criterion, scheduler=scheduler, opt=opt)
     
     # Convert to DataFrame for plotting
     metric_train = pd.DataFrame(metric_train_list)
     metric_valid = pd.DataFrame(metric_valid_list)
+
+
+
 
     # Log the training and validation metrics in wandb
     for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
@@ -301,7 +288,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument('--model', default='ADMET', type=str, help='Type of model to train (required)')
+    parser.add_argument('--finetunemodel', default='mlp4', type=str, help='Type of model to train (required)')
     parser.add_argument('--project_name', default='your_project_name', type=str, help='Name your project on the wandb website')
     parser.add_argument('--dataset', default='input.csv', type=str, help='Choose dataset (required)')
     parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples (default: all)')
