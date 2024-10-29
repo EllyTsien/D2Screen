@@ -16,6 +16,7 @@ import random
 from sklearn.model_selection import train_test_split
 
 from pprint import pprint
+import paddle.nn as nn
 import paddle.nn.functional as F
 from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
@@ -23,7 +24,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 import wandb
-import paddle.nn as nn
+# wandb.init(mode='disabled')
 
 #
 from finetunemodels import mlp
@@ -68,6 +69,11 @@ def trial(model_version, model, batch_size, criterion, scheduler, opt):
         pprint(("Train", metric_train))
         pprint(("Validate", metric_valid))
         print('current_best_epoch', current_best_epoch, 'current_best_metric', current_best_metric)
+        for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
+            wandb.log({
+                f"train_{metric}": metric_train[metric].tolist(),  # Log the last value for simplicity
+                f"valid_{metric}": metric_valid[metric].tolist()
+            })
         if epoch > current_best_epoch + max_bearable_epoch:
             break
     # evaluator.plot_metrics([train_metric_list], [valid_metric_list])
@@ -77,11 +83,11 @@ def trial(model_version, model, batch_size, criterion, scheduler, opt):
 def test(model_version, index):
     test_data_loader = get_data_loader(mode='test', batch_size=1024, index=index)
     # model = ADMET()
-    model.set_state_dict(pdl.load("weight/" + model_version + ".pkl"))   # 导入训练好的的模型权重
-    model.eval()
+    finetune_model.set_state_dict(pdl.load("weight/" + model_version + ".pkl"))   # 导入训练好的的模型权重
+    finetune_model.eval()
     all_result = []
     for (atom_bond_graph, bond_angle_graph, label_true_batch) in test_data_loader:
-        label_predict_batch = model(atom_bond_graph, bond_angle_graph)
+        label_predict_batch = finetune_model(atom_bond_graph, bond_angle_graph)
         label_predict_batch = F.softmax(label_predict_batch)
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
@@ -161,15 +167,8 @@ def main(args):
     metric_train = pd.DataFrame(metric_train_list)
     metric_valid = pd.DataFrame(metric_valid_list)
 
-
-
-
-    # Log the training and validation metrics in wandb
-    for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
-        wandb.log({
-            f"train_{metric}": metric_train[metric].iloc[-1],  # Log the last value for simplicity
-            f"valid_{metric}": metric_valid[metric].iloc[-1]
-        })
+    print(type(metric_train['accuracy']))
+    print(metric_train['accuracy'])
     
     # Save performance plots and log them to wandb
     for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
