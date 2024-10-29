@@ -124,9 +124,16 @@ def main(args):
     else:
         input_ligands_path = 'datasets/' + args.dataset
         processed_input_path = 'datasets/train_preprocessed.csv'
+
+
+    # process train dataset
+    processor = Input_ligand_preprocess(input_ligands_path)
+    processor.preprocess() 
+    processed_input_csv = pd.read_csv(processed_input_path)
+    SMILES_transfer = SMILES_Transfer(processed_input_csv)
+    SMILES_transfer.run()
     
     # Initialize wandb with project name and config
-    # wandb.login(host='https://api.wandb.ai')
     wandb.init(project=args.project_name, config={
         "seed": args.seed,
         "finetunemodel": args.finetunemodel,
