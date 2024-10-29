@@ -2,18 +2,19 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings('ignore')
 import paddle as pdl
+from paddle import optimizer 
 import numpy as np
-from rdkit import Chem
+import pandas as pd
+# from rdkit import Chem
 from rdkit import RDLogger
 RDLogger.DisableLog('rdApp.*') # 屏蔽RDKit的warning
 import pickle as pkl
 from argparse import ArgumentParser
-import pandas as pd
-import pgl
+# import pgl
 from pahelix.datasets.inmemory_dataset import InMemoryDataset
 import random
 from sklearn.model_selection import train_test_split
-from paddle import optimizer 
+
 from pprint import pprint
 import paddle.nn.functional as F
 from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
@@ -125,7 +126,6 @@ def main(args):
         input_ligands_path = 'datasets/' + args.dataset
         processed_input_path = 'datasets/train_preprocessed.csv'
 
-
     # process train dataset
     processor = Input_ligand_preprocess(input_ligands_path)
     processor.preprocess() 
@@ -149,14 +149,6 @@ def main(args):
     np.random.seed(config.seed)
     random.seed(config.seed)
     batch_size = config.batch_size
-
-    # process train dataset
-    processor = Input_ligand_preprocess(input_ligands_path)
-    processor.preprocess() 
-    processed_input_csv = pd.read_csv(processed_input_path)
-    SMILES_transfer = SMILES_Transfer(processed_input_csv)
-    SMILES_transfer.run()
-
 
     criterion = nn.CrossEntropyLoss() 
     scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.learning_rate, T_max=15)
