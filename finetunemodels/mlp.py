@@ -49,3 +49,6 @@ class MLP6(nn.Layer):
     def forward(self, atom_bond_graph, bond_angle_graph):
         node_repr, edge_repr, graph_repr = self.encoder(atom_bond_graph.tensor(), bond_angle_graph.tensor())
         return self.mlp(graph_repr)
+    
+
+
