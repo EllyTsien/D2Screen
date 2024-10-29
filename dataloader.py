@@ -2,6 +2,8 @@ import pgl
 from pahelix.datasets.inmemory_dataset import InMemoryDataset
 import random
 from sklearn.model_selection import train_test_split
+import pickle as pkl
+import numpy as np
 
 def collate_fn(data_batch):
     """
@@ -49,14 +51,12 @@ def collate_fn(data_batch):
     return atom_bond_graph, bond_angle_graph, np.array(label_list, dtype=np.float32)
 
 
-def get_data_loader(mode, batch_size):
+def get_data_loader(mode, batch_size, index):
     if mode == 'train':
         # 训练模式下将train_data_list划分训练集和验证集，返回对应的DataLoader
-        data_list = pkl.load(open(f'work/train_data_list.pkl', 'rb'))  # 读取data_list
-
+        data_list = pkl.load(open('work/train_data_list.pkl', 'rb'))  # 读取data_list
         train_data_list, valid_data_list = train_test_split(data_list, test_size=0.2, random_state=42)
         print(f'train: {len(train_data_list)}, valid: {len(valid_data_list)}')
-
         train_dataset = InMemoryDataset(train_data_list)
         valid_dataset = InMemoryDataset(valid_data_list)
         train_data_loader = train_dataset.get_data_loader(
@@ -64,11 +64,13 @@ def get_data_loader(mode, batch_size):
         valid_data_loader = valid_dataset.get_data_loader(
             batch_size=batch_size, num_workers=1, shuffle=True, collate_fn=collate_fn)
         return train_data_loader, valid_data_loader
-
+    
     elif mode == 'test':
         # 推理模式下直接读取test_data_list, 返回test_data_loader
-        data_list = pkl.load(open(f'work/test_data_list.pkl', 'rb'))
-
+        file_path = f'datasets/ZINC20_processed/{index}_ZINC20_data_list.pkl'
+        data_list = pkl.load(open(file_path, 'rb'))
+        if len(data_list) == 0:
+            raise ValueError("Dataset is empty")
         test_dataset = InMemoryDataset(data_list)
         test_data_loader = test_dataset.get_data_loader(
             batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
