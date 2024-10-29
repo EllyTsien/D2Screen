@@ -35,13 +35,13 @@ from pahelix.model_zoo.gem_model import GeoGNNModel
 
 # def trial(model_version, model, batch_size, criterion, scheduler, opt):
 def run_finetune(params):
-    finetune_model_config_path, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version = params
+    finetune_model_config, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version = params
     seed = random.randint(0, 1000000)  # 可以根据需要调整范围
-    finetune_model_config =json.load(open(finetune_model_config_path, 'r'))
-    if not dropout_rate is None:
-        finetune_model_config['dropout_rate'] = dropout_rate
-    finetune_model_config['task_type'] = 'class'
-    finetune_model_config['num_tasks'] = 1
+    # finetune_model_config =json.load(open(finetune_model_config, 'r'))
+    if finetune_model_config=='mlp4':
+        finetune_model = mlp.MLP4()
+    elif finetune_model_config=='mlp6':
+        finetune_model = mlp.MLP6()
     
     # Initialize wandb with project name and config
     wandb.init(project=project_name, config={
@@ -62,19 +62,10 @@ def run_finetune(params):
     random.seed(config.seed)
 
     compound_encoder_config = json.load(open('GEM/model_configs/geognn_l8.json', 'r')) 
-    compound_encoder = GeoGNNModel(compound_encoder_config)
-    '''
-    # 这里显式传入MLP构造函数所需的所有参数
-    finetune_model = mlp.MLP(
-        layer_num=finetune_model_config['layer_num'],
-        in_size=compound_encoder.graph_dim,
-        hidden_size=finetune_model_config['hidden_size'],
-        out_size=finetune_model_config['num_tasks'],
-        act=finetune_model_config['act'],
-        dropout_rate=finetune_model_config.get('dropout_rate', None)  # 使用从配置中获取的dropout_rate
-    )
-    '''
-    finetune_model = mlp.MLP4()
+    # compound_encoder = GeoGNNModel(compound_encoder_config)
+
+    # finetune_model = mlp.DownstreamModel(finetune_model_config, compound_encoder)
+
     criterion = nn.CrossEntropyLoss() 
     scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.learning_rate, T_max=15)
     opt = optimizer.Adam(scheduler, parameters=finetune_model.parameters(), weight_decay=1e-5)
@@ -162,33 +153,11 @@ def plot(train, valid, metric, filename):
 
 
 def main(args):
-    
-    # Train and validate the model
-    # metric_train_list, metric_valid_list = trial(model_version='1', model=finetune_model, batch_size=batch_size, criterion=criterion, scheduler=scheduler, opt=opt)
-    
-    # Convert to DataFrame for plotting
-    # metric_train = pd.DataFrame(metric_train_list)
-    # metric_valid = pd.DataFrame(metric_valid_list)
-# 
-    # print(type(metric_train['accuracy']))
-    # print(metric_train['accuracy'])
-    # 
-    # # Save performance plots and log them to wandb
-    # for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
-    #     filename = f'performance/{metric}_plot.png'
-    #     plot(metric_train[metric], metric_valid[metric], metric=metric, filename=filename)
-    #     wandb.log({f"{metric}_plot": wandb.Image(filename)})
-    # 
-    # print('Evaluation plot saved!')
-
     # Test and log results
     for index in range(1, 23): 
         test(model_version='1', index=index)
     # Sort, filter and log the final result
     sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")
-
-    # Finish the run
-    wandb.finish()
 
 
     

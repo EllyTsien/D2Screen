@@ -52,6 +52,7 @@ class MLP6(nn.Layer):
         return self.mlp(graph_repr)
     
 
+
 class DownstreamModel(nn.Layer):
     """
     Docstring for DownstreamModel,it is an supervised 
@@ -59,15 +60,16 @@ class DownstreamModel(nn.Layer):
     """
     def __init__(self, model_config, compound_encoder):
         super(DownstreamModel, self).__init__()
-        self.task_type = model_config['task_type']  # 或其他方法来初始化 task_type
+        self.task_type = model_config['task_type']
+        self.num_tasks = model_config['num_tasks']
+
         self.compound_encoder = compound_encoder
-        self.compound_encoder.set_state_dict(pdl.load("GEM/weight/class.pdparams")) 
         self.norm = nn.LayerNorm(compound_encoder.graph_dim)
         self.mlp = MLP(
                 model_config['layer_num'],
                 in_size=compound_encoder.graph_dim,
                 hidden_size=model_config['hidden_size'],
-                out_size= 1,
+                out_size=self.num_tasks,
                 act=model_config['act'],
                 dropout_rate=model_config['dropout_rate'])
         if self.task_type == 'class':
@@ -86,5 +88,6 @@ class DownstreamModel(nn.Layer):
         if self.task_type == 'class':
             pred = self.out_act(pred)
         return pred
+
 
 
