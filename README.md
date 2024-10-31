@@ -48,7 +48,7 @@ python docking.py
 ```
 
 ## reference
-、、、
+、、、bibtex
 @article{fang2022geometry,
   title={Geometry-enhanced molecular representation learning for property prediction},
   author={Fang, Xiaomin and Liu, Lihang and Lei, Jieqiong and He, Donglong and Zhang, Shanzhuo and Zhou, Jingbo and Wang, Fan and Wu, Hua and Wang, Haifeng},
