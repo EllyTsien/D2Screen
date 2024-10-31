@@ -5,12 +5,9 @@ import pandas as pd
 import os
 
 #
-from finetunemodels import mlp
 from finetune import run_finetune, test
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
-from evaluation_train import evaluation_train
-from prediction import ModelTester
-from dataloader import collate_fn, get_data_loader, sort_and_filter_csv
+from dataloader import sort_and_filter_csv
 
 thread_num = 1
 model_version = '1'

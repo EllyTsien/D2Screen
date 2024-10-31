@@ -7,22 +7,14 @@ import numpy as np
 import json
 from rdkit import RDLogger
 RDLogger.DisableLog('rdApp.*') # 屏蔽RDKit的warning
-import pickle as pkl
-from argparse import ArgumentParser
 from pahelix.datasets.inmemory_dataset import InMemoryDataset
 import random
-from sklearn.model_selection import train_test_split
 import pandas as pd
 from pprint import pprint
 import paddle.nn as nn
 import paddle.nn.functional as F
-from sklearn.metrics import average_precision_score, roc_auc_score, accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
-
-import seaborn as sns
-import matplotlib.pyplot as plt
 import os
 import wandb
-# wandb.init(mode='disabled')
 
 #
 from finetunemodels import mlp
@@ -177,28 +169,4 @@ def test(model_version, index):
             df.to_csv(result_file_path, index=False)
     print(f'Screen through {index}_ZINC20_nolabel.csv')
 
-
-def main(args):
-    # Test and log results
-    for index in range(1, 3): 
-        test(model_version='1', index=index)
-    # Sort, filter and log the final result
-    sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")
-
-
     
-
-
-if __name__ == "__main__":
-    parser = ArgumentParser()
-    parser.add_argument('--finetunemodel', default='mlp4', type=str, help='Type of model to train (required)')
-    parser.add_argument('--project_name', default='your_project_name', type=str, help='Name your project on the wandb website')
-    parser.add_argument('--dataset', default='input.csv', type=str, help='Choose dataset (required)')
-    parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples (default: all)')
-    parser.add_argument('--seed', default=42, type=int, help='Random seed for reproducibility (default: 42)')
-    parser.add_argument('--lr', default=1e-3, type=float, help='Learning rate (default: 1e-3)')
-    parser.add_argument('--batch_size', default=32, type=int, help="Batch size (default: 32)")
-    parser.add_argument('--threshold', default=0.9, type=float, help="Threshold for predict value (defalt 0.9)")
-    args = parser.parse_args()
-    
-    run_finetune(args)
