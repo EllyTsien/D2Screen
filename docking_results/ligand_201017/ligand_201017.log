@@ -1,0 +1,4 @@
+Error processing ligand_201017_aligned.pdbqt: 
+
+Vina runtime error: Cannot score the pose. Affinity maps were not initialized.
+
