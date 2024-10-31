@@ -1,0 +1,11 @@
+{
+    "finetune_model_layer": "mlp4",
+    "learning_rate": "1e-3",
+    "head_learning_rate": "1e-3",
+    "dropout_rate": 0.2,
+    "finetune_time": 1,
+    "batch_size": 128,
+    "project_name": "finetune",
+    "finetune_dataset": "input.csv",
+    "model_version": "1"
+}
