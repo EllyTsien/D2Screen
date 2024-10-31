@@ -58,15 +58,5 @@ python docking.py
   doi={10.1038/s42256-021-00438-4}
 }
 
-<div id="refer-anchor-1"></div>
-
-- [1] [百度学术](http://xueshu.baidu.com/)
-
-<div id="refer-anchor-2"></div>
-
-- [2] [Wikipedia](https://en.wikipedia.org/wiki/Main_Page)
-————————————————
-
-                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
-                        
-原文链接：https://blog.csdn.net/u012349679/article/details/103815049
+* [J. Eberhardt, D. Santos-Martins, A. F. Tillack, and S. Forli. (2021). AutoDock Vina 1.2.0: New Docking Methods, Expanded Force Field, and Python Bindings. Journal of Chemical Information and Modeling.](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00203) 
+* [O. Trott and A. J. Olson. (2010). AutoDock Vina: improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. Journal of computational chemistry, 31(2), 455-461.](https://onlinelibrary.wiley.com/doi/10.1002/jcc.21334)
