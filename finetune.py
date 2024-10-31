@@ -24,6 +24,20 @@ from prediction import ModelTester
 from dataloader import collate_fn, get_data_loader, sort_and_filter_csv
 from pahelix.model_zoo.gem_model import GeoGNNModel
 
+def exempt_parameters(src_list, ref_list):
+    """Remove element from src_list that is in ref_list"""
+    res = []
+    for x in src_list:
+        flag = True
+        for y in ref_list:
+            if x is y:
+                flag = False
+                break
+        if flag:
+            res.append(x)
+    return res
+
+
 # def trial(model_version, model, batch_size, criterion, scheduler, opt):
 def run_finetune(params):
     finetune_model_layer, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version = params
@@ -51,14 +65,17 @@ def run_finetune(params):
     wandb.config.update({"model_details": str(finetune_model_layer)}, allow_val_change=True)
     np.random.seed(config.seed)
     random.seed(config.seed)
-
+    
+    #model construction
     compound_encoder_config = json.load(open('GEM/model_configs/geognn_l8.json', 'r')) 
-    # compound_encoder = GeoGNNModel(compound_encoder_config)
-    # finetune_model = mlp.DownstreamModel(finetune_model_layer, compound_encoder)
-
+    compound_encoder = GeoGNNModel(compound_encoder_config)
+    encoder_params = compound_encoder.parameters()
+    head_params = exempt_parameters(finetune_model.parameters(), encoder_params)
     criterion = nn.CrossEntropyLoss() 
-    scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.learning_rate, T_max=15)
-    opt = optimizer.Adam(scheduler, parameters=finetune_model.parameters(), weight_decay=1e-5)
+    encoder_scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.learning_rate, T_max=15)
+    head_scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.head_lr, T_max=15)
+    encoder_opt = optimizer.Adam(encoder_scheduler, parameters=encoder_params, weight_decay=1e-5)
+    head_opt = optimizer.Adam(head_scheduler, parameters=head_params, weight_decay=1e-5)
 
     # 创建dataloader
     train_data_loader, valid_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0)   
@@ -74,9 +91,12 @@ def run_finetune(params):
             label_true_batch = pdl.to_tensor(label_true_batch, dtype=pdl.int64, place=pdl.CUDAPlace(0))
             loss = criterion(label_predict_batch, label_true_batch)
             loss.backward()   # 反向传播
-            opt.step()   # 更新参数
-            opt.clear_grad()
-        scheduler.step()   # 更新学习率
+            encoder_opt.step()   # 更新参数
+            head_opt.step()   # 更新参数
+            encoder_opt.clear_grad()
+            head_opt.clear_grad()
+        encoder_scheduler.step()   # 更新学习率
+        head_scheduler.step() # 更新学习率
         # 评估模型在训练集、验证集的表现
         evaluator = evaluation_train(finetune_model, train_data_loader, valid_data_loader)
         metric_train = evaluator.evaluate(train_data_loader)

@@ -47,8 +47,12 @@ def main(args):
     model_config_list = ["mlp4", "mlp6"]
     lrs_list = [
         ("1e-3", "1e-3"),
-        ("4e-3", "4e-3"),
-        ("1e-4", "1e-3")
+        ("5e-3", "5e-3"),
+        ("1e-4", "1e-3"),
+        ("0", "1e-3"),
+        ("0", "5e-3"),
+        ("0", "1e-3")
+
     ]
     drop_list = [0.2, 0.5]
     batch_size_list = [32,256,1024]
@@ -56,6 +60,8 @@ def main(args):
     model_config_list = ["mlp4"]
     lrs_list = [
         ("1e-3", "1e-3"),
+        ("0", "1e-3")
+
     ]
     drop_list = [0.2]
     batch_size_list = [32,128]
