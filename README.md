@@ -1,11 +1,11 @@
-# DL_docking_pipline
+# DeepScreenZine
 
 
 ## How to start
 
 ## Preparation for input data
 
- 1. train dataset (input.csv) in datasets/input.csv floder
+ 1. fientne dataset (input.csv) in datasets/input.csv floder
  ```
  # formate example
 ID,SMILES,label
