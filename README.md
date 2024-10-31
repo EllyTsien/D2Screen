@@ -27,9 +27,9 @@ co-crystal ligand structure (pdb format) from the target protein should be put u
 This is used for calculation of the grid center and boxsize.
 
 
-## step 1: Training a deep learning model
+## step 1: finetune on downstream task
 ```
-python DL.py --dataset input.csv --model ADMET --lr 0.001 --batch_size 32
+python train.py
 ```
 
 ## step 2: transfer smile to pdbqt

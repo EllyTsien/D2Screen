@@ -4,7 +4,6 @@ warnings.filterwarnings('ignore')
 import paddle as pdl
 from paddle import optimizer 
 import numpy as np
-import pandas as pd
 import json
 from rdkit import RDLogger
 RDLogger.DisableLog('rdApp.*') # 屏蔽RDKit的warning
@@ -13,7 +12,7 @@ from argparse import ArgumentParser
 from pahelix.datasets.inmemory_dataset import InMemoryDataset
 import random
 from sklearn.model_selection import train_test_split
-
+import pandas as pd
 from pprint import pprint
 import paddle.nn as nn
 import paddle.nn.functional as F
@@ -35,36 +34,35 @@ from pahelix.model_zoo.gem_model import GeoGNNModel
 
 # def trial(model_version, model, batch_size, criterion, scheduler, opt):
 def run_finetune(params):
-    finetune_model_config, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version = params
+    finetune_model_layer, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version = params
     seed = random.randint(0, 1000000)  # 可以根据需要调整范围
-    # finetune_model_config =json.load(open(finetune_model_config, 'r'))
-    if finetune_model_config=='mlp4':
+    # finetune_model_layer =json.load(open(finetune_model_layer, 'r'))
+    if finetune_model_layer=='mlp4':
         finetune_model = mlp.MLP4()
-    elif finetune_model_config=='mlp6':
+    elif finetune_model_layer=='mlp6':
         finetune_model = mlp.MLP6()
     
     # Initialize wandb with project name and config
     wandb.init(project=project_name, config={
         "seed": seed,
-        "finetunemodel": finetune_model_config,
+        "finetunemodel": finetune_model_layer,
         "dataset": finetune_dataset, 
         "batch_size": batch_size,
         "learning_rate": float(lr),
         "head_lr": float(head_lr),
         "finetune time": float(ft_time),
         "dropout rate": float(dropout_rate),
-        "model_details": str(finetune_model_config)
+        "model_details": str(finetune_model_layer)
     })
     config = wandb.config  # Use wandb config for consistency
     # Log model architecture
-    wandb.config.update({"model_details": str(finetune_model_config)}, allow_val_change=True)
+    wandb.config.update({"model_details": str(finetune_model_layer)}, allow_val_change=True)
     np.random.seed(config.seed)
     random.seed(config.seed)
 
     compound_encoder_config = json.load(open('GEM/model_configs/geognn_l8.json', 'r')) 
     # compound_encoder = GeoGNNModel(compound_encoder_config)
-
-    # finetune_model = mlp.DownstreamModel(finetune_model_config, compound_encoder)
+    # finetune_model = mlp.DownstreamModel(finetune_model_layer, compound_encoder)
 
     criterion = nn.CrossEntropyLoss() 
     scheduler = optimizer.lr.CosineAnnealingDecay(learning_rate=config.learning_rate, T_max=15)
@@ -99,6 +97,25 @@ def run_finetune(params):
             current_best_metric = score
             current_best_epoch = epoch
             pdl.save(finetune_model.state_dict(), "weight/" + model_version + ".pkl")
+
+            # save best model config to .json
+            best_model_info = {
+                "finetune_model_layer": finetune_model_layer,
+                "learning_rate": lr,
+                "head_learning_rate": head_lr,
+                "dropout_rate": dropout_rate,
+                "finetune_time": ft_time,
+                "batch_size": batch_size,
+                "project_name": project_name,
+                "finetune_dataset": finetune_dataset,
+                "model_version": model_version
+            }
+            # 确保目标文件夹存在
+            os.makedirs("finetunemodels", exist_ok=True)
+            # 将配置信息保存为JSON文件
+            with open("finetunemodels/best.json", "w") as json_file:
+                json.dump(best_model_info, json_file, indent=4)
+
         print("=========================================================")
         print("Epoch", epoch)
         pprint(("Train", metric_train))
@@ -111,20 +128,30 @@ def run_finetune(params):
             })
         if epoch > current_best_epoch + max_bearable_epoch:
             break
-    # evaluator.plot_metrics([train_metric_list], [valid_metric_list])
+
     # Finish the run
     wandb.finish()
     return train_metric_list, valid_metric_list        
 
 # 将测试集的预测结果保存为result.csv
 def test(model_version, index):
-    test_data_loader = get_data_loader(mode='test', batch_size=1024, index=index)
-    # model = ADMET()
-    finetune_model.set_state_dict(pdl.load("weight/" + model_version + ".pkl"))   # 导入训练好的的模型权重
-    finetune_model.eval()
+    # from best.json import config
+    with open("finetunemodels/best.json", "r") as json_file:
+        best_model_info = json.load(json_file)
+    if best_model_info["finetune_model_layer"] == "mlp4":
+        ft_model = mlp.MLP4()
+    elif best_model_info["finetune_model_layer"] == "mlp6":
+        ft_model = mlp.MLP6()
+    else:
+        raise ValueError("Unknown model configuration specified in best.json")    
+    
+    test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index)
+
+    ft_model.set_state_dict(pdl.load("weight/" + model_version + ".pkl"))   # 导入训练好的的模型权重
+    ft_model.eval()
     all_result = []
     for (atom_bond_graph, bond_angle_graph, label_true_batch) in test_data_loader:
-        label_predict_batch = finetune_model(atom_bond_graph, bond_angle_graph)
+        label_predict_batch = ft_model(atom_bond_graph, bond_angle_graph)
         label_predict_batch = F.softmax(label_predict_batch)
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
@@ -134,27 +161,26 @@ def test(model_version, index):
     df['pred'] = all_result
     result_file_path = 'datasets/DL_pred/result.csv'
     # 检查文件是否存在
-    if os.path.exists(result_file_path):
-        # 如果文件存在，则追加数据
-        df.to_csv(result_file_path, mode='a', header=False, index=False)
-    else:
-        # 如果文件不存在，则创建文件并写入数据
-        df.to_csv(result_file_path, index=False)
-          
-def plot(train, valid, metric, filename):
-    epochs = range(1, len(train) + 1)
-    plt.plot(epochs, train, color="blue", label='Training %s' %(metric))
-    plt.plot(epochs, valid, color="orange", label='Validation %s' %(metric))
-    plt.title('Training and validation %s' %(metric))
-    plt.ylabel(metric)
-    plt.legend()
-    plt.savefig(filename)  # Save the plot to a file
-    plt.close()  # Close the plot to free up memory
+    if index == 1:
+        if os.path.exists(result_file_path):
+            # 如果文件存在，则覆盖
+            df.to_csv(result_file_path, index=False)
+        else:
+            # 如果文件不存在，则创建文件并写入数据
+            df.to_csv(result_file_path, index=False)
+    else: 
+        if os.path.exists(result_file_path):
+            # 如果文件存在，则追加数据
+            df.to_csv(result_file_path, mode='a', header=False, index=False)
+        else:
+            # 如果文件不存在，则创建文件并写入数据
+            df.to_csv(result_file_path, index=False)
+    print(f'Screen through {index}_ZINC20_nolabel.csv')
 
 
 def main(args):
     # Test and log results
-    for index in range(1, 23): 
+    for index in range(1, 3): 
         test(model_version='1', index=index)
     # Sort, filter and log the final result
     sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")

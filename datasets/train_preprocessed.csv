@@ -4,7 +4,7 @@ ID,SMILES,label
 104712,N#Cc1cnc2cnc(NCc3cccnc3)cc2c1Nc1ccc(F)c(Cl)c1,0
 110269,COc1ccc2c(c1)CN(C(=O)CCl)C(c1ccccc1)C2,1
 105481,Cc1cc2c(F)c(Oc3ncnn4cc(OC[C@@H](C)OC(=O)[C@H](C)N)c(C)c34)ccc2[nH]1,0
-113937,C[C@]12CC/C(=N\OCCN)C[C@@H]1C(=O)C[C@@H]1[C@@H]2CC[C@]2(C)C(=O)CC[C@@H]12,0
+113937,C[C@]12CC[C@H]3[C@@H](CC(=O)[C@H]4C/C(=N/OCCN)CC[C@@]43C)[C@@H]1CCC2=O,0
 100715,N[C@H]1CCN(O)C1=O,0
 104298,CC(=O)O[C@]1(C(C)=O)CC[C@H]2[C@@H]3C=C(Cl)C4=CC(=O)CC[C@]4(C)[C@H]3CC[C@@]21C,0
 116694,COCCCN1CCC(NC(=O)c2cc(Cl)c(N)c3c2OCC3)CC1,0
@@ -43,7 +43,7 @@ ID,SMILES,label
 107555,COc1ccccc1CN[C@H]1CCCN[C@H]1c1ccccc1,0
 107887,O=C1N[C@@]2(CCOc3ccc(Cl)cc32)C(=O)N1c1cncc2ccccc12,1
 110530,CO/N=C1/C[C@@H](C(=O)NC[C@@H](O)c2ccccc2)N(C(=O)c2ccc(-c3ccccc3C)cc2)C1,0
-113097,O=C1NCC[C@H]1N1Cc2ccc(Cl)cc2[C@H](C(=O)Nc2cncc3ccccc23)C1,1
+113097,O=C(Nc1cncc2ccccc12)[C@@H]1CN([C@@H]2CCNC2=O)Cc2ccc(Cl)cc21,1
 102885,Cc1c(C2CCN(CCc3ccccc3)CC2)noc1-c1ccc(Cl)cc1,0
 111943,Cc1cnn(C)c1C(=O)N1Cc2ccc(Cl)cc2C2(CCN(c3cncc4ccccc34)C2=O)C1,1
 107043,Cc1ccc(Nc2nccc(N(C)c3ccc4c(C)n(C)nc4c3)n2)cc1S(N)(=O)=O,0

@@ -4,6 +4,7 @@ import random
 from sklearn.model_selection import train_test_split
 import pickle as pkl
 import numpy as np
+import pandas as pd
 
 def collate_fn(data_batch):
     """

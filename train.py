@@ -1,12 +1,12 @@
 import time
 from multiprocessing import Pool
-from finetune import run_finetune
 from argparse import ArgumentParser
 import pandas as pd
 import os
 
 #
 from finetunemodels import mlp
+from finetune import run_finetune, test
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from evaluation_train import evaluation_train
 from prediction import ModelTester
@@ -54,7 +54,7 @@ def main(args):
         ("1e-4", "1e-3")
     ]
     drop_list = [0.2, 0.5]
-    batch_size_list = [32,128,256]
+    batch_size_list = [32,256,1024]
     '''
     model_config_list = ["mlp4"]
     lrs_list = [
@@ -77,7 +77,13 @@ def main(args):
         p.map(run_finetune, tasks)
     end_time = time.time()  # 记录结束时间
     elapsed_time = end_time - start_time
-    print(f"Total execution time for fine tuning dataset: {elapsed_time:.2f} seconds")
+    print(f"Total execution time for finetuning: {elapsed_time:.2f} seconds")
+
+    #first-stage screen of ZINC20 library
+    for index in range(1, 3): 
+        test(model_version='1', index=index)
+    # Sort, filter and log the final result
+    sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")
 
 
 if __name__ == '__main__':
