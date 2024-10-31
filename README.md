@@ -46,3 +46,27 @@ Cite: Ryan Loke. (2023). RyanZR/LaBOX: LaBOX v1.0.2 (v1.0.2). Zenodo. https://do
 ```
 python docking.py
 ```
+
+## reference
+@article{fang2022geometry,
+  title={Geometry-enhanced molecular representation learning for property prediction},
+  author={Fang, Xiaomin and Liu, Lihang and Lei, Jieqiong and He, Donglong and Zhang, Shanzhuo and Zhou, Jingbo and Wang, Fan and Wu, Hua and Wang, Haifeng},
+  journal={Nature Machine Intelligence},
+  pages={1--8},
+  year={2022},
+  publisher={Nature Publishing Group},
+  doi={10.1038/s42256-021-00438-4}
+}
+
+<div id="refer-anchor-1"></div>
+
+- [1] [百度学术](http://xueshu.baidu.com/)
+
+<div id="refer-anchor-2"></div>
+
+- [2] [Wikipedia](https://en.wikipedia.org/wiki/Main_Page)
+————————————————
+
+                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+                        
+原文链接：https://blog.csdn.net/u012349679/article/details/103815049
