@@ -1,5 +1,6 @@
 # DeepScreenZine
 
+![Workflow of DeepScreenZinc](DeepScreenZinc.gif)
 
 ## How to start
 
