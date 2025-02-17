@@ -5,20 +5,21 @@ import numpy as np
 from rdkit.Chem import AllChem, rdMolAlign, rdMolTransforms
 
 class LigandPrep:
-    def __init__(self, smiles: str):
+    def __init__(self, smiles: str, grid_center):
         """
         初始化LigandPrep类。
         
         :param smiles: 分子的SMILES字符串
         """
         self.smiles = smiles
+        self.grid_center = grid_center
         
     def align_single_molecule(self, sdf_file, pdb_file, output_sdf_file):
         # Load the single molecule from the SDF file
-        supplier = Chem.SDMolSupplier(sdf_file)
+        supplier = Chem.SDMolSupplier(sdf_file, removeHs=False)
         mol = next(iter(supplier), None)
         if mol is None:
-            raise ValueError("No valid molecule found in the SDF file")
+            raise ValueError("No valid molecule found in the MOL file")
 
         # Load the reference molecule from the PDB file
         ref_mol = Chem.MolFromPDBFile(pdb_file)
@@ -52,22 +53,24 @@ class LigandPrep:
         # rdMolAlign.AlignMol(mol, ref_mol)
 
         # Write the aligned molecule to the output SDF file
-        writer = Chem.SDWriter(output_sdf_file)
-        writer.write(mol)
-        writer.close()
+        #writer = Chem.SDWriter(output_sdf_file)
+        #writer.write(mol)
+        #writer.close()
+
+        Chem.MolToPDBFile(mol, output_sdf_file)
 
         print(f'Aligned molecule saved to {output_sdf_file}')
         
 
     def smile2sdf(self, output_file: str):
         """
-        准备分子并保存为sdf文件, 再保存为pdbqt
+        准备分子并保存为mol文件, 再保存为pdbqt
         
-        :param output_file: 输出sdf文件的路径
+        :param output_file: 输出mol文件的路径
         """
         # 添加3D坐标
         output_file_pdbqt = output_file.split(".")[0] + '.pdbqt'
-        output_file_aligned_sdf = output_file.split(".")[0] + '_aligned.sdf'
+        output_file_aligned_sdf = output_file.split(".")[0] + '_aligned.pdb'
         output_file_aligned_pdbqt = output_file.split(".")[0] + '_aligned.pdbqt'
         self.rdkit_mol = Chem.MolFromSmiles(self.smiles)
         self.rdkit_mol = Chem.AddHs(self.rdkit_mol)  # 添加氢原子
@@ -78,12 +81,18 @@ class LigandPrep:
         Chem.MolToMolFile(self.rdkit_mol, output_file)
         
         #align to native ligand
-        self.align_single_molecule(output_file, "datasets/target_protein/native_lig.pdb", output_file_aligned_sdf)
+        self.align_single_molecule(output_file, self.grid_center, output_file_aligned_sdf)
         #读取align之后的分子
-        supplier = Chem.SDMolSupplier(output_file_aligned_sdf)
-        aligned_mol = next(supplier)
-        aligned_mol = Chem.AddHs(aligned_mol)
-        
+        aligned_mol = Chem.MolFromPDBFile(output_file_aligned_sdf, removeHs=False)
+        # aligned_mol = next(supplier)
+        if aligned_mol is None:
+            print("No valid molecule found in MOL file.")
+        else:
+            print("Successfully loaded molecule!")        
+        # aligned_mol = Chem.AddHs(aligned_mol)
+        # AllChem.EmbedMolecule(aligned_mol)
+
+
         # sdf to pdbqt
         # H atoms are merged
         sdf2pdbqt_prep = MoleculePreparation(merge_these_atom_types=()) #keep all hydrogen
