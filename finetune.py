@@ -78,12 +78,13 @@ def run_finetune(params):
     head_opt = optimizer.Adam(head_scheduler, parameters=head_params, weight_decay=1e-5)
 
     # 创建dataloader
-    train_data_loader, valid_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0)   
+    train_data_loader, valid_data_loader, test_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0)
     current_best_metric = -1e10
     max_bearable_epoch = 50    # 设置早停的轮数为50，若连续50轮内验证集的评价指标没有提升，则停止训练
     current_best_epoch = 0
     train_metric_list = []     # 记录训练过程中各指标的变化情况
     valid_metric_list = []
+    test_metric_list = []
     for epoch in range(800):   # 设置最多训练800轮
         finetune_model.train()
         for (atom_bond_graph, bond_angle_graph, label_true_batch) in train_data_loader:
@@ -98,11 +99,13 @@ def run_finetune(params):
         encoder_scheduler.step()   # 更新学习率
         head_scheduler.step() # 更新学习率
         # 评估模型在训练集、验证集的表现
-        evaluator = evaluation_train(finetune_model, train_data_loader, valid_data_loader)
+        evaluator = evaluation_train(finetune_model, train_data_loader, valid_data_loader, test_data_loader)
         metric_train = evaluator.evaluate(train_data_loader)
         metric_valid = evaluator.evaluate(valid_data_loader)
+        metric_test = evaluator.evaluate(test_data_loader)
         train_metric_list.append(metric_train)
         valid_metric_list.append(metric_valid)
+        test_metric_list.append(metric_test)
         score = round((metric_valid['ap'] + metric_valid['auc']) / 2, 4)
         if score > current_best_metric:
             # 保存score最大时的模型权重
@@ -132,18 +135,21 @@ def run_finetune(params):
         print("Epoch", epoch)
         pprint(("Train", metric_train))
         pprint(("Validate", metric_valid))
+        pprint(("Test", metric_test))
         print('current_best_epoch', current_best_epoch, 'current_best_metric', current_best_metric)
+        
         for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']:
             wandb.log({
-                f"train_{metric}": metric_train[metric].tolist(),  # Log the last value for simplicity
-                f"valid_{metric}": metric_valid[metric].tolist()
+                f"train_{metric}": metric_train[metric],  # Log the last value for simplicity
+                f"validation_{metric}": metric_valid[metric],
+                f"test_{metric}": metric_test[metric]
             })
+        
         if epoch > current_best_epoch + max_bearable_epoch:
             break
 
-    # Finish the run
     wandb.finish()
-    return train_metric_list, valid_metric_list        
+    return train_metric_list, valid_metric_list, test_metric_list        
 
 # 将测试集的预测结果保存为result.csv
 def test(model_version, index):

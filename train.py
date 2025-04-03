@@ -1,5 +1,7 @@
 import time
 from multiprocessing import Pool
+# change
+import multiprocessing as mp
 from argparse import ArgumentParser
 import pandas as pd
 import os
@@ -90,6 +92,7 @@ def main(args):
 
 
 if __name__ == '__main__':
+    mp.set_start_method('spawn')
     parser = ArgumentParser()
     parser.add_argument('--project_name', default='finetune', type=str, help='Name your project on the wandb website')
     parser.add_argument('--dataset', default='input.csv', type=str, help='Choose dataset (required)')
