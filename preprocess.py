@@ -63,9 +63,7 @@ class Input_ligand_preprocess:
 
 class SMILES_Transfer:
     def __init__(self, train_df):
-    #def __init__(self, train_df, test_df):
         self.train_df = train_df
-        # self.test_df = test_df
         self.mutex = Lock()
         self.p = 0
         self.smiles_to_graph_dict = {}

@@ -1,0 +1,36 @@
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Current SDK version is 0.18.0
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Configure stats pid to 505503
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/.config/wandb/settings
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/Documents/13.D2Screen/wandb/settings
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Loading settings from environment variables: {}
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Applying setup settings: {'_disable_service': False}
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': '/home/redmol/Documents/13.D2Screen/train.py', 'program': '/home/redmol/Documents/13.D2Screen/train.py'}
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_setup.py:_flush():77] Applying login settings: {}
+2025-04-04 02:35:24,841 INFO    MainThread:505503 [wandb_init.py:_log_setup():525] Logging user logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_023524-vhq8mjj0/logs/debug.log
+2025-04-04 02:35:24,842 INFO    MainThread:505503 [wandb_init.py:_log_setup():526] Logging internal logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_023524-vhq8mjj0/logs/debug-internal.log
+2025-04-04 02:35:24,842 INFO    MainThread:505503 [wandb_init.py:init():609] calling init triggers
+2025-04-04 02:35:24,842 INFO    MainThread:505503 [wandb_init.py:init():616] wandb.init called with sweep_config: {}
+config: {'seed': 727717, 'finetunemodel': 'mlp4', 'dataset': 'input.csv', 'batch_size': 32, 'learning_rate': 0.001, 'head_lr': 0.001, 'finetune time': 1.0, 'dropout rate': 0.2, 'model_details': 'mlp4'}
+2025-04-04 02:35:24,842 INFO    MainThread:505503 [wandb_init.py:init():659] starting backend
+2025-04-04 02:35:24,842 INFO    MainThread:505503 [wandb_init.py:init():663] setting up manager
+2025-04-04 02:35:24,846 INFO    MainThread:505503 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-04-04 02:35:24,847 INFO    MainThread:505503 [wandb_init.py:init():671] backend started and connected
+2025-04-04 02:35:24,849 INFO    MainThread:505503 [wandb_init.py:init():766] updated telemetry
+2025-04-04 02:35:24,851 INFO    MainThread:505503 [wandb_init.py:init():799] communicating run to backend with 90.0 second timeout
+2025-04-04 02:35:25,556 INFO    MainThread:505503 [wandb_init.py:init():850] starting run threads in backend
+2025-04-04 02:35:25,591 INFO    MainThread:505503 [wandb_run.py:_console_start():2466] atexit reg
+2025-04-04 02:35:25,591 INFO    MainThread:505503 [wandb_run.py:_redirect():2312] redirect: wrap_raw
+2025-04-04 02:35:25,592 INFO    MainThread:505503 [wandb_run.py:_redirect():2377] Wrapping output streams.
+2025-04-04 02:35:25,592 INFO    MainThread:505503 [wandb_run.py:_redirect():2402] Redirects installed.
+2025-04-04 02:35:25,592 INFO    MainThread:505503 [wandb_init.py:init():893] run started, returning control to user process
+2025-04-04 02:35:25,592 INFO    MainThread:505503 [wandb_run.py:_config_callback():1393] config_cb None None {'model_details': 'mlp4'}
+2025-04-04 02:35:31,708 INFO    MainThread:505503 [wandb_run.py:_finish():2163] finishing run 121090453-the-chinese-university-of-hong-kong-shenzhen/20250404_test/vhq8mjj0
+2025-04-04 02:35:31,708 INFO    MainThread:505503 [wandb_run.py:_atexit_cleanup():2427] got exitcode: 0
+2025-04-04 02:35:31,708 INFO    MainThread:505503 [wandb_run.py:_restore():2409] restore
+2025-04-04 02:35:31,708 INFO    MainThread:505503 [wandb_run.py:_restore():2415] restore done
+2025-04-04 02:35:31,708 INFO    MainThread:505503 [wandb_run.py:_on_finish():2680] communicating current version
+2025-04-04 02:35:31,921 INFO    MainThread:505503 [wandb_run.py:_on_finish():2689] got version response upgrade_message: "There is a new version of wandb available. Please upgrade to wandb==0.19.4"
+
+2025-04-04 02:35:37,470 INFO    MainThread:505503 [wandb_run.py:_footer_history_summary_info():4104] rendering history
+2025-04-04 02:35:37,472 INFO    MainThread:505503 [wandb_run.py:_footer_history_summary_info():4136] rendering summary
+2025-04-04 02:35:37,479 INFO    MainThread:505503 [wandb_run.py:_footer_sync_info():4063] logging synced files

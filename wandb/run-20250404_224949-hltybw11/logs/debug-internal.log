@@ -1,0 +1,18 @@
+{"time":"2025-04-04T22:49:49.432121583+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T22:49:49.432132496+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_224949-hltybw11/logs/debug-core.log"}
+{"time":"2025-04-04T22:49:49.432161638+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T22:49:49.432164988+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_224949-hltybw11/logs/debug-core.log"}
+{"time":"2025-04-04T22:49:49.433370698+08:00","level":"INFO","msg":"created new stream","id":"hltybw11"}
+{"time":"2025-04-04T22:49:49.433382409+08:00","level":"INFO","msg":"stream: started","id":"hltybw11"}
+{"time":"2025-04-04T22:49:49.433399372+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"hltybw11"}}
+{"time":"2025-04-04T22:49:49.433388425+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"hltybw11"}}
+{"time":"2025-04-04T22:49:49.43339415+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"hltybw11"}}
+{"time":"2025-04-04T22:49:50.484321901+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-04T22:49:50.485025658+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-04T22:49:57.442529036+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-04T22:49:57.44282095+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-04T22:50:05.188625365+08:00","level":"INFO","msg":"stream: closing","id":"hltybw11"}
+{"time":"2025-04-04T22:50:05.188695904+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"hltybw11"}}
+{"time":"2025-04-04T22:50:05.18874544+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"hltybw11"}}
+{"time":"2025-04-04T22:50:05.188773292+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"hltybw11"}}
+{"time":"2025-04-04T22:50:05.188877127+08:00","level":"INFO","msg":"stream: closed","id":"hltybw11"}

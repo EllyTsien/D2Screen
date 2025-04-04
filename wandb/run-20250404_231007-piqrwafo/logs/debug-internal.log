@@ -1,0 +1,14 @@
+{"time":"2025-04-04T23:10:07.098962602+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T23:10:07.098974826+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_231007-piqrwafo/logs/debug-core.log"}
+{"time":"2025-04-04T23:10:07.099015062+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T23:10:07.099018523+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_231007-piqrwafo/logs/debug-core.log"}
+{"time":"2025-04-04T23:10:07.100434575+08:00","level":"INFO","msg":"created new stream","id":"piqrwafo"}
+{"time":"2025-04-04T23:10:07.100447235+08:00","level":"INFO","msg":"stream: started","id":"piqrwafo"}
+{"time":"2025-04-04T23:10:07.100454701+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"piqrwafo"}}
+{"time":"2025-04-04T23:10:07.100465577+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"piqrwafo"}}
+{"time":"2025-04-04T23:10:07.100463983+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"piqrwafo"}}
+{"time":"2025-04-04T23:10:09.058770202+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-04T23:10:09.059476612+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-05T00:15:49.607890992+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-05T00:41:54.279954067+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-05T00:52:08.683849529+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}

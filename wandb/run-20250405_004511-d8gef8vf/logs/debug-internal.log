@@ -1,0 +1,19 @@
+{"time":"2025-04-05T00:45:11.84273028+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T00:45:11.842743352+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_004511-d8gef8vf/logs/debug-core.log"}
+{"time":"2025-04-05T00:45:11.842788729+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T00:45:11.842792293+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_004511-d8gef8vf/logs/debug-core.log"}
+{"time":"2025-04-05T00:45:11.844337657+08:00","level":"INFO","msg":"created new stream","id":"d8gef8vf"}
+{"time":"2025-04-05T00:45:11.844352176+08:00","level":"INFO","msg":"stream: started","id":"d8gef8vf"}
+{"time":"2025-04-05T00:45:11.84437636+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"d8gef8vf"}}
+{"time":"2025-04-05T00:45:11.844377926+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"d8gef8vf"}}
+{"time":"2025-04-05T00:45:11.844362354+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"d8gef8vf"}}
+{"time":"2025-04-05T00:45:13.863235475+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-05T00:45:13.863883237+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-05T00:45:40.755471309+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-05T00:45:40.755911737+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-05T00:45:44.187835693+08:00","level":"INFO","msg":"stream: closing","id":"d8gef8vf"}
+{"time":"2025-04-05T00:45:44.187890457+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"d8gef8vf"}}
+{"time":"2025-04-05T00:45:44.187935712+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"d8gef8vf"}}
+{"time":"2025-04-05T00:45:44.188022895+08:00","level":"ERROR","msg":"runfiles: CreateRunFiles returned error: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): context canceled"}
+{"time":"2025-04-05T00:45:44.188011042+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"d8gef8vf"}}
+{"time":"2025-04-05T00:45:44.188198644+08:00","level":"INFO","msg":"stream: closed","id":"d8gef8vf"}

@@ -1,0 +1,18 @@
+{"time":"2025-04-04T02:30:40.793108913+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T02:30:40.793117856+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_023040-bsmkmycx/logs/debug-core.log"}
+{"time":"2025-04-04T02:30:40.793141448+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T02:30:40.793144091+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_023040-bsmkmycx/logs/debug-core.log"}
+{"time":"2025-04-04T02:30:40.794100647+08:00","level":"INFO","msg":"created new stream","id":"bsmkmycx"}
+{"time":"2025-04-04T02:30:40.794109989+08:00","level":"INFO","msg":"stream: started","id":"bsmkmycx"}
+{"time":"2025-04-04T02:30:40.794123867+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"bsmkmycx"}}
+{"time":"2025-04-04T02:30:40.794139552+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"bsmkmycx"}}
+{"time":"2025-04-04T02:30:40.79413765+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"bsmkmycx"}}
+{"time":"2025-04-04T02:30:41.469735343+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-04T02:30:41.46991829+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-04T02:30:46.302325756+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-04T02:30:46.302672394+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-04T02:30:49.651921874+08:00","level":"INFO","msg":"stream: closing","id":"bsmkmycx"}
+{"time":"2025-04-04T02:30:49.65196483+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"bsmkmycx"}}
+{"time":"2025-04-04T02:30:49.652011485+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"bsmkmycx"}}
+{"time":"2025-04-04T02:30:49.652010635+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"bsmkmycx"}}
+{"time":"2025-04-04T02:30:49.652157996+08:00","level":"INFO","msg":"stream: closed","id":"bsmkmycx"}

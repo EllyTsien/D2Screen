@@ -1,0 +1,14 @@
+{"time":"2025-04-04T23:18:03.133972939+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T23:18:03.133981779+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_231803-ttq5tl72/logs/debug-core.log"}
+{"time":"2025-04-04T23:18:03.134007748+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T23:18:03.134010734+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_231803-ttq5tl72/logs/debug-core.log"}
+{"time":"2025-04-04T23:18:03.136374411+08:00","level":"INFO","msg":"created new stream","id":"ttq5tl72"}
+{"time":"2025-04-04T23:18:03.136394979+08:00","level":"INFO","msg":"stream: started","id":"ttq5tl72"}
+{"time":"2025-04-04T23:18:03.136401228+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"ttq5tl72"}}
+{"time":"2025-04-04T23:18:03.136426571+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"ttq5tl72"}}
+{"time":"2025-04-04T23:18:03.136410252+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"ttq5tl72"}}
+{"time":"2025-04-04T23:18:04.490066509+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-04T23:18:04.490852669+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-04T23:19:05.984225042+08:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/121090453-the-chinese-university-of-hong-kong-shenzhen/finetune/ttq5tl72/file_stream"}
+{"time":"2025-04-04T23:43:54.727919723+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-05T01:36:59.752066107+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}

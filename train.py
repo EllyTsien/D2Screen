@@ -7,7 +7,7 @@ import pandas as pd
 import os
 
 #
-from finetune import run_finetune, test
+from finetune import run_finetune, test, select_best_model
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from dataloader import sort_and_filter_csv
 
@@ -84,9 +84,11 @@ def main(args):
     elapsed_time = end_time - start_time
     print(f"Total execution time for finetuning: {elapsed_time:.2f} seconds")
 
+    select_best_model(model_version, project_name)
+
     #first-stage screen of ZINC20 library
     for index in range(1, 3): 
-        test(model_version='1', index=index)
+        test(model_version='1', project_name=project_name, index=index)
     # Sort, filter and log the final result
     sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")
 
