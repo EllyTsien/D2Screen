@@ -6,7 +6,6 @@ from argparse import ArgumentParser
 import pandas as pd
 import os
 
-#
 from finetune import run_finetune, test, select_best_model
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from dataloader import sort_and_filter_csv

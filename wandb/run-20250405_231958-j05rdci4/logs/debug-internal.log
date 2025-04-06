@@ -1,0 +1,13 @@
+{"time":"2025-04-05T23:19:58.286566944+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T23:19:58.286571833+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_231958-j05rdci4/logs/debug-core.log"}
+{"time":"2025-04-05T23:19:58.286585966+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T23:19:58.286587285+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_231958-j05rdci4/logs/debug-core.log"}
+{"time":"2025-04-05T23:19:58.287316818+08:00","level":"INFO","msg":"created new stream","id":"j05rdci4"}
+{"time":"2025-04-05T23:19:58.287324616+08:00","level":"INFO","msg":"stream: started","id":"j05rdci4"}
+{"time":"2025-04-05T23:19:58.287331337+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"j05rdci4"}}
+{"time":"2025-04-05T23:19:58.287358704+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"j05rdci4"}}
+{"time":"2025-04-05T23:19:58.287334311+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"j05rdci4"}}
+{"time":"2025-04-05T23:19:58.951388829+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-05T23:19:58.95160178+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-05T23:20:47.303137182+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-05T23:20:47.303412697+08:00","level":"INFO","msg":"Stopped system monitor"}
