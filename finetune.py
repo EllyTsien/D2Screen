@@ -42,7 +42,7 @@ def exempt_parameters(src_list, ref_list):
 # def trial(model_version, model, batch_size, criterion, scheduler, opt):
 def run_finetune(params):
     finetune_model_layer, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version = params
-    seed = random.randint(0, 1000000)  # 可以根据需要调整范围
+    seed =  42 # 可以根据需要调整范围
     # finetune_model_layer =json.load(open(finetune_model_layer, 'r'))
     if finetune_model_layer=='mlp4':
         finetune_model = mlp.MLP4()
@@ -267,7 +267,7 @@ def test(model_version, project_name, index):
         label_predict_batch = F.softmax(label_predict_batch)
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
-    nolabel_file_path = f'datasets/ZINC20_processed/{index}_ZINC20_nolabel.csv'
+    nolabel_file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_nolabel.csv'
     df = pd.read_csv(nolabel_file_path)
     # df = pd.read_csv('datasets/ZINC20_processed/test_nolabel.csv')
     df['pred'] = all_result
