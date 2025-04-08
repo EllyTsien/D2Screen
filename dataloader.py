@@ -72,7 +72,7 @@ def get_data_loader(mode, batch_size, index):
     
     elif mode == 'test':
         # 推理模式下直接读取test_data_list, 返回test_data_loader
-        file_path = f'datasets/ZINC20_processed/{index}_ZINC20_data_list.pkl'
+        file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_data_list.pkl'
         data_list = pkl.load(open(file_path, 'rb'))
         if len(data_list) == 0:
             raise ValueError("Dataset is empty")

@@ -10,7 +10,7 @@ from finetune import run_finetune, test, select_best_model
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from dataloader import sort_and_filter_csv
 
-thread_num = 1
+# thread_num = 8
 model_version = '1'
 
 def main(args):
@@ -36,6 +36,8 @@ def main(args):
             raise FileNotFoundError(f"The file '{input_ligands_path}' does not exist.")
         processed_input_path = 'datasets/train_preprocessed.csv'
 
+    thread_num =  int( args.thread_num )
+
 
     # process train dataset
     processor = Input_ligand_preprocess(input_ligands_path)
@@ -44,7 +46,7 @@ def main(args):
     SMILES_transfer = SMILES_Transfer(processed_input_csv)
     SMILES_transfer.run()
 
-    
+    '''
     model_config_list = ["mlp4", "mlp6"]
     lrs_list = [
         ("1e-3", "1e-3"),
@@ -65,8 +67,8 @@ def main(args):
 
     ]
     drop_list = [0.2]
-    batch_size_list = [32,128]'
-    '''
+    batch_size_list = [32,128]
+    
     # 创建参数组合
     tasks = []
     for finetune_model_config in model_config_list:
@@ -100,6 +102,7 @@ if __name__ == '__main__':
     parser.add_argument('--dataset', default='input.csv', type=str, help='Choose dataset (required)')
     parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples (default: all)')
     parser.add_argument('--threshold', default=0.9, type=float, help="Threshold for predict value (defalt 0.9)")
+    parser.add_argument('--thread_num', default=1, type=int, help='Number of thread used for finetuning (default: 1)')
     args = parser.parse_args()
 
     main(args)
