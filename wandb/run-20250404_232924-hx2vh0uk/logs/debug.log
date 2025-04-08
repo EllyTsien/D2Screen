@@ -1,0 +1,71 @@
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Current SDK version is 0.18.0
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Configure stats pid to 851233
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/.config/wandb/settings
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/Documents/13.D2Screen/wandb/settings
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from environment variables: {}
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying setup settings: {'_disable_service': False}
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': '/home/redmol/Documents/13.D2Screen/train.py', 'program': '/home/redmol/Documents/13.D2Screen/train.py'}
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying login settings: {}
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_init.py:_log_setup():525] Logging user logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232924-hx2vh0uk/logs/debug.log
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_init.py:_log_setup():526] Logging internal logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232924-hx2vh0uk/logs/debug-internal.log
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_init.py:init():609] calling init triggers
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_init.py:init():616] wandb.init called with sweep_config: {}
+config: {'seed': 288147, 'finetunemodel': 'mlp4', 'dataset': 'input.csv', 'batch_size': 32, 'learning_rate': 0.001, 'head_lr': 0.001, 'finetune time': 1.0, 'dropout rate': 0.2, 'model_details': 'mlp4'}
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_init.py:init():659] starting backend
+2025-04-04 23:29:24,346 INFO    MainThread:851233 [wandb_init.py:init():663] setting up manager
+2025-04-04 23:29:24,349 INFO    MainThread:851233 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-04-04 23:29:24,350 INFO    MainThread:851233 [wandb_init.py:init():671] backend started and connected
+2025-04-04 23:29:24,352 INFO    MainThread:851233 [wandb_init.py:init():766] updated telemetry
+2025-04-04 23:29:24,354 INFO    MainThread:851233 [wandb_init.py:init():799] communicating run to backend with 90.0 second timeout
+2025-04-04 23:29:25,070 INFO    MainThread:851233 [wandb_init.py:init():850] starting run threads in backend
+2025-04-04 23:29:25,110 INFO    MainThread:851233 [wandb_run.py:_console_start():2466] atexit reg
+2025-04-04 23:29:25,110 INFO    MainThread:851233 [wandb_run.py:_redirect():2312] redirect: wrap_raw
+2025-04-04 23:29:25,110 INFO    MainThread:851233 [wandb_run.py:_redirect():2377] Wrapping output streams.
+2025-04-04 23:29:25,110 INFO    MainThread:851233 [wandb_run.py:_redirect():2402] Redirects installed.
+2025-04-04 23:29:25,110 INFO    MainThread:851233 [wandb_init.py:init():893] run started, returning control to user process
+2025-04-04 23:29:25,111 INFO    MainThread:851233 [wandb_run.py:_config_callback():1393] config_cb None None {'model_details': 'mlp4'}
+2025-04-04 23:29:32,116 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Current SDK version is 0.18.0
+2025-04-04 23:29:32,116 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Configure stats pid to 851233
+2025-04-04 23:29:32,116 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/.config/wandb/settings
+2025-04-04 23:29:32,116 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/Documents/13.D2Screen/wandb/settings
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from environment variables: {}
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying setup settings: {'_disable_service': False}
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': '/home/redmol/Documents/13.D2Screen/train.py', 'program': '/home/redmol/Documents/13.D2Screen/train.py'}
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying login settings: {}
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_init.py:_log_setup():525] Logging user logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232932-hwh32hb6/logs/debug.log
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_init.py:_log_setup():526] Logging internal logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232932-hwh32hb6/logs/debug-internal.log
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_init.py:init():609] calling init triggers
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_init.py:init():616] wandb.init called with sweep_config: {}
+config: {'seed': 294946, 'finetunemodel': 'mlp4', 'dataset': 'input.csv', 'batch_size': 128, 'learning_rate': 0.001, 'head_lr': 0.001, 'finetune time': 1.0, 'dropout rate': 0.2, 'model_details': 'mlp4'}
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_init.py:init():654] wandb.init() called when a run is still active
+2025-04-04 23:29:32,117 INFO    MainThread:851233 [wandb_run.py:_config_callback():1393] config_cb None None {'model_details': 'mlp4'}
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Current SDK version is 0.18.0
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Configure stats pid to 851233
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/.config/wandb/settings
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/Documents/13.D2Screen/wandb/settings
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from environment variables: {}
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying setup settings: {'_disable_service': False}
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': '/home/redmol/Documents/13.D2Screen/train.py', 'program': '/home/redmol/Documents/13.D2Screen/train.py'}
+2025-04-04 23:29:36,404 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying login settings: {}
+2025-04-04 23:29:36,405 INFO    MainThread:851233 [wandb_init.py:_log_setup():525] Logging user logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232936-5rca7ywo/logs/debug.log
+2025-04-04 23:29:36,405 INFO    MainThread:851233 [wandb_init.py:_log_setup():526] Logging internal logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232936-5rca7ywo/logs/debug-internal.log
+2025-04-04 23:29:36,405 INFO    MainThread:851233 [wandb_init.py:init():609] calling init triggers
+2025-04-04 23:29:36,405 INFO    MainThread:851233 [wandb_init.py:init():616] wandb.init called with sweep_config: {}
+config: {'seed': 294946, 'finetunemodel': 'mlp4', 'dataset': 'input.csv', 'batch_size': 32, 'learning_rate': 0.0, 'head_lr': 0.001, 'finetune time': 1.0, 'dropout rate': 0.2, 'model_details': 'mlp4'}
+2025-04-04 23:29:36,405 INFO    MainThread:851233 [wandb_init.py:init():654] wandb.init() called when a run is still active
+2025-04-04 23:29:36,405 INFO    MainThread:851233 [wandb_run.py:_config_callback():1393] config_cb None None {'model_details': 'mlp4'}
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Current SDK version is 0.18.0
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Configure stats pid to 851233
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/.config/wandb/settings
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from /home/redmol/Documents/13.D2Screen/wandb/settings
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Loading settings from environment variables: {}
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying setup settings: {'_disable_service': False}
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program_abspath': '/home/redmol/Documents/13.D2Screen/train.py', 'program': '/home/redmol/Documents/13.D2Screen/train.py'}
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_setup.py:_flush():77] Applying login settings: {}
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_init.py:_log_setup():525] Logging user logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232942-5o2o5f8b/logs/debug.log
+2025-04-04 23:29:42,654 INFO    MainThread:851233 [wandb_init.py:_log_setup():526] Logging internal logs to /home/redmol/Documents/13.D2Screen/wandb/run-20250404_232942-5o2o5f8b/logs/debug-internal.log
+2025-04-04 23:29:42,655 INFO    MainThread:851233 [wandb_init.py:init():609] calling init triggers
+2025-04-04 23:29:42,655 INFO    MainThread:851233 [wandb_init.py:init():616] wandb.init called with sweep_config: {}
+config: {'seed': 294946, 'finetunemodel': 'mlp4', 'dataset': 'input.csv', 'batch_size': 128, 'learning_rate': 0.0, 'head_lr': 0.001, 'finetune time': 1.0, 'dropout rate': 0.2, 'model_details': 'mlp4'}
+2025-04-04 23:29:42,655 INFO    MainThread:851233 [wandb_init.py:init():654] wandb.init() called when a run is still active
+2025-04-04 23:29:42,655 INFO    MainThread:851233 [wandb_run.py:_config_callback():1393] config_cb None None {'model_details': 'mlp4'}

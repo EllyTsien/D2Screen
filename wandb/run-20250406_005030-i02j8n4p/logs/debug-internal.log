@@ -1,0 +1,27 @@
+{"time":"2025-04-06T00:50:30.281188437+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-06T00:50:30.281193288+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250406_005030-i02j8n4p/logs/debug-core.log"}
+{"time":"2025-04-06T00:50:30.28120574+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-06T00:50:30.281206982+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250406_005030-i02j8n4p/logs/debug-core.log"}
+{"time":"2025-04-06T00:50:30.282546008+08:00","level":"INFO","msg":"created new stream","id":"i02j8n4p"}
+{"time":"2025-04-06T00:50:30.282554494+08:00","level":"INFO","msg":"stream: started","id":"i02j8n4p"}
+{"time":"2025-04-06T00:50:30.282564436+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"i02j8n4p"}}
+{"time":"2025-04-06T00:50:30.282568373+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"i02j8n4p"}}
+{"time":"2025-04-06T00:50:30.282575911+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"i02j8n4p"}}
+{"time":"2025-04-06T00:50:30.944754854+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-06T00:50:30.945340669+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-06T00:54:26.91991336+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T01:23:11.336007212+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T02:08:00.364036902+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T02:26:50.856240829+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T03:52:41.575994746+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T05:28:30.312056252+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T06:23:35.784079044+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T07:05:20.488064656+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T07:28:26.984058639+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T08:39:41.164032889+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T10:14:46.888122688+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T10:35:01.352101044+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T11:03:35.528103222+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T11:35:41.50141022+08:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/121090453-the-chinese-university-of-hong-kong-shenzhen/finetune/i02j8n4p/file_stream"}
+{"time":"2025-04-06T11:41:16.520062991+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T11:51:16.583855329+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}

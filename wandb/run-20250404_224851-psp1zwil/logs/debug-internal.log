@@ -1,0 +1,18 @@
+{"time":"2025-04-04T22:48:51.60194872+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T22:48:51.601953128+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_224851-psp1zwil/logs/debug-core.log"}
+{"time":"2025-04-04T22:48:51.601965588+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T22:48:51.601966933+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_224851-psp1zwil/logs/debug-core.log"}
+{"time":"2025-04-04T22:48:51.602675695+08:00","level":"INFO","msg":"created new stream","id":"psp1zwil"}
+{"time":"2025-04-04T22:48:51.602683278+08:00","level":"INFO","msg":"stream: started","id":"psp1zwil"}
+{"time":"2025-04-04T22:48:51.602699768+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"psp1zwil"}}
+{"time":"2025-04-04T22:48:51.602713561+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"psp1zwil"}}
+{"time":"2025-04-04T22:48:51.602717301+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"psp1zwil"}}
+{"time":"2025-04-04T22:48:52.271028816+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-04T22:48:52.271646244+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-04T22:48:58.865165825+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-04T22:48:58.865404056+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-04T22:49:02.081309667+08:00","level":"INFO","msg":"stream: closing","id":"psp1zwil"}
+{"time":"2025-04-04T22:49:02.081335197+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"psp1zwil"}}
+{"time":"2025-04-04T22:49:02.081360115+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"psp1zwil"}}
+{"time":"2025-04-04T22:49:02.081413017+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"psp1zwil"}}
+{"time":"2025-04-04T22:49:02.081460845+08:00","level":"INFO","msg":"stream: closed","id":"psp1zwil"}

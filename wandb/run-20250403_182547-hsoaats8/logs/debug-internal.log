@@ -1,0 +1,11 @@
+{"time":"2025-04-03T18:25:47.731335059+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-03T18:25:47.731344408+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250403_182547-hsoaats8/logs/debug-core.log"}
+{"time":"2025-04-03T18:25:47.731370965+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-03T18:25:47.731373958+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250403_182547-hsoaats8/logs/debug-core.log"}
+{"time":"2025-04-03T18:25:47.734086895+08:00","level":"INFO","msg":"created new stream","id":"hsoaats8"}
+{"time":"2025-04-03T18:25:47.73410212+08:00","level":"INFO","msg":"stream: started","id":"hsoaats8"}
+{"time":"2025-04-03T18:25:47.734116065+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"hsoaats8"}}
+{"time":"2025-04-03T18:25:47.734138479+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"hsoaats8"}}
+{"time":"2025-04-03T18:25:47.734119694+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"hsoaats8"}}
+{"time":"2025-04-03T18:25:48.453175213+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-03T18:25:48.45457329+08:00","level":"INFO","msg":"Starting system monitor"}

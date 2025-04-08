@@ -1,0 +1,1569 @@
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+train: 60, valid: 8, test: 8
+=========================================================
+Epoch 0
+('Train',
+ {'accuracy': 0.7833,
+  'ap': 0.7812,
+  'auc': 0.8535,
+  'confusion_mat': array([[32,  7],
+       [ 6, 15]]),
+  'f1': 0.6977,
+  'precision': 0.6818,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.625,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[4, 2],
+       [1, 1]]),
+  'f1': 0.4,
+  'precision': 0.3333,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 1
+('Train',
+ {'accuracy': 0.8,
+  'ap': 0.8284,
+  'auc': 0.8803,
+  'confusion_mat': array([[36,  3],
+       [ 9, 12]]),
+  'f1': 0.6667,
+  'precision': 0.8,
+  'recall': 0.5714})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[6, 0],
+       [1, 1]]),
+  'f1': 0.6667,
+  'precision': 1.0,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 2
+('Train',
+ {'accuracy': 0.8,
+  'ap': 0.8547,
+  'auc': 0.8901,
+  'confusion_mat': array([[37,  2],
+       [10, 11]]),
+  'f1': 0.6471,
+  'precision': 0.8462,
+  'recall': 0.5238})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[6, 0],
+       [1, 1]]),
+  'f1': 0.6667,
+  'precision': 1.0,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 3
+('Train',
+ {'accuracy': 0.8333,
+  'ap': 0.8743,
+  'auc': 0.9048,
+  'confusion_mat': array([[35,  4],
+       [ 6, 15]]),
+  'f1': 0.75,
+  'precision': 0.7895,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 4
+('Train',
+ {'accuracy': 0.8333,
+  'ap': 0.8862,
+  'auc': 0.9133,
+  'confusion_mat': array([[33,  6],
+       [ 4, 17]]),
+  'f1': 0.7727,
+  'precision': 0.7391,
+  'recall': 0.8095})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 5
+('Train',
+ {'accuracy': 0.8167,
+  'ap': 0.8909,
+  'auc': 0.9194,
+  'confusion_mat': array([[32,  7],
+       [ 4, 17]]),
+  'f1': 0.7556,
+  'precision': 0.7083,
+  'recall': 0.8095})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 6
+('Train',
+ {'accuracy': 0.8333,
+  'ap': 0.8877,
+  'auc': 0.9231,
+  'confusion_mat': array([[35,  4],
+       [ 6, 15]]),
+  'f1': 0.75,
+  'precision': 0.7895,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 7
+('Train',
+ {'accuracy': 0.85,
+  'ap': 0.8868,
+  'auc': 0.9243,
+  'confusion_mat': array([[36,  3],
+       [ 6, 15]]),
+  'f1': 0.7692,
+  'precision': 0.8333,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 8
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.893,
+  'auc': 0.9328,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 9
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.8998,
+  'auc': 0.9353,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 10
+('Train',
+ {'accuracy': 0.85,
+  'ap': 0.9023,
+  'auc': 0.9389,
+  'confusion_mat': array([[36,  3],
+       [ 6, 15]]),
+  'f1': 0.7692,
+  'precision': 0.8333,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 11
+('Train',
+ {'accuracy': 0.85,
+  'ap': 0.9029,
+  'auc': 0.9402,
+  'confusion_mat': array([[36,  3],
+       [ 6, 15]]),
+  'f1': 0.7692,
+  'precision': 0.8333,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 12
+('Train',
+ {'accuracy': 0.85,
+  'ap': 0.9029,
+  'auc': 0.9402,
+  'confusion_mat': array([[36,  3],
+       [ 6, 15]]),
+  'f1': 0.7692,
+  'precision': 0.8333,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 13
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.9029,
+  'auc': 0.9402,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 14
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.9029,
+  'auc': 0.9402,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 15
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.9029,
+  'auc': 0.9402,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 16
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.9029,
+  'auc': 0.9402,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 17
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.9044,
+  'auc': 0.9414,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 18
+('Train',
+ {'accuracy': 0.8667,
+  'ap': 0.9095,
+  'auc': 0.9451,
+  'confusion_mat': array([[37,  2],
+       [ 6, 15]]),
+  'f1': 0.7895,
+  'precision': 0.8824,
+  'recall': 0.7143})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 19
+('Train',
+ {'accuracy': 0.8833,
+  'ap': 0.9111,
+  'auc': 0.9463,
+  'confusion_mat': array([[37,  2],
+       [ 5, 16]]),
+  'f1': 0.8205,
+  'precision': 0.8889,
+  'recall': 0.7619})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 20
+('Train',
+ {'accuracy': 0.9,
+  'ap': 0.9125,
+  'auc': 0.9475,
+  'confusion_mat': array([[37,  2],
+       [ 4, 17]]),
+  'f1': 0.85,
+  'precision': 0.8947,
+  'recall': 0.8095})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 21
+('Train',
+ {'accuracy': 0.9,
+  'ap': 0.9179,
+  'auc': 0.9512,
+  'confusion_mat': array([[37,  2],
+       [ 4, 17]]),
+  'f1': 0.85,
+  'precision': 0.8947,
+  'recall': 0.8095})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 22
+('Train',
+ {'accuracy': 0.9,
+  'ap': 0.9257,
+  'auc': 0.9573,
+  'confusion_mat': array([[37,  2],
+       [ 4, 17]]),
+  'f1': 0.85,
+  'precision': 0.8947,
+  'recall': 0.8095})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 23
+('Train',
+ {'accuracy': 0.9167,
+  'ap': 0.9347,
+  'auc': 0.9634,
+  'confusion_mat': array([[37,  2],
+       [ 3, 18]]),
+  'f1': 0.878,
+  'precision': 0.9,
+  'recall': 0.8571})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 24
+('Train',
+ {'accuracy': 0.9333,
+  'ap': 0.9357,
+  'auc': 0.9646,
+  'confusion_mat': array([[37,  2],
+       [ 2, 19]]),
+  'f1': 0.9048,
+  'precision': 0.9048,
+  'recall': 0.9048})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 25
+('Train',
+ {'accuracy': 0.9333,
+  'ap': 0.9452,
+  'auc': 0.9707,
+  'confusion_mat': array([[37,  2],
+       [ 2, 19]]),
+  'f1': 0.9048,
+  'precision': 0.9048,
+  'recall': 0.9048})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 26
+('Train',
+ {'accuracy': 0.9333,
+  'ap': 0.9626,
+  'auc': 0.9792,
+  'confusion_mat': array([[37,  2],
+       [ 2, 19]]),
+  'f1': 0.9048,
+  'precision': 0.9048,
+  'recall': 0.9048})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 27
+('Train',
+ {'accuracy': 0.9167,
+  'ap': 0.9681,
+  'auc': 0.9805,
+  'confusion_mat': array([[35,  4],
+       [ 1, 20]]),
+  'f1': 0.8889,
+  'precision': 0.8333,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[4, 2],
+       [0, 2]]),
+  'f1': 0.6667,
+  'precision': 0.5,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 28
+('Train',
+ {'accuracy': 0.9333,
+  'ap': 0.9738,
+  'auc': 0.9853,
+  'confusion_mat': array([[36,  3],
+       [ 1, 20]]),
+  'f1': 0.9091,
+  'precision': 0.8696,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[4, 2],
+       [0, 2]]),
+  'f1': 0.6667,
+  'precision': 0.5,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 29
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9912,
+  'auc': 0.9951,
+  'confusion_mat': array([[38,  1],
+       [ 1, 20]]),
+  'f1': 0.9524,
+  'precision': 0.9524,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.75,
+  'auc': 0.8333,
+  'confusion_mat': array([[5, 1],
+       [1, 1]]),
+  'f1': 0.5,
+  'precision': 0.5,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 30
+('Train',
+ {'accuracy': 0.95,
+  'ap': 0.9869,
+  'auc': 0.9927,
+  'confusion_mat': array([[37,  2],
+       [ 1, 20]]),
+  'f1': 0.9302,
+  'precision': 0.9091,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 31
+('Train',
+ {'accuracy': 0.9167,
+  'ap': 0.9768,
+  'auc': 0.9878,
+  'confusion_mat': array([[35,  4],
+       [ 1, 20]]),
+  'f1': 0.8889,
+  'precision': 0.8333,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[4, 2],
+       [0, 2]]),
+  'f1': 0.6667,
+  'precision': 0.5,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 32
+('Train',
+ {'accuracy': 0.9167,
+  'ap': 0.9747,
+  'auc': 0.9866,
+  'confusion_mat': array([[35,  4],
+       [ 1, 20]]),
+  'f1': 0.8889,
+  'precision': 0.8333,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[4, 2],
+       [0, 2]]),
+  'f1': 0.6667,
+  'precision': 0.5,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 33
+('Train',
+ {'accuracy': 0.9333,
+  'ap': 0.9796,
+  'auc': 0.989,
+  'confusion_mat': array([[37,  2],
+       [ 2, 19]]),
+  'f1': 0.9048,
+  'precision': 0.9048,
+  'recall': 0.9048})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.8333,
+  'auc': 0.9167,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 34
+('Train',
+ {'accuracy': 0.9167,
+  'ap': 0.987,
+  'auc': 0.9927,
+  'confusion_mat': array([[37,  2],
+       [ 3, 18]]),
+  'f1': 0.878,
+  'precision': 0.9,
+  'recall': 0.8571})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 35
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9912,
+  'auc': 0.9951,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 36
+('Train',
+ {'accuracy': 0.95,
+  'ap': 0.9912,
+  'auc': 0.9951,
+  'confusion_mat': array([[36,  3],
+       [ 0, 21]]),
+  'f1': 0.9333,
+  'precision': 0.875,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[4, 2],
+       [0, 2]]),
+  'f1': 0.6667,
+  'precision': 0.5,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 37
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9912,
+  'auc': 0.9951,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[4, 2],
+       [0, 2]]),
+  'f1': 0.6667,
+  'precision': 0.5,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 38
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9912,
+  'auc': 0.9951,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 39
+('Train',
+ {'accuracy': 0.95,
+  'ap': 0.9936,
+  'auc': 0.9963,
+  'confusion_mat': array([[37,  2],
+       [ 1, 20]]),
+  'f1': 0.9302,
+  'precision': 0.9091,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 40
+('Train',
+ {'accuracy': 0.95,
+  'ap': 0.9959,
+  'auc': 0.9976,
+  'confusion_mat': array([[37,  2],
+       [ 1, 20]]),
+  'f1': 0.9302,
+  'precision': 0.9091,
+  'recall': 0.9524})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 41
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9959,
+  'auc': 0.9976,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 42
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 43
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 44
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 45
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 46
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 47
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 48
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 49
+('Train',
+ {'accuracy': 0.9667,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[37,  2],
+       [ 0, 21]]),
+  'f1': 0.9545,
+  'precision': 0.913,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 50
+('Train',
+ {'accuracy': 0.95,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[36,  3],
+       [ 0, 21]]),
+  'f1': 0.9333,
+  'precision': 0.875,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0
+=========================================================
+Epoch 51
+('Train',
+ {'accuracy': 0.95,
+  'ap': 0.9978,
+  'auc': 0.9988,
+  'confusion_mat': array([[36,  3],
+       [ 0, 21]]),
+  'f1': 0.9333,
+  'precision': 0.875,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 1.0,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [0, 3]]),
+  'f1': 1.0,
+  'precision': 1.0,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 1],
+       [0, 2]]),
+  'f1': 0.8,
+  'precision': 0.6667,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 1.0

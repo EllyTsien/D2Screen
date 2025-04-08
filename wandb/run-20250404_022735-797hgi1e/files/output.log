@@ -1,0 +1,180 @@
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+train: 60, valid: 8, test: 8
+=========================================================
+Epoch 0
+('Train',
+ {'accuracy': 0.5667,
+  'ap': 0.3728,
+  'auc': 0.5812,
+  'confusion_mat': array([[18, 21],
+       [ 5, 16]]),
+  'f1': 0.5517,
+  'precision': 0.4324,
+  'recall': 0.7619})
+('Validate',
+ {'accuracy': 0.625,
+  'ap': 0.5333,
+  'auc': 0.6667,
+  'confusion_mat': array([[3, 2],
+       [1, 2]]),
+  'f1': 0.5714,
+  'precision': 0.5,
+  'recall': 0.6667})
+('Test',
+ {'accuracy': 0.375,
+  'ap': 0.2679,
+  'auc': 0.3333,
+  'confusion_mat': array([[2, 4],
+       [1, 1]]),
+  'f1': 0.2857,
+  'precision': 0.2,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 0.6
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+train: 60, valid: 8, test: 8
+=========================================================
+Epoch 0
+('Train',
+ {'accuracy': 0.6667,
+  'ap': 0.5741,
+  'auc': 0.7741,
+  'confusion_mat': array([[21, 18],
+       [ 2, 19]]),
+  'f1': 0.6552,
+  'precision': 0.5135,
+  'recall': 0.9048})
+('Validate',
+ {'accuracy': 0.375,
+  'ap': 0.4206,
+  'auc': 0.4667,
+  'confusion_mat': array([[0, 5],
+       [0, 3]]),
+  'f1': 0.5455,
+  'precision': 0.375,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.5,
+  'ap': 0.3929,
+  'auc': 0.5,
+  'confusion_mat': array([[3, 3],
+       [1, 1]]),
+  'f1': 0.3333,
+  'precision': 0.25,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 0.4436
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+train: 60, valid: 8, test: 8
+=========================================================
+Epoch 0
+('Train',
+ {'accuracy': 0.7667,
+  'ap': 0.6867,
+  'auc': 0.7949,
+  'confusion_mat': array([[37,  2],
+       [12,  9]]),
+  'f1': 0.5625,
+  'precision': 0.8182,
+  'recall': 0.4286})
+('Validate',
+ {'accuracy': 0.625,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[5, 0],
+       [3, 0]]),
+  'f1': 0.0,
+  'precision': 0.0,
+  'recall': 0.0})
+('Test',
+ {'accuracy': 0.875,
+  'ap': 0.6667,
+  'auc': 0.6667,
+  'confusion_mat': array([[6, 0],
+       [1, 1]]),
+  'f1': 0.6667,
+  'precision': 1.0,
+  'recall': 0.5})
+current_best_epoch 0 current_best_metric 1.0
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+train: 60, valid: 8, test: 8
+=========================================================
+Epoch 0
+('Train',
+ {'accuracy': 0.35,
+  'ap': 0.234,
+  'auc': 0.1893,
+  'confusion_mat': array([[ 0, 39],
+       [ 0, 21]]),
+  'f1': 0.5185,
+  'precision': 0.35,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.375,
+  'ap': 0.2869,
+  'auc': 0.0667,
+  'confusion_mat': array([[0, 5],
+       [0, 3]]),
+  'f1': 0.5455,
+  'precision': 0.375,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.25,
+  'ap': 0.3095,
+  'auc': 0.4167,
+  'confusion_mat': array([[0, 6],
+       [0, 2]]),
+  'f1': 0.4,
+  'precision': 0.25,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 0.1768

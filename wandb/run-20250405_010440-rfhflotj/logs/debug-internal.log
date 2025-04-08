@@ -1,0 +1,18 @@
+{"time":"2025-04-05T01:04:40.574780401+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T01:04:40.574784897+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_010440-rfhflotj/logs/debug-core.log"}
+{"time":"2025-04-05T01:04:40.574799868+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T01:04:40.574801366+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_010440-rfhflotj/logs/debug-core.log"}
+{"time":"2025-04-05T01:04:40.575511316+08:00","level":"INFO","msg":"created new stream","id":"rfhflotj"}
+{"time":"2025-04-05T01:04:40.575518304+08:00","level":"INFO","msg":"stream: started","id":"rfhflotj"}
+{"time":"2025-04-05T01:04:40.575528206+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"rfhflotj"}}
+{"time":"2025-04-05T01:04:40.575541149+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"rfhflotj"}}
+{"time":"2025-04-05T01:04:40.575562915+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"rfhflotj"}}
+{"time":"2025-04-05T01:04:41.450559386+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-05T01:04:41.450865503+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-05T01:05:05.53743195+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-05T01:05:05.537773031+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-05T01:05:08.688908298+08:00","level":"INFO","msg":"stream: closing","id":"rfhflotj"}
+{"time":"2025-04-05T01:05:08.688936611+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"rfhflotj"}}
+{"time":"2025-04-05T01:05:08.688967808+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"rfhflotj"}}
+{"time":"2025-04-05T01:05:08.689001242+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"rfhflotj"}}
+{"time":"2025-04-05T01:05:08.689123725+08:00","level":"INFO","msg":"stream: closed","id":"rfhflotj"}

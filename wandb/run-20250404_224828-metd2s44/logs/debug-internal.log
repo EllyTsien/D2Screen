@@ -1,0 +1,18 @@
+{"time":"2025-04-04T22:48:28.043798361+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T22:48:28.043829465+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_224828-metd2s44/logs/debug-core.log"}
+{"time":"2025-04-04T22:48:28.043907717+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T22:48:28.043918034+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_224828-metd2s44/logs/debug-core.log"}
+{"time":"2025-04-04T22:48:28.045758999+08:00","level":"INFO","msg":"created new stream","id":"metd2s44"}
+{"time":"2025-04-04T22:48:28.045778499+08:00","level":"INFO","msg":"stream: started","id":"metd2s44"}
+{"time":"2025-04-04T22:48:28.045800924+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"metd2s44"}}
+{"time":"2025-04-04T22:48:28.045794536+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"metd2s44"}}
+{"time":"2025-04-04T22:48:28.045786636+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"metd2s44"}}
+{"time":"2025-04-04T22:48:28.873272118+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-04T22:48:28.874370067+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-04T22:48:35.603315829+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-04T22:48:35.603552001+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-04T22:48:42.233791477+08:00","level":"INFO","msg":"stream: closing","id":"metd2s44"}
+{"time":"2025-04-04T22:48:42.233799671+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"metd2s44"}}
+{"time":"2025-04-04T22:48:42.233808531+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"metd2s44"}}
+{"time":"2025-04-04T22:48:42.233841129+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"metd2s44"}}
+{"time":"2025-04-04T22:48:42.233864036+08:00","level":"INFO","msg":"stream: closed","id":"metd2s44"}

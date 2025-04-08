@@ -1,0 +1,18 @@
+{"time":"2025-04-05T23:19:29.990328708+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T23:19:29.990333512+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_231929-ccok50jo/logs/debug-core.log"}
+{"time":"2025-04-05T23:19:29.990349108+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-05T23:19:29.990350466+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250405_231929-ccok50jo/logs/debug-core.log"}
+{"time":"2025-04-05T23:19:29.991037572+08:00","level":"INFO","msg":"created new stream","id":"ccok50jo"}
+{"time":"2025-04-05T23:19:29.991042259+08:00","level":"INFO","msg":"stream: started","id":"ccok50jo"}
+{"time":"2025-04-05T23:19:29.991056299+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"ccok50jo"}}
+{"time":"2025-04-05T23:19:29.991067987+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"ccok50jo"}}
+{"time":"2025-04-05T23:19:29.991087744+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"ccok50jo"}}
+{"time":"2025-04-05T23:19:30.64773695+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-05T23:19:30.647936085+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-05T23:19:54.762443664+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-05T23:19:54.762732745+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-05T23:19:58.050975291+08:00","level":"INFO","msg":"stream: closing","id":"ccok50jo"}
+{"time":"2025-04-05T23:19:58.050990913+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"ccok50jo"}}
+{"time":"2025-04-05T23:19:58.051007181+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"ccok50jo"}}
+{"time":"2025-04-05T23:19:58.051063436+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"ccok50jo"}}
+{"time":"2025-04-05T23:19:58.05109462+08:00","level":"INFO","msg":"stream: closed","id":"ccok50jo"}

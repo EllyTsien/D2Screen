@@ -1,0 +1,18 @@
+{"time":"2025-04-04T23:33:13.387564553+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T23:33:13.387573439+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_233313-ywoyslxp/logs/debug-core.log"}
+{"time":"2025-04-04T23:33:13.387598633+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-04T23:33:13.387601861+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250404_233313-ywoyslxp/logs/debug-core.log"}
+{"time":"2025-04-04T23:33:13.388367794+08:00","level":"INFO","msg":"created new stream","id":"ywoyslxp"}
+{"time":"2025-04-04T23:33:13.388378969+08:00","level":"INFO","msg":"stream: started","id":"ywoyslxp"}
+{"time":"2025-04-04T23:33:13.388388245+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"ywoyslxp"}}
+{"time":"2025-04-04T23:33:13.388383225+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"ywoyslxp"}}
+{"time":"2025-04-04T23:33:13.388385749+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"ywoyslxp"}}
+{"time":"2025-04-04T23:33:14.870237719+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-04T23:33:14.870417826+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-04T23:33:48.71215442+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-04T23:33:48.71241011+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-04T23:33:52.676608874+08:00","level":"INFO","msg":"stream: closing","id":"ywoyslxp"}
+{"time":"2025-04-04T23:33:52.676618794+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"ywoyslxp"}}
+{"time":"2025-04-04T23:33:52.676631637+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"ywoyslxp"}}
+{"time":"2025-04-04T23:33:52.676654155+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"ywoyslxp"}}
+{"time":"2025-04-04T23:33:52.676658736+08:00","level":"INFO","msg":"stream: closed","id":"ywoyslxp"}

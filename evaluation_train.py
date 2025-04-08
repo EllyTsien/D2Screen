@@ -7,10 +7,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 class evaluation_train:
-    def __init__(self, model, train_loader, valid_loader):
+    def __init__(self, model, train_loader, valid_loader, test_loader):
         self.model = model
         self.train_loader = train_loader
         self.valid_loader = valid_loader
+        self.test_loader = test_loader
 
     def evaluate(self, data_loader):
         """评估模型"""
@@ -51,26 +52,27 @@ class evaluation_train:
         
         return metric
 
-    def plot(self, train, valid, metric):
+    def plot(self, train, valid, test, metric):
         epochs = range(1, len(train) + 1)
         plt.plot(epochs, train, color="blue", label=f'Training {metric}')
         plt.plot(epochs, valid, color="orange", label=f'Validation {metric}')
-        plt.title(f'Training and validation {metric}')
+        plt.plot(epochs, test, color="red", label=f'Test {metric}')
+        plt.title(f'Training, validation and test {metric}')
         plt.xlabel('Epochs')
         plt.ylabel(f'{metric}')
         plt.legend()
         plt.show()
 
-    def plot_metrics(self, metric_train_list, metric_valid_list):
+    def plot_metrics(self, metric_train_list, metric_valid_list, metric_test_list):
         metric_train = pd.DataFrame(metric_train_list)
         metric_valid = pd.DataFrame(metric_valid_list)
-
-        self.plot(metric_train['accuracy'], metric_valid['accuracy'], metric='accuracy')
-        self.plot(metric_train['ap'], metric_valid['ap'], metric='ap')
-        self.plot(metric_train['auc'], metric_valid['auc'], metric='auc')
-        self.plot(metric_train['f1'], metric_valid['f1'], metric='f1')
-        self.plot(metric_train['precision'], metric_valid['precision'], metric='precision')
-        self.plot(metric_train['recall'], metric_valid['recall'], metric='recall')
+        metric_test = pd.DataFrame(metric_test_list)
+        self.plot(metric_train['accuracy'], metric_valid['accuracy'], metric_test['accuracy'], metric='accuracy')
+        self.plot(metric_train['ap'], metric_valid['ap'], metric_test['ap'], metric='ap')
+        self.plot(metric_train['auc'], metric_valid['auc'], metric_test['auc'], metric='auc')
+        self.plot(metric_train['f1'], metric_valid['f1'], metric_test['f1'], metric='f1')
+        self.plot(metric_train['precision'], metric_valid['precision'], metric_test['precision'], metric='precision')
+        self.plot(metric_train['recall'], metric_valid['recall'], metric_test['recall'], metric='recall')
 
 # 使用示例
 # model = ...  # 你的模型

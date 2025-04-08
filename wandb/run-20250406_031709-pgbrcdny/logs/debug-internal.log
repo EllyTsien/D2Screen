@@ -1,0 +1,18 @@
+{"time":"2025-04-06T03:17:09.153729681+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-06T03:17:09.153734003+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250406_031709-pgbrcdny/logs/debug-core.log"}
+{"time":"2025-04-06T03:17:09.153745687+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-06T03:17:09.153746812+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250406_031709-pgbrcdny/logs/debug-core.log"}
+{"time":"2025-04-06T03:17:09.154458405+08:00","level":"INFO","msg":"created new stream","id":"pgbrcdny"}
+{"time":"2025-04-06T03:17:09.154465626+08:00","level":"INFO","msg":"stream: started","id":"pgbrcdny"}
+{"time":"2025-04-06T03:17:09.154473055+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"pgbrcdny"}}
+{"time":"2025-04-06T03:17:09.154504233+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"pgbrcdny"}}
+{"time":"2025-04-06T03:17:09.154532214+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"pgbrcdny"}}
+{"time":"2025-04-06T03:17:09.896397587+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-06T03:17:09.897121701+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-06T03:17:36.991705271+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-06T03:17:36.992127431+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-06T03:17:40.084431054+08:00","level":"INFO","msg":"stream: closing","id":"pgbrcdny"}
+{"time":"2025-04-06T03:17:40.084438711+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"pgbrcdny"}}
+{"time":"2025-04-06T03:17:40.084447735+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"pgbrcdny"}}
+{"time":"2025-04-06T03:17:40.084467015+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"pgbrcdny"}}
+{"time":"2025-04-06T03:17:40.084482467+08:00","level":"INFO","msg":"stream: closed","id":"pgbrcdny"}
