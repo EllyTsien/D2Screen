@@ -1,0 +1,16 @@
+{"time":"2025-04-08T03:06:04.29490087+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:06:04.294905435+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030604-igh0ujyw/logs/debug-core.log"}
+{"time":"2025-04-08T03:06:04.294920477+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:06:04.294921771+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030604-igh0ujyw/logs/debug-core.log"}
+{"time":"2025-04-08T03:06:04.295640875+08:00","level":"INFO","msg":"created new stream","id":"igh0ujyw"}
+{"time":"2025-04-08T03:06:04.295649613+08:00","level":"INFO","msg":"stream: started","id":"igh0ujyw"}
+{"time":"2025-04-08T03:06:04.295660751+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"igh0ujyw"}}
+{"time":"2025-04-08T03:06:04.2956552+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"igh0ujyw"}}
+{"time":"2025-04-08T03:06:04.295658087+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"igh0ujyw"}}
+{"time":"2025-04-08T03:06:04.930174029+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:06:04.930455892+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:06:26.827534211+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:12.690085185+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:44.85544882+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:19.098036557+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:58.917311542+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}

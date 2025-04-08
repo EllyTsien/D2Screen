@@ -1,0 +1,19 @@
+{"time":"2025-04-08T03:11:32.69189035+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.691897662+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-kmd2hzba/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.691917206+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.691919167+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-kmd2hzba/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.692871975+08:00","level":"INFO","msg":"created new stream","id":"kmd2hzba"}
+{"time":"2025-04-08T03:11:32.692879841+08:00","level":"INFO","msg":"stream: started","id":"kmd2hzba"}
+{"time":"2025-04-08T03:11:32.692891977+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"kmd2hzba"}}
+{"time":"2025-04-08T03:11:32.692964316+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"kmd2hzba"}}
+{"time":"2025-04-08T03:11:32.693015606+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"kmd2hzba"}}
+{"time":"2025-04-08T03:11:33.424086982+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:11:33.424702221+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:12:33.780336361+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:12:53.771962348+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:12:53.772052338+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:12:56.842445737+08:00","level":"INFO","msg":"stream: closing","id":"kmd2hzba"}
+{"time":"2025-04-08T03:12:56.842457809+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"kmd2hzba"}}
+{"time":"2025-04-08T03:12:56.842468518+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"kmd2hzba"}}
+{"time":"2025-04-08T03:12:56.842505802+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"kmd2hzba"}}
+{"time":"2025-04-08T03:12:56.842512597+08:00","level":"INFO","msg":"stream: closed","id":"kmd2hzba"}

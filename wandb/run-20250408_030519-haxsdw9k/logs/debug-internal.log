@@ -1,0 +1,16 @@
+{"time":"2025-04-08T03:05:19.389430172+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:05:19.389438492+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030519-haxsdw9k/logs/debug-core.log"}
+{"time":"2025-04-08T03:05:19.389461146+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:05:19.389463891+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030519-haxsdw9k/logs/debug-core.log"}
+{"time":"2025-04-08T03:05:19.390579638+08:00","level":"INFO","msg":"created new stream","id":"haxsdw9k"}
+{"time":"2025-04-08T03:05:19.390588979+08:00","level":"INFO","msg":"stream: started","id":"haxsdw9k"}
+{"time":"2025-04-08T03:05:19.390600092+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"haxsdw9k"}}
+{"time":"2025-04-08T03:05:19.390600315+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"haxsdw9k"}}
+{"time":"2025-04-08T03:05:19.390598387+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"haxsdw9k"}}
+{"time":"2025-04-08T03:05:20.049872127+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:05:20.050043911+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:06:29.330390336+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:13.013615606+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:45.210080524+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:19.869645852+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:59.362847853+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}

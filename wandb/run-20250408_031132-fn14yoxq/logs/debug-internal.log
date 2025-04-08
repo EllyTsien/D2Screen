@@ -1,0 +1,19 @@
+{"time":"2025-04-08T03:11:32.741652609+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.741661565+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-fn14yoxq/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.74168501+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.741688184+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-fn14yoxq/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.743380602+08:00","level":"INFO","msg":"created new stream","id":"fn14yoxq"}
+{"time":"2025-04-08T03:11:32.743395309+08:00","level":"INFO","msg":"stream: started","id":"fn14yoxq"}
+{"time":"2025-04-08T03:11:32.743401012+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"fn14yoxq"}}
+{"time":"2025-04-08T03:11:32.743398539+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"fn14yoxq"}}
+{"time":"2025-04-08T03:11:32.743412366+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"fn14yoxq"}}
+{"time":"2025-04-08T03:11:33.442714966+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:11:33.443641958+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:12:59.436192158+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:13:14.519652095+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:13:14.519777366+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:13:17.521955352+08:00","level":"INFO","msg":"stream: closing","id":"fn14yoxq"}
+{"time":"2025-04-08T03:13:17.521968171+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"fn14yoxq"}}
+{"time":"2025-04-08T03:13:17.521981169+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"fn14yoxq"}}
+{"time":"2025-04-08T03:13:17.522016339+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"fn14yoxq"}}
+{"time":"2025-04-08T03:13:17.522023772+08:00","level":"INFO","msg":"stream: closed","id":"fn14yoxq"}

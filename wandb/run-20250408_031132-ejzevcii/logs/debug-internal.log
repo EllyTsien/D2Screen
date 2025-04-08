@@ -1,0 +1,19 @@
+{"time":"2025-04-08T03:11:32.337143104+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.337148099+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-ejzevcii/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.337161657+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.337162885+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-ejzevcii/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.337889061+08:00","level":"INFO","msg":"created new stream","id":"ejzevcii"}
+{"time":"2025-04-08T03:11:32.33789481+08:00","level":"INFO","msg":"stream: started","id":"ejzevcii"}
+{"time":"2025-04-08T03:11:32.337903456+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"ejzevcii"}}
+{"time":"2025-04-08T03:11:32.337900335+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"ejzevcii"}}
+{"time":"2025-04-08T03:11:32.337902612+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"ejzevcii"}}
+{"time":"2025-04-08T03:11:33.010667118+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:11:33.012053221+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:12:34.076182013+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:13:00.470298876+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:13:00.470407295+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:13:03.478917731+08:00","level":"INFO","msg":"stream: closing","id":"ejzevcii"}
+{"time":"2025-04-08T03:13:03.478932099+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"ejzevcii"}}
+{"time":"2025-04-08T03:13:03.478946852+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"ejzevcii"}}
+{"time":"2025-04-08T03:13:03.478997648+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"ejzevcii"}}
+{"time":"2025-04-08T03:13:03.479005858+08:00","level":"INFO","msg":"stream: closed","id":"ejzevcii"}

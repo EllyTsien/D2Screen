@@ -1,0 +1,279 @@
+[GeoGNNModel] embed_dim:32
+[GeoGNNModel] dropout_rate:0.5
+[GeoGNNModel] layer_num:8
+[GeoGNNModel] readout:mean
+[GeoGNNModel] atom_names:['atomic_num', 'formal_charge', 'degree', 'chiral_tag', 'total_numHs', 'is_aromatic', 'hybridization']
+[GeoGNNModel] bond_names:['bond_dir', 'bond_type', 'is_in_ring']
+[GeoGNNModel] bond_float_names:['bond_length']
+[GeoGNNModel] bond_angle_float_names:['bond_angle']
+train: 57, valid: 7, test: 8
+=========================================================
+Epoch 0
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9195,
+  'auc': 0.6077,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 0.8734,
+  'auc': 0.3333,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9484,
+  'auc': 0.8333,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 0.6033
+=========================================================
+Epoch 1
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9062,
+  'auc': 0.5423,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 0.8734,
+  'auc': 0.3333,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9484,
+  'auc': 0.8333,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 0 current_best_metric 0.6033
+=========================================================
+Epoch 2
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9473,
+  'auc': 0.6808,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 0.9151,
+  'auc': 0.5,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9107,
+  'auc': 0.6667,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 2 current_best_metric 0.7076
+=========================================================
+Epoch 3
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9782,
+  'auc': 0.8269,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9484,
+  'auc': 0.8333,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 3 current_best_metric 1.0
+=========================================================
+Epoch 4
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9767,
+  'auc': 0.85,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 1.0,
+  'auc': 1.0,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9484,
+  'auc': 0.8333,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 3 current_best_metric 1.0
+=========================================================
+Epoch 5
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9713,
+  'auc': 0.8346,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 0.9484,
+  'auc': 0.6667,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9484,
+  'auc': 0.8333,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 3 current_best_metric 1.0
+=========================================================
+Epoch 6
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9697,
+  'auc': 0.8308,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 0.9484,
+  'auc': 0.6667,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9484,
+  'auc': 0.8333,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 3 current_best_metric 1.0
+=========================================================
+Epoch 7
+('Train',
+ {'accuracy': 0.9123,
+  'ap': 0.9742,
+  'auc': 0.8423,
+  'confusion_mat': array([[ 0,  5],
+       [ 0, 52]]),
+  'f1': 0.9541,
+  'precision': 0.9123,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 0.9484,
+  'auc': 0.6667,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9306,
+  'auc': 0.75,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 3 current_best_metric 1.0
+=========================================================
+Epoch 8
+('Train',
+ {'accuracy': 0.9298,
+  'ap': 0.9782,
+  'auc': 0.8577,
+  'confusion_mat': array([[ 1,  4],
+       [ 0, 52]]),
+  'f1': 0.963,
+  'precision': 0.9286,
+  'recall': 1.0})
+('Validate',
+ {'accuracy': 0.8571,
+  'ap': 0.9484,
+  'auc': 0.6667,
+  'confusion_mat': array([[0, 1],
+       [0, 6]]),
+  'f1': 0.9231,
+  'precision': 0.8571,
+  'recall': 1.0})
+('Test',
+ {'accuracy': 0.75,
+  'ap': 0.9484,
+  'auc': 0.8333,
+  'confusion_mat': array([[0, 2],
+       [0, 6]]),
+  'f1': 0.8571,
+  'precision': 0.75,
+  'recall': 1.0})
+current_best_epoch 3 current_best_metric 1.0

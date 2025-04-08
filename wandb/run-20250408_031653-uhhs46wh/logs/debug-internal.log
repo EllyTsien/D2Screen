@@ -1,0 +1,18 @@
+{"time":"2025-04-08T03:16:53.437863865+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:16:53.437869927+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031653-uhhs46wh/logs/debug-core.log"}
+{"time":"2025-04-08T03:16:53.43788717+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:16:53.437889062+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031653-uhhs46wh/logs/debug-core.log"}
+{"time":"2025-04-08T03:16:53.438804351+08:00","level":"INFO","msg":"created new stream","id":"uhhs46wh"}
+{"time":"2025-04-08T03:16:53.438814011+08:00","level":"INFO","msg":"stream: started","id":"uhhs46wh"}
+{"time":"2025-04-08T03:16:53.438824746+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"uhhs46wh"}}
+{"time":"2025-04-08T03:16:53.438817582+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"uhhs46wh"}}
+{"time":"2025-04-08T03:16:53.43882349+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"uhhs46wh"}}
+{"time":"2025-04-08T03:16:54.09878032+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:16:54.099041677+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:18:11.367673234+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:18:11.36775804+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:18:14.490288177+08:00","level":"INFO","msg":"stream: closing","id":"uhhs46wh"}
+{"time":"2025-04-08T03:18:14.490296979+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"uhhs46wh"}}
+{"time":"2025-04-08T03:18:14.490306635+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"uhhs46wh"}}
+{"time":"2025-04-08T03:18:14.490327674+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"uhhs46wh"}}
+{"time":"2025-04-08T03:18:14.490351222+08:00","level":"INFO","msg":"stream: closed","id":"uhhs46wh"}

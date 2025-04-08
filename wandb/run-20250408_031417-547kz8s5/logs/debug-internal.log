@@ -1,0 +1,18 @@
+{"time":"2025-04-08T03:14:17.300147267+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:14:17.300154205+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031417-547kz8s5/logs/debug-core.log"}
+{"time":"2025-04-08T03:14:17.300171787+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:14:17.300173996+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031417-547kz8s5/logs/debug-core.log"}
+{"time":"2025-04-08T03:14:17.301109902+08:00","level":"INFO","msg":"created new stream","id":"547kz8s5"}
+{"time":"2025-04-08T03:14:17.301123331+08:00","level":"INFO","msg":"stream: started","id":"547kz8s5"}
+{"time":"2025-04-08T03:14:17.301134366+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"547kz8s5"}}
+{"time":"2025-04-08T03:14:17.301127603+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"547kz8s5"}}
+{"time":"2025-04-08T03:14:17.301146411+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"547kz8s5"}}
+{"time":"2025-04-08T03:14:17.99240548+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:14:17.992622131+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:15:32.914289283+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:15:32.914426448+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:15:35.974471548+08:00","level":"INFO","msg":"stream: closing","id":"547kz8s5"}
+{"time":"2025-04-08T03:15:35.97448369+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"547kz8s5"}}
+{"time":"2025-04-08T03:15:35.97449725+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"547kz8s5"}}
+{"time":"2025-04-08T03:15:35.974496529+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"547kz8s5"}}
+{"time":"2025-04-08T03:15:35.97453631+08:00","level":"INFO","msg":"stream: closed","id":"547kz8s5"}

@@ -1,0 +1,19 @@
+{"time":"2025-04-09T00:04:32.488905174+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-09T00:04:32.488919142+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250409_000432-b55g7rm2/logs/debug-core.log"}
+{"time":"2025-04-09T00:04:32.488964656+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-09T00:04:32.488968472+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250409_000432-b55g7rm2/logs/debug-core.log"}
+{"time":"2025-04-09T00:04:32.490404101+08:00","level":"INFO","msg":"created new stream","id":"b55g7rm2"}
+{"time":"2025-04-09T00:04:32.490418021+08:00","level":"INFO","msg":"stream: started","id":"b55g7rm2"}
+{"time":"2025-04-09T00:04:32.490425907+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"b55g7rm2"}}
+{"time":"2025-04-09T00:04:32.490460531+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"b55g7rm2"}}
+{"time":"2025-04-09T00:04:32.490434833+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"b55g7rm2"}}
+{"time":"2025-04-09T00:04:33.394046688+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-09T00:04:33.394516661+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-09T00:05:12.567828336+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-09T00:05:12.567937247+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-09T00:06:59.176038687+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-09T00:07:04.646463151+08:00","level":"INFO","msg":"stream: closing","id":"b55g7rm2"}
+{"time":"2025-04-09T00:07:04.646474895+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"b55g7rm2"}}
+{"time":"2025-04-09T00:07:04.646484766+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"b55g7rm2"}}
+{"time":"2025-04-09T00:07:04.646509503+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"b55g7rm2"}}
+{"time":"2025-04-09T00:07:04.646511787+08:00","level":"INFO","msg":"stream: closed","id":"b55g7rm2"}

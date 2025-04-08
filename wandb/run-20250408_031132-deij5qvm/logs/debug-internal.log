@@ -1,0 +1,20 @@
+{"time":"2025-04-08T03:11:32.741223967+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.741229206+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-deij5qvm/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.741242542+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:11:32.741243968+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031132-deij5qvm/logs/debug-core.log"}
+{"time":"2025-04-08T03:11:32.741921514+08:00","level":"INFO","msg":"created new stream","id":"deij5qvm"}
+{"time":"2025-04-08T03:11:32.741926607+08:00","level":"INFO","msg":"stream: started","id":"deij5qvm"}
+{"time":"2025-04-08T03:11:32.741934223+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"deij5qvm"}}
+{"time":"2025-04-08T03:11:32.741932286+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"deij5qvm"}}
+{"time":"2025-04-08T03:11:32.741937068+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"deij5qvm"}}
+{"time":"2025-04-08T03:11:33.450317195+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:11:33.450989853+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:12:33.88134557+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:12:50.471893084+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:12:50.471993289+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:13:05.108277482+08:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/121090453-the-chinese-university-of-hong-kong-shenzhen/finetune/deij5qvm/file_stream"}
+{"time":"2025-04-08T03:13:10.373822069+08:00","level":"INFO","msg":"stream: closing","id":"deij5qvm"}
+{"time":"2025-04-08T03:13:10.373835518+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"deij5qvm"}}
+{"time":"2025-04-08T03:13:10.373848326+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"deij5qvm"}}
+{"time":"2025-04-08T03:13:10.373883339+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"deij5qvm"}}
+{"time":"2025-04-08T03:13:10.37388869+08:00","level":"INFO","msg":"stream: closed","id":"deij5qvm"}

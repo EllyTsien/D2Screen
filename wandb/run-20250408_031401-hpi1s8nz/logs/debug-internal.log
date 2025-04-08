@@ -1,0 +1,18 @@
+{"time":"2025-04-08T03:14:01.799830077+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:14:01.799839027+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031401-hpi1s8nz/logs/debug-core.log"}
+{"time":"2025-04-08T03:14:01.799861901+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:14:01.799864876+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031401-hpi1s8nz/logs/debug-core.log"}
+{"time":"2025-04-08T03:14:01.800996337+08:00","level":"INFO","msg":"created new stream","id":"hpi1s8nz"}
+{"time":"2025-04-08T03:14:01.801006056+08:00","level":"INFO","msg":"stream: started","id":"hpi1s8nz"}
+{"time":"2025-04-08T03:14:01.801019064+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"hpi1s8nz"}}
+{"time":"2025-04-08T03:14:01.801035536+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"hpi1s8nz"}}
+{"time":"2025-04-08T03:14:01.801035824+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"hpi1s8nz"}}
+{"time":"2025-04-08T03:14:02.526211384+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:14:02.526434188+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:14:53.826778078+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:14:53.826878846+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:14:56.809205602+08:00","level":"INFO","msg":"stream: closing","id":"hpi1s8nz"}
+{"time":"2025-04-08T03:14:56.809218256+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"hpi1s8nz"}}
+{"time":"2025-04-08T03:14:56.809230678+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"hpi1s8nz"}}
+{"time":"2025-04-08T03:14:56.809265006+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"hpi1s8nz"}}
+{"time":"2025-04-08T03:14:56.809271873+08:00","level":"INFO","msg":"stream: closed","id":"hpi1s8nz"}

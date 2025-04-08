@@ -1,0 +1,18 @@
+{"time":"2025-04-08T03:04:16.355868436+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:04:16.355873479+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030416-ttjs9nab/logs/debug-core.log"}
+{"time":"2025-04-08T03:04:16.355885787+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:04:16.355887059+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030416-ttjs9nab/logs/debug-core.log"}
+{"time":"2025-04-08T03:04:16.356562255+08:00","level":"INFO","msg":"created new stream","id":"ttjs9nab"}
+{"time":"2025-04-08T03:04:16.356567284+08:00","level":"INFO","msg":"stream: started","id":"ttjs9nab"}
+{"time":"2025-04-08T03:04:16.356574273+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"ttjs9nab"}}
+{"time":"2025-04-08T03:04:16.356573825+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"ttjs9nab"}}
+{"time":"2025-04-08T03:04:16.3565955+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"ttjs9nab"}}
+{"time":"2025-04-08T03:04:17.064825731+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:04:17.065406886+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:05:40.572068492+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:05:40.572189876+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:05:43.430566515+08:00","level":"INFO","msg":"stream: closing","id":"ttjs9nab"}
+{"time":"2025-04-08T03:05:43.430580173+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"ttjs9nab"}}
+{"time":"2025-04-08T03:05:43.430594574+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"ttjs9nab"}}
+{"time":"2025-04-08T03:05:43.430630328+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"ttjs9nab"}}
+{"time":"2025-04-08T03:05:43.430662231+08:00","level":"INFO","msg":"stream: closed","id":"ttjs9nab"}

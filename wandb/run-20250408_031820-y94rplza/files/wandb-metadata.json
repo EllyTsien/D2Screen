@@ -1,0 +1,49 @@
+{
+  "os":  "Linux-5.15.0-136-generic-x86_64-with-glibc2.31",
+  "python":  "3.10.14",
+  "startedAt":  "2025-04-07T19:18:20.608490Z",
+  "program":  "/home/redmol/Documents/14.D2Screen/train.py",
+  "codePath":  "train.py",
+  "git":  {
+    "remote":  "https://github.com/EllyTsien/D2Screen.git",
+    "commit":  "21d066ec7eac567f684c48ce74169cce633eb423"
+  },
+  "email":  "121090453@link.cuhk.edu.cn",
+  "root":  "/home/redmol/Documents/14.D2Screen",
+  "host":  "CUHKSZ",
+  "username":  "redmol",
+  "executable":  "/home/redmol/anaconda3/envs/py310/bin/python",
+  "codePathLocal":  "train.py",
+  "cpu_count":  24,
+  "cpu_count_logical":  32,
+  "gpu":  "[NVIDIA GeForce RTX 4090, NVIDIA GeForce RTX 4090]",
+  "gpu_count":  2,
+  "disk":  {
+    "/":  {
+      "total":  "1006450962432",
+      "used":  "750857334784"
+    }
+  },
+  "memory":  {
+    "total":  "134830641152"
+  },
+  "cpu":  {
+    "count":  24,
+    "countLogical":  32
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    },
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.2"
+}

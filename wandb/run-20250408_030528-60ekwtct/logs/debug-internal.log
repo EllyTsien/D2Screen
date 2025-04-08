@@ -1,0 +1,21 @@
+{"time":"2025-04-08T03:05:28.063684244+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:05:28.063693493+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030528-60ekwtct/logs/debug-core.log"}
+{"time":"2025-04-08T03:05:28.063716972+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:05:28.063720075+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030528-60ekwtct/logs/debug-core.log"}
+{"time":"2025-04-08T03:05:28.064717211+08:00","level":"INFO","msg":"created new stream","id":"60ekwtct"}
+{"time":"2025-04-08T03:05:28.064726553+08:00","level":"INFO","msg":"stream: started","id":"60ekwtct"}
+{"time":"2025-04-08T03:05:28.064738216+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"60ekwtct"}}
+{"time":"2025-04-08T03:05:28.06475427+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"60ekwtct"}}
+{"time":"2025-04-08T03:05:28.064789464+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"60ekwtct"}}
+{"time":"2025-04-08T03:05:28.737596343+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:05:28.737872871+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:06:26.905525925+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:06:30.781167531+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:06:43.015851116+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:06:48.686634878+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:06:48.686744621+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:06:52.211128496+08:00","level":"INFO","msg":"stream: closing","id":"60ekwtct"}
+{"time":"2025-04-08T03:06:52.211142557+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"60ekwtct"}}
+{"time":"2025-04-08T03:06:52.21115504+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"60ekwtct"}}
+{"time":"2025-04-08T03:06:52.211200008+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"60ekwtct"}}
+{"time":"2025-04-08T03:06:52.211208379+08:00","level":"INFO","msg":"stream: closed","id":"60ekwtct"}

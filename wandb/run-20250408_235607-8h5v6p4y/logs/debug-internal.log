@@ -1,0 +1,19 @@
+{"time":"2025-04-08T23:56:07.737237679+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T23:56:07.737242353+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_235607-8h5v6p4y/logs/debug-core.log"}
+{"time":"2025-04-08T23:56:07.737256483+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T23:56:07.737257721+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_235607-8h5v6p4y/logs/debug-core.log"}
+{"time":"2025-04-08T23:56:07.737933792+08:00","level":"INFO","msg":"created new stream","id":"8h5v6p4y"}
+{"time":"2025-04-08T23:56:07.737940268+08:00","level":"INFO","msg":"stream: started","id":"8h5v6p4y"}
+{"time":"2025-04-08T23:56:07.737948553+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"8h5v6p4y"}}
+{"time":"2025-04-08T23:56:07.737950896+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"8h5v6p4y"}}
+{"time":"2025-04-08T23:56:07.737944801+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"8h5v6p4y"}}
+{"time":"2025-04-08T23:56:08.582173196+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T23:56:08.582875937+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T23:56:55.155420402+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T23:56:55.155725603+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T23:56:59.492338066+08:00","level":"INFO","msg":"stream: closing","id":"8h5v6p4y"}
+{"time":"2025-04-08T23:56:59.492393905+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"8h5v6p4y"}}
+{"time":"2025-04-08T23:56:59.492438297+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"8h5v6p4y"}}
+{"time":"2025-04-08T23:56:59.492578097+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"8h5v6p4y"}}
+{"time":"2025-04-08T23:56:59.492578351+08:00","level":"ERROR","msg":"runfiles: CreateRunFiles returned error: api: failed sending: POST https://api.wandb.ai/graphql giving up after 1 attempt(s): context canceled"}
+{"time":"2025-04-08T23:56:59.492610694+08:00","level":"INFO","msg":"stream: closed","id":"8h5v6p4y"}

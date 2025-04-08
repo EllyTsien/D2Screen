@@ -1,3 +1,4 @@
+import os
 import time
 from multiprocessing import Pool
 # change
@@ -10,7 +11,6 @@ from finetune import run_finetune, test, select_best_model
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from dataloader import sort_and_filter_csv
 
-# thread_num = 8
 model_version = '1'
 
 def main(args):
@@ -21,8 +21,9 @@ def main(args):
     else:
         project_name = args.project_name
 
-    if args.dataset == 'input.csv':
+    if args.dataset is None:
         finetune_dataset = args.dataset
+        print("Using default dataset, input.csv")
         input_ligands_path = 'datasets/input.csv'
         print(f"Using dataset: {input_ligands_path}")
         if not os.path.exists(input_ligands_path):
@@ -92,7 +93,7 @@ def main(args):
     for index in range(1, 23): 
         test(model_version='1', project_name=project_name, index=index)
     # Sort, filter and log the final result
-    sort_and_filter_csv("datasets/DL_pred/result.csv", args.threshold, "datasets/DL_pred/top.csv")
+    sort_and_filter_csv('datasets/DL_pred/result_' + project_name + '.csv', args.threshold, "datasets/DL_pred/top.csv")
 
 
 if __name__ == '__main__':
