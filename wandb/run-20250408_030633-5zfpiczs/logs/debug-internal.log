@@ -1,0 +1,20 @@
+{"time":"2025-04-08T03:06:33.080181585+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:06:33.080186176+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030633-5zfpiczs/logs/debug-core.log"}
+{"time":"2025-04-08T03:06:33.080200564+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:06:33.080201828+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030633-5zfpiczs/logs/debug-core.log"}
+{"time":"2025-04-08T03:06:33.081114666+08:00","level":"INFO","msg":"created new stream","id":"5zfpiczs"}
+{"time":"2025-04-08T03:06:33.081121529+08:00","level":"INFO","msg":"stream: started","id":"5zfpiczs"}
+{"time":"2025-04-08T03:06:33.081130876+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"5zfpiczs"}}
+{"time":"2025-04-08T03:06:33.081142135+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"5zfpiczs"}}
+{"time":"2025-04-08T03:06:33.081161354+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"5zfpiczs"}}
+{"time":"2025-04-08T03:06:33.757185805+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:06:33.75743651+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:06:48.952377749+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:21.427992619+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:41.232261192+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:07:41.232394666+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:07:44.430465773+08:00","level":"INFO","msg":"stream: closing","id":"5zfpiczs"}
+{"time":"2025-04-08T03:07:44.430480616+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"5zfpiczs"}}
+{"time":"2025-04-08T03:07:44.430495426+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"5zfpiczs"}}
+{"time":"2025-04-08T03:07:44.430531624+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"5zfpiczs"}}
+{"time":"2025-04-08T03:07:44.430537576+08:00","level":"INFO","msg":"stream: closed","id":"5zfpiczs"}

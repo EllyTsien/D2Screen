@@ -1,0 +1,14 @@
+{
+    "score": 0.7076,
+    "finetune_model_layer": "mlp6",
+    "learning_rate": "0",
+    "head_learning_rate": "5e-3",
+    "dropout_rate": 0.5,
+    "finetune_time": 1,
+    "batch_size": 256,
+    "project_name": "finetune",
+    "finetune_dataset": "input.csv",
+    "model_version": "1",
+    "saved_model": "bestweights_finetune/comic-glade-230.pkl",
+    "run_id": "comic-glade-230"
+}

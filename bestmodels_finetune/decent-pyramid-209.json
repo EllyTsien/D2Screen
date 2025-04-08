@@ -1,0 +1,14 @@
+{
+    "score": 1.0,
+    "finetune_model_layer": "mlp6",
+    "learning_rate": "5e-3",
+    "head_learning_rate": "5e-3",
+    "dropout_rate": 0.2,
+    "finetune_time": 1,
+    "batch_size": 1024,
+    "project_name": "finetune",
+    "finetune_dataset": "input.csv",
+    "model_version": "1",
+    "saved_model": "bestweights_finetune/decent-pyramid-209.pkl",
+    "run_id": "decent-pyramid-209"
+}

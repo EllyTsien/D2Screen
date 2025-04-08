@@ -1,0 +1,18 @@
+{"time":"2025-04-09T00:13:14.135793418+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-09T00:13:14.135806746+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250409_001314-jkyb171u/logs/debug-core.log"}
+{"time":"2025-04-09T00:13:14.135841499+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-09T00:13:14.13584538+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250409_001314-jkyb171u/logs/debug-core.log"}
+{"time":"2025-04-09T00:13:14.138547979+08:00","level":"INFO","msg":"created new stream","id":"jkyb171u"}
+{"time":"2025-04-09T00:13:14.138564979+08:00","level":"INFO","msg":"stream: started","id":"jkyb171u"}
+{"time":"2025-04-09T00:13:14.138581472+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"jkyb171u"}}
+{"time":"2025-04-09T00:13:14.138572746+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"jkyb171u"}}
+{"time":"2025-04-09T00:13:14.138606187+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"jkyb171u"}}
+{"time":"2025-04-09T00:13:15.13317473+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-09T00:13:15.134118443+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-09T00:13:50.676372085+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-09T00:13:50.676532496+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-09T00:13:54.547745439+08:00","level":"INFO","msg":"stream: closing","id":"jkyb171u"}
+{"time":"2025-04-09T00:13:54.547762785+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"jkyb171u"}}
+{"time":"2025-04-09T00:13:54.547774248+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"jkyb171u"}}
+{"time":"2025-04-09T00:13:54.54777867+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"jkyb171u"}}
+{"time":"2025-04-09T00:13:54.547807745+08:00","level":"INFO","msg":"stream: closed","id":"jkyb171u"}

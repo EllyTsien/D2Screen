@@ -1,0 +1,18 @@
+{"time":"2025-04-08T23:42:40.820891237+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T23:42:40.820898895+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_234240-ywsi170q/logs/debug-core.log"}
+{"time":"2025-04-08T23:42:40.820924745+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T23:42:40.820927066+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_234240-ywsi170q/logs/debug-core.log"}
+{"time":"2025-04-08T23:42:40.821905884+08:00","level":"INFO","msg":"created new stream","id":"ywsi170q"}
+{"time":"2025-04-08T23:42:40.821915322+08:00","level":"INFO","msg":"stream: started","id":"ywsi170q"}
+{"time":"2025-04-08T23:42:40.82192646+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"ywsi170q"}}
+{"time":"2025-04-08T23:42:40.821968468+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"ywsi170q"}}
+{"time":"2025-04-08T23:42:40.821976713+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"ywsi170q"}}
+{"time":"2025-04-08T23:42:41.7027895+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T23:42:41.703452504+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T23:43:21.552559315+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T23:43:21.552862924+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T23:43:24.721428914+08:00","level":"INFO","msg":"stream: closing","id":"ywsi170q"}
+{"time":"2025-04-08T23:43:24.721438907+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"ywsi170q"}}
+{"time":"2025-04-08T23:43:24.72144902+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"ywsi170q"}}
+{"time":"2025-04-08T23:43:24.721487626+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"ywsi170q"}}
+{"time":"2025-04-08T23:43:24.721491256+08:00","level":"INFO","msg":"stream: closed","id":"ywsi170q"}

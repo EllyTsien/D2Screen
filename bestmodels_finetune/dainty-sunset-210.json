@@ -1,0 +1,14 @@
+{
+    "score": 1.0,
+    "finetune_model_layer": "mlp4",
+    "learning_rate": "0",
+    "head_learning_rate": "5e-3",
+    "dropout_rate": 0.5,
+    "finetune_time": 1,
+    "batch_size": 32,
+    "project_name": "finetune",
+    "finetune_dataset": "input.csv",
+    "model_version": "1",
+    "saved_model": "bestweights_finetune/dainty-sunset-210.pkl",
+    "run_id": "dainty-sunset-210"
+}

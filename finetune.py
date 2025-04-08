@@ -1,12 +1,8 @@
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-warnings.filterwarnings('ignore')
 import paddle as pdl
 from paddle import optimizer 
 import numpy as np
 import json
 from rdkit import RDLogger
-RDLogger.DisableLog('rdApp.*') # 屏蔽RDKit的warning
 from pahelix.datasets.inmemory_dataset import InMemoryDataset
 import random
 import pandas as pd
@@ -25,6 +21,7 @@ from prediction import ModelTester
 from dataloader import collate_fn, get_data_loader, sort_and_filter_csv
 from pahelix.model_zoo.gem_model import GeoGNNModel
 
+
 def exempt_parameters(src_list, ref_list):
     """Remove element from src_list that is in ref_list"""
     res = []
@@ -42,7 +39,7 @@ def exempt_parameters(src_list, ref_list):
 # def trial(model_version, model, batch_size, criterion, scheduler, opt):
 def run_finetune(params):
     finetune_model_layer, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version = params
-    seed =  42 # 可以根据需要调整范围
+    seed =  42 
     # finetune_model_layer =json.load(open(finetune_model_layer, 'r'))
     if finetune_model_layer=='mlp4':
         finetune_model = mlp.MLP4()
@@ -62,7 +59,7 @@ def run_finetune(params):
         "model_details": str(finetune_model_layer)
     })
 
-    # add 3in1 tables ***
+    # add 3in1 tables
     metric_logs = {
         metric: []
         for metric in ['accuracy', 'ap', 'auc', 'f1', 'precision', 'recall']
@@ -191,14 +188,38 @@ def run_finetune(params):
             keys.append(group)
         
         # 调用 wandb.plot.line_series
-        wandb.log({
-            f"{metric}_comparison_plot": wandb.plot.line_series(
-                xs,   # x轴数组
-                ys,   # y轴数组（列表的列表）
-                keys, # 每条曲线的名称
-                f"{metric.upper()} over Epochs"  # 图表标题
-            )
-        })
+
+        rows = []
+        for key_index, key in enumerate(keys):
+            for i, step in enumerate(xs):
+                rows.append({
+                    "step": step,
+                    "lineVal": ys[key_index][i],
+                    "lineKey": key
+                })
+
+        # 构建 DataFrame 并转为 wandb.Table
+        df = pd.DataFrame(rows)
+        table = wandb.Table(dataframe=df)
+
+        # 使用自定义预设“3linesIn1Graph_color”生成图表
+        chart = wandb.plot_table(
+            vega_spec_name="121090453-the-chinese-university-of-hong-kong-shenzhen/3linesin1graph_color",
+            data_table=table,
+            fields={
+                "step": "step", 
+                "lineVal": "lineVal",
+                "lineKey": "lineKey",     
+                "color": "lineKey" 
+            },
+            string_fields={
+                "title": f"{metric.upper()} over Epochs",  # 图表标题
+                "xname": "Epochs"                          # x轴名称，可根据预设中 Vega 规范对应字段命名
+            }
+        )
+
+        # 记录图表到 wandb
+        wandb.log({f"{metric}_comparison_plot": chart})
 
     wandb.finish()
     return train_metric_list, valid_metric_list, test_metric_list        
@@ -267,11 +288,11 @@ def test(model_version, project_name, index):
         label_predict_batch = F.softmax(label_predict_batch)
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
-    nolabel_file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_nolabel.csv'
+    nolabel_file_path = f'datasets/ZINC20_processed/{index}_ZINC20_nolabel.csv'
     df = pd.read_csv(nolabel_file_path)
     # df = pd.read_csv('datasets/ZINC20_processed/test_nolabel.csv')
     df['pred'] = all_result
-    result_file_path = 'datasets/DL_pred/result.csv'
+    result_file_path = 'datasets/DL_pred/result_' + project_name + '.csv'
     # 检查文件是否存在
     if index == 1:
         if os.path.exists(result_file_path):
@@ -287,6 +308,6 @@ def test(model_version, project_name, index):
         else:
             # 如果文件不存在，则创建文件并写入数据
             df.to_csv(result_file_path, index=False)
-    print(f'Screen through {index}_ZINC20_nolabel.csv')
+    print(f'Screen through {index}_ZINC20_nolabel_' + project_name + '.csv')
 
     

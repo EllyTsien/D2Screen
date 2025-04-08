@@ -8,10 +8,10 @@ import threading
 import time
 from pahelix.utils.compound_tools import mol_to_geognn_graph_data_MMFF3d
 
-RDLogger.DisableLog('rdApp.*')
-
+RDLogger.DisableLog('rdApp.*') # 屏蔽RDKit的warning
 
 def worker_func(task_queue, smiles_to_graph_dict, invalid_smiles, counter, counter_lock):
+
     while True:
         try:
             smiles = task_queue.get_nowait()

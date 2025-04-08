@@ -1,0 +1,18 @@
+{"time":"2025-04-08T03:14:02.969305234+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:14:02.969314933+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031402-jirvmesk/logs/debug-core.log"}
+{"time":"2025-04-08T03:14:02.96933823+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:14:02.969341015+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_031402-jirvmesk/logs/debug-core.log"}
+{"time":"2025-04-08T03:14:02.970421577+08:00","level":"INFO","msg":"created new stream","id":"jirvmesk"}
+{"time":"2025-04-08T03:14:02.970430091+08:00","level":"INFO","msg":"stream: started","id":"jirvmesk"}
+{"time":"2025-04-08T03:14:02.970442442+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"jirvmesk"}}
+{"time":"2025-04-08T03:14:02.97044723+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"jirvmesk"}}
+{"time":"2025-04-08T03:14:02.97045803+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"jirvmesk"}}
+{"time":"2025-04-08T03:14:03.656655833+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:14:03.656879565+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:14:58.25397877+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:14:58.254089243+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:15:01.075307591+08:00","level":"INFO","msg":"stream: closing","id":"jirvmesk"}
+{"time":"2025-04-08T03:15:01.075320323+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"jirvmesk"}}
+{"time":"2025-04-08T03:15:01.075331123+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"jirvmesk"}}
+{"time":"2025-04-08T03:15:01.07536706+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"jirvmesk"}}
+{"time":"2025-04-08T03:15:01.075372784+08:00","level":"INFO","msg":"stream: closed","id":"jirvmesk"}

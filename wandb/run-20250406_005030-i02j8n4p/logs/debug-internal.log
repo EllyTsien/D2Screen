@@ -25,3 +25,23 @@
 {"time":"2025-04-06T11:35:41.50141022+08:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/121090453-the-chinese-university-of-hong-kong-shenzhen/finetune/i02j8n4p/file_stream"}
 {"time":"2025-04-06T11:41:16.520062991+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
 {"time":"2025-04-06T11:51:16.583855329+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T12:31:16.840106096+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T12:38:45.352160614+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T12:42:30.632092787+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T13:14:35.752172704+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T13:31:56.440603482+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T14:02:36.550882113+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T14:08:21.356192803+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T14:31:56.520184499+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T14:41:56.5841391+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T15:05:56.328109125+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T17:03:11.20796858+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T19:21:15.372091232+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T19:39:00.328229779+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T20:21:21.896057913+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T20:35:11.336148582+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T21:17:00.136110925+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T21:32:36.072680431+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T21:55:47.780197509+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T22:42:05.800236529+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T23:08:06.375847688+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}

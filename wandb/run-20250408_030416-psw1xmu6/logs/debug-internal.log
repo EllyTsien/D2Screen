@@ -1,0 +1,18 @@
+{"time":"2025-04-08T03:04:16.357268526+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:04:16.357276908+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030416-psw1xmu6/logs/debug-core.log"}
+{"time":"2025-04-08T03:04:16.357299969+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:04:16.35730298+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030416-psw1xmu6/logs/debug-core.log"}
+{"time":"2025-04-08T03:04:16.358303018+08:00","level":"INFO","msg":"created new stream","id":"psw1xmu6"}
+{"time":"2025-04-08T03:04:16.358311528+08:00","level":"INFO","msg":"stream: started","id":"psw1xmu6"}
+{"time":"2025-04-08T03:04:16.35832636+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"psw1xmu6"}}
+{"time":"2025-04-08T03:04:16.358317798+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"psw1xmu6"}}
+{"time":"2025-04-08T03:04:16.358315686+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"psw1xmu6"}}
+{"time":"2025-04-08T03:04:17.057954107+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:04:17.058449253+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:05:13.507646317+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-08T03:05:13.507769394+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-08T03:05:18.595167578+08:00","level":"INFO","msg":"stream: closing","id":"psw1xmu6"}
+{"time":"2025-04-08T03:05:18.595180272+08:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"psw1xmu6"}}
+{"time":"2025-04-08T03:05:18.595193079+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"psw1xmu6"}}
+{"time":"2025-04-08T03:05:18.595226435+08:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"psw1xmu6"}}
+{"time":"2025-04-08T03:05:18.595232157+08:00","level":"INFO","msg":"stream: closed","id":"psw1xmu6"}

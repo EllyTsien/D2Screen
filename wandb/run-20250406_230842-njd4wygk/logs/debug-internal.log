@@ -1,0 +1,14 @@
+{"time":"2025-04-06T23:08:42.063720993+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-06T23:08:42.06373535+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250406_230842-njd4wygk/logs/debug-core.log"}
+{"time":"2025-04-06T23:08:42.063829486+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-06T23:08:42.063836013+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/13.D2Screen/wandb/run-20250406_230842-njd4wygk/logs/debug-core.log"}
+{"time":"2025-04-06T23:08:42.066778905+08:00","level":"INFO","msg":"created new stream","id":"njd4wygk"}
+{"time":"2025-04-06T23:08:42.066798929+08:00","level":"INFO","msg":"stream: started","id":"njd4wygk"}
+{"time":"2025-04-06T23:08:42.066807505+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"njd4wygk"}}
+{"time":"2025-04-06T23:08:42.066816984+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"njd4wygk"}}
+{"time":"2025-04-06T23:08:42.06682989+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"njd4wygk"}}
+{"time":"2025-04-06T23:08:43.16926189+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-06T23:08:43.169859793+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-06T23:15:10.738393968+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T23:15:28.362468472+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-06T23:29:55.051892094+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}

@@ -1,0 +1,11 @@
+{"time":"2025-04-08T23:19:37.324587104+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T23:19:37.324594167+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_231937-z9w2y2uc/logs/debug-core.log"}
+{"time":"2025-04-08T23:19:37.324609226+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T23:19:37.324610504+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_231937-z9w2y2uc/logs/debug-core.log"}
+{"time":"2025-04-08T23:19:37.325399755+08:00","level":"INFO","msg":"created new stream","id":"z9w2y2uc"}
+{"time":"2025-04-08T23:19:37.325407102+08:00","level":"INFO","msg":"stream: started","id":"z9w2y2uc"}
+{"time":"2025-04-08T23:19:37.325416623+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"z9w2y2uc"}}
+{"time":"2025-04-08T23:19:37.325445648+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"z9w2y2uc"}}
+{"time":"2025-04-08T23:19:37.325418447+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"z9w2y2uc"}}
+{"time":"2025-04-08T23:19:38.360415086+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T23:19:38.360784221+08:00","level":"INFO","msg":"Starting system monitor"}

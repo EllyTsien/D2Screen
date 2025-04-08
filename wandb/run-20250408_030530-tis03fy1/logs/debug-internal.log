@@ -1,0 +1,19 @@
+{"time":"2025-04-08T03:05:30.072308695+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:05:30.072324178+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030530-tis03fy1/logs/debug-core.log"}
+{"time":"2025-04-08T03:05:30.072348227+08:00","level":"INFO","msg":"using version","core version":"0.18.0"}
+{"time":"2025-04-08T03:05:30.072350207+08:00","level":"INFO","msg":"created symlink","path":"/home/redmol/Documents/14.D2Screen/wandb/run-20250408_030530-tis03fy1/logs/debug-core.log"}
+{"time":"2025-04-08T03:05:30.073484243+08:00","level":"INFO","msg":"created new stream","id":"tis03fy1"}
+{"time":"2025-04-08T03:05:30.073496676+08:00","level":"INFO","msg":"stream: started","id":"tis03fy1"}
+{"time":"2025-04-08T03:05:30.073516354+08:00","level":"INFO","msg":"handler: started","stream_id":{"value":"tis03fy1"}}
+{"time":"2025-04-08T03:05:30.073530849+08:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"tis03fy1"}}
+{"time":"2025-04-08T03:05:30.073564865+08:00","level":"INFO","msg":"sender: started","stream_id":{"value":"tis03fy1"}}
+{"time":"2025-04-08T03:05:30.75603657+08:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-04-08T03:05:30.75629718+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-08T03:07:12.85298933+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:12.905721538+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:45.17828292+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:07:45.339012167+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:19.399389238+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:19.447584901+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:58.134084577+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
+{"time":"2025-04-08T03:08:59.027944525+08:00","level":"INFO","msg":"api: retrying HTTP request, no error or response"}
