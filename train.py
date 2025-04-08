@@ -41,13 +41,13 @@ def main(args):
 
 
     # process train dataset
-    processor = Input_ligand_preprocess(input_ligands_path)
+    processor = Input_ligand_preprocess(input_ligands_path, project_name)
     processor.preprocess() 
     processed_input_csv = pd.read_csv(processed_input_path)
     SMILES_transfer = SMILES_Transfer(processed_input_csv)
     SMILES_transfer.run()
 
-    '''
+    
     model_config_list = ["mlp4", "mlp6"]
     lrs_list = [
         ("1e-3", "1e-3"),
@@ -60,6 +60,7 @@ def main(args):
     ]
     drop_list = [0.2, 0.5]
     batch_size_list = [32,256,1024]
+    
     '''
     model_config_list = ["mlp4"]
     lrs_list = [
@@ -69,6 +70,7 @@ def main(args):
     ]
     drop_list = [0.2]
     batch_size_list = [32,128]
+    '''
     
     # 创建参数组合
     tasks = []
@@ -93,7 +95,7 @@ def main(args):
     for index in range(1, 23): 
         test(model_version='1', project_name=project_name, index=index)
     # Sort, filter and log the final result
-    sort_and_filter_csv('datasets/DL_pred/result_' + project_name + '.csv', args.threshold, "datasets/DL_pred/top.csv")
+    sort_and_filter_csv('datasets/DL_pred/result_' + project_name + '.csv', args.threshold, 'datasets/DL_pred/top_' + project_name + '.csv')
 
 
 if __name__ == '__main__':

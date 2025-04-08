@@ -45,8 +45,9 @@ def progress_reporter_func(total_tasks, counter, counter_lock):
 
 
 class Input_ligand_preprocess:
-    def __init__(self, train_file):
+    def __init__(self, train_file, project_name):
         self.train_file = train_file
+        self.project_name = project_name
 
     def load_data(self):
         self.train_df = pd.read_csv(self.train_file)

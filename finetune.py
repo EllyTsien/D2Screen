@@ -290,7 +290,7 @@ def test(model_version, project_name, index):
         label_predict_batch = F.softmax(label_predict_batch)
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
-    nolabel_file_path = f'datasets/ZINC20_processed/{index}_ZINC20_nolabel.csv'
+    nolabel_file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_nolabel.csv'
     df = pd.read_csv(nolabel_file_path)
     # df = pd.read_csv('datasets/ZINC20_processed/test_nolabel.csv')
     df['pred'] = all_result
