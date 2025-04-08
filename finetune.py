@@ -85,7 +85,7 @@ def run_finetune(params):
     # 创建dataloader
     train_data_loader, valid_data_loader, test_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0)
     current_best_metric = -1e10
-    max_bearable_epoch = 50    # 设置早停的轮数为50，若连续50轮内验证集的评价指标没有提升，则停止训练
+    max_bearable_epoch = 10    # 设置早停的轮数为50，若连续50轮内验证集的评价指标没有提升，则停止训练
     current_best_epoch = 0
     train_metric_list = []     # 记录训练过程中各指标的变化情况
     valid_metric_list = []
@@ -166,6 +166,8 @@ def run_finetune(params):
  
         if epoch > current_best_epoch + max_bearable_epoch:
             break
+
+        pdl.device.cuda.empty_cache()
 
     # summarize data ***
     for metric, records in metric_logs.items():
