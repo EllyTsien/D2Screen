@@ -37,6 +37,7 @@ def main(args):
             raise FileNotFoundError(f"The file '{input_ligands_path}' does not exist.")
         processed_input_path = 'datasets/train_preprocessed.csv'
 
+    select_best_model(model_version, project_name)
     
     #first-stage screen of ZINC20 library
     for index in range(1, 23): 

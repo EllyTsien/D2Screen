@@ -313,3 +313,35 @@ def test(model_version, project_name, index):
     print(f'Screen through {index}_ZINC20_nolabel_' + project_name + '.csv')
 
     
+
+# 将测试集的预测结果保存为result.csv
+def test_DUDE(model_version, project_name, index):
+    best_json_name = os.path.join("bestmodels_" + project_name, "best.json")
+    # from best.json import config
+    with open(best_json_name, "r") as json_file:
+        best_model_info = json.load(json_file)
+    if best_model_info["finetune_model_layer"] == "mlp4":
+        ft_model = mlp.MLP4()
+    elif best_model_info["finetune_model_layer"] == "mlp6":
+        ft_model = mlp.MLP6()
+    else:
+        raise ValueError("Unknown model configuration specified in best.json")    
+    
+    test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index)
+
+    best_weight_name = os.path.join("bestweights_" + project_name, f"{model_version}.pkl")
+    ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
+    ft_model.eval()
+    all_result = []
+    for (atom_bond_graph, bond_angle_graph, label_true_batch) in test_data_loader:
+        label_predict_batch = ft_model(atom_bond_graph, bond_angle_graph)
+        label_predict_batch = F.softmax(label_predict_batch)
+        result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
+        all_result.extend(result)
+    nolabel_file_path = '/DUD-E/'+project_name+ '/test_nolabel.csv'
+    df = pd.read_csv(nolabel_file_path)
+    df['pred'] = all_result
+    result_file_path = 'datasets/DL_pred/result_' + project_name + '.csv'
+    
+    print(f'Screen through ' + project_name + '/test_nolabel.csv')
+    
