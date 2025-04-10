@@ -59,7 +59,7 @@ def main(args):
 
     ]
     drop_list = [0.2, 0.5]
-    batch_size_list = [16,32,64,256,516]
+    batch_size_list = [64, 256,516,1024]
     
     '''
     model_config_list = ["mlp4"]
