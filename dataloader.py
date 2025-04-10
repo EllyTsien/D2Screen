@@ -52,7 +52,7 @@ def collate_fn(data_batch):
     return atom_bond_graph, bond_angle_graph, np.array(label_list, dtype=np.float32)
 
 
-def get_data_loader(mode, batch_size, index):
+def get_data_loader(mode, batch_size, index, project_name):
     if mode == 'train':
         # 训练模式下将train_data_list划分训练集和验证集，返回对应的DataLoader
         data_list = pkl.load(open('work/train_data_list.pkl', 'rb'))  # 读取data_list
@@ -73,6 +73,19 @@ def get_data_loader(mode, batch_size, index):
     elif mode == 'test':
         # 推理模式下直接读取test_data_list, 返回test_data_loader
         file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_data_list.pkl'
+        data_list = pkl.load(open(file_path, 'rb'))
+        if len(data_list) == 0:
+            raise ValueError("Dataset is empty")
+        test_dataset = InMemoryDataset(data_list)
+        test_data_loader = test_dataset.get_data_loader(
+            batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
+        return test_data_loader
+    
+    elif mode == 'DUDE':
+        # 推理模式下直接读取test_data_list, 返回test_data_loader
+        protein_ID = project_name.split('_')[0]
+        file_path = 'datasets/DUD-E/'+protein_ID+ '/test_nolabel.csv'
+        print(file_path)
         data_list = pkl.load(open(file_path, 'rb'))
         if len(data_list) == 0:
             raise ValueError("Dataset is empty")

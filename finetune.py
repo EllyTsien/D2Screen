@@ -83,7 +83,7 @@ def run_finetune(params):
     head_opt = optimizer.Adam(head_scheduler, parameters=head_params, weight_decay=1e-5)
 
     # 创建dataloader
-    train_data_loader, valid_data_loader, test_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0)
+    train_data_loader, valid_data_loader, test_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0, project_name=project_name)
     current_best_metric = -1e10
     max_bearable_epoch = 10    # 设置早停的轮数为50，若连续50轮内验证集的评价指标没有提升，则停止训练
     current_best_epoch = 0
@@ -279,7 +279,7 @@ def test(model_version, project_name, index):
     else:
         raise ValueError("Unknown model configuration specified in best.json")    
     
-    test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index)
+    test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
 
     best_weight_name = os.path.join("bestweights_" + project_name, f"{model_version}.pkl")
     ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
@@ -327,7 +327,7 @@ def test_DUDE(model_version, project_name, index):
     else:
         raise ValueError("Unknown model configuration specified in best.json")    
     
-    test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index)
+    test_data_loader = get_data_loader(mode='DUDE', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
 
     best_weight_name = os.path.join("bestweights_" + project_name, f"{model_version}.pkl")
     ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
@@ -338,7 +338,9 @@ def test_DUDE(model_version, project_name, index):
         label_predict_batch = F.softmax(label_predict_batch)
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
-    nolabel_file_path = '/DUD-E/'+project_name+ '/test_nolabel.csv'
+    protein_ID = project_name.split('_')[0]
+    print(protein_ID)
+    nolabel_file_path = 'datasets/DUD-E/'+protein_ID+ '/test_nolabel.csv'
     df = pd.read_csv(nolabel_file_path)
     df['pred'] = all_result
     result_file_path = 'datasets/DL_pred/result_' + project_name + '.csv'
