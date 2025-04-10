@@ -112,6 +112,7 @@ def run_finetune(params):
         valid_metric_list.append(metric_valid)
         test_metric_list.append(metric_test)
         score = round((metric_valid['ap'] + metric_valid['auc']) / 2, 4)
+        test_score = round((metric_test['ap'] + metric_test['auc']) / 2, 4)
         if score > current_best_metric:
             # 保存score最大时的模型权重
             current_best_metric = score
@@ -126,7 +127,8 @@ def run_finetune(params):
 
             # save best model config to .json
             best_model_info = {
-                "score": score,
+                "validation_score": score,
+                'test_score': test_score,
                 "finetune_model_layer": finetune_model_layer,
                 "learning_rate": lr,
                 "head_learning_rate": head_lr,
@@ -239,7 +241,7 @@ def select_best_model(model_version, project_name):
         with open(json_file, "r") as f:
             info = json.load(f)
         # 要求各线程在保存 JSON 时将 score 存入其中，例如 info["score"] = score
-        score = info.get("score", None)
+        score = info.get("test_score", None)
         if score is None:
             continue
         if score > best_score:
