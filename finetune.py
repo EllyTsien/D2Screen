@@ -317,7 +317,7 @@ def test(model_version, project_name, index):
     
 
 # 将测试集的预测结果保存为result.csv
-def test_DUDE(model_version, project_name, index):
+def test_DUDE(model_version, project_name, nolabel_file_path, index):
     best_json_name = os.path.join("bestmodels_" + project_name, "best.json")
     # from best.json import config
     with open(best_json_name, "r") as json_file:
@@ -344,8 +344,15 @@ def test_DUDE(model_version, project_name, index):
     print(protein_ID)
     nolabel_file_path = 'datasets/DUD-E/'+protein_ID+ '/test_nolabel.csv'
     df = pd.read_csv(nolabel_file_path)
-    df['pred'] = all_result
-    result_file_path = 'datasets/DL_pred/result_' + project_name + '.csv'
-    
+    df[f'pred'] = all_result
+    result_file_path = project_name + '/DL_DUDE_result.csv'
+    # 检查文件是否存在
+    if os.path.exists(result_file_path):
+        # 如果文件存在，则覆盖
+        df.to_csv(result_file_path, index=False)
+    else:
+        # 如果文件不存在，则创建文件并写入数据
+        df.to_csv(result_file_path, index=False)
+
     print(f'Screen through ' + project_name + '/test_nolabel.csv')
     
