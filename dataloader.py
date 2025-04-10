@@ -63,11 +63,11 @@ def get_data_loader(mode, batch_size, index):
         valid_dataset = InMemoryDataset(valid_data_list)
         test_dataset = InMemoryDataset(test_data_list)
         train_data_loader = train_dataset.get_data_loader(
-            batch_size=batch_size, num_workers=1, shuffle=True, collate_fn=collate_fn)
+            batch_size=batch_size, num_workers=8, shuffle=True, collate_fn=collate_fn)
         valid_data_loader = valid_dataset.get_data_loader(
-            batch_size=batch_size, num_workers=1, shuffle=True, collate_fn=collate_fn)
+            batch_size=batch_size, num_workers=8, shuffle=True, collate_fn=collate_fn)
         test_data_loader = test_dataset.get_data_loader(
-            batch_size=batch_size, num_workers=1, shuffle=True, collate_fn=collate_fn)
+            batch_size=batch_size, num_workers=8, shuffle=True, collate_fn=collate_fn)
         return train_data_loader, valid_data_loader, test_data_loader
     
     elif mode == 'test':
@@ -78,7 +78,7 @@ def get_data_loader(mode, batch_size, index):
             raise ValueError("Dataset is empty")
         test_dataset = InMemoryDataset(data_list)
         test_data_loader = test_dataset.get_data_loader(
-            batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
+            batch_size=batch_size, num_workers=8, shuffle=False, collate_fn=collate_fn)
         return test_data_loader
     
 
