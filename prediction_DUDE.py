@@ -1,12 +1,12 @@
 import os
 import time
 from multiprocessing import Pool
-# change
 import multiprocessing as mp
 from argparse import ArgumentParser
-import os
+import pandas as pd
 from dataloader import sort_and_filter_csv
 from finetune import test_DUDE, select_best_model
+from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 
 model_version = '1'
 
@@ -25,20 +25,27 @@ def main(args):
         print(f"Using dataset: {input_ligands_path}")
         if not os.path.exists(input_ligands_path):
             raise FileNotFoundError(f"The file '{input_ligands_path}' does not exist.")
-        processed_input_path = 'datasets/train_preprocessed.csv'
+        # processed_input_path = 'datasets/train_preprocessed.csv'
     else:
         finetune_dataset = args.dataset
         input_ligands_path = 'datasets/' + args.dataset
         print(f"Using dataset: {input_ligands_path}")
         if not os.path.exists(input_ligands_path):
             raise FileNotFoundError(f"The file '{input_ligands_path}' does not exist.")
-        processed_input_path = 'datasets/train_preprocessed.csv'
+        # processed_input_path = 'datasets/train_preprocessed.csv'
 
     select_best_model(model_version, project_name)
     
-    test_DUDE(model_version='1', project_name=project_name, index=0)
+    #preprocess DUDE/test_nolabel.csv to .pkl
+    processor = Input_ligand_preprocess(input_ligands_path, project_name, 'DUDE')
+    processed_input_path = processor.preprocess() 
+    processed_input_csv = pd.read_csv(processed_input_path)
+    SMILES_transfer = SMILES_Transfer(processed_input_csv, project_name, 'DUDE')
+    SMILES_transfer.run()
+    print(processed_input_path)
+    test_DUDE(model_version='1', project_name=project_name, nolabel_file_path= processed_input_path, index=0)
     # Sort, filter and log the final result
-    sort_and_filter_csv('datasets/DL_pred/result_' + project_name + '.csv', args.threshold, 'datasets/DL_pred/top_' + project_name + '.csv')
+    sort_and_filter_csv(project_name + '/DL_DUDE_result.csv', args.threshold, project_name + '/DL_DUDE_top.csv')
 
 
 if __name__ == '__main__':

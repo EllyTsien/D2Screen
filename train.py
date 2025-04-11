@@ -41,10 +41,10 @@ def main(args):
 
 
     # process train dataset
-    processor = Input_ligand_preprocess(input_ligands_path, project_name)
+    processor = Input_ligand_preprocess(input_ligands_path, project_name, 'train')
     processor.preprocess() 
     processed_input_csv = pd.read_csv(processed_input_path)
-    SMILES_transfer = SMILES_Transfer(processed_input_csv)
+    SMILES_transfer = SMILES_Transfer(processed_input_csv, project_name, 'train')
     SMILES_transfer.run()
 
     

@@ -83,10 +83,7 @@ def get_data_loader(mode, batch_size, index, project_name):
     
     elif mode == 'DUDE':
         # 推理模式下直接读取test_data_list, 返回test_data_loader
-        protein_ID = project_name.split('_')[0]
-        csv_file_path = 'datasets/DUD-E/'+protein_ID+ '/test_nolabel.csv'
-
-        print(file_path)
+        file_path = project_name + '/work/DUDE_test_nolabel_data_list.pkl'
         data_list = pkl.load(open(file_path, 'rb'))
         if len(data_list) == 0:
             raise ValueError("Dataset is empty")
