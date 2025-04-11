@@ -341,8 +341,6 @@ def test_DUDE(model_version, project_name, nolabel_file_path, index):
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
     protein_ID = project_name.split('_')[0]
-    print(protein_ID)
-    nolabel_file_path = 'datasets/DUD-E/'+protein_ID+ '/test_nolabel.csv'
     df = pd.read_csv(nolabel_file_path)
     df[f'pred'] = all_result
     result_file_path = project_name + '/DL_DUDE_result.csv'
