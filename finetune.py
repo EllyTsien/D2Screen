@@ -118,11 +118,11 @@ def run_finetune(params):
             current_best_metric = score
             current_best_epoch = epoch
 
-            os.makedirs("bestweights" + "_" + project_name, exist_ok=True)
-            os.makedirs("bestmodels" + "_" + project_name, exist_ok=True)
+            os.makedirs(project_name+"/bestweights" + "_" + project_name, exist_ok=True)
+            os.makedirs(project_name+"/bestmodels" + "_" + project_name, exist_ok=True)
             run_id = run.name
-            model_path = os.path.join("bestweights" + "_" + project_name, f"{run_id}.pkl")
-            json_path = os.path.join("bestmodels" + "_" + project_name, f"{run_id}.json")
+            model_path = os.path.join(project_name+"/bestweights" + "_" + project_name, f"{run_id}.pkl")
+            json_path = os.path.join(project_name+"/bestmodels" + "_" + project_name, f"{run_id}.json")
             pdl.save(finetune_model.state_dict(), model_path)
 
             # save best model config to .json
@@ -167,8 +167,12 @@ def run_finetune(params):
             })
  
         if epoch > current_best_epoch + max_bearable_epoch:
+            model_cp_path = project_name+f"/checkpoints/{finetune_model_layer}_{lr}_{head_lr}_{dropout_rate}_{ft_time}_{batch_size}.pt"
+            with open(model_cp_path, 'w') as f:
+                f.write("done")
+                print(f"[INFO] Finished and saved checkpoint for model={finetune_model_layer}, lr={lr}, head_lr={head_lr}, dropout={dropout_rate}, time={ft_time}, batch={batch_size}")
             break
-
+        
         pdl.device.cuda.empty_cache()
 
     # summarize data ***
@@ -229,8 +233,8 @@ def run_finetune(params):
     return train_metric_list, valid_metric_list, test_metric_list        
 
 def select_best_model(model_version, project_name):
-    best_json_dir = "bestmodels_" + project_name
-    best_weight_dir = "bestweights_" + project_name
+    best_json_dir = project_name + "/bestmodels_" + project_name
+    best_weight_dir =  project_name + "/bestweights_" + project_name
     # 获取所有 JSON 文件
     json_files = glob.glob(os.path.join(best_json_dir, "*.json"))
     best_score = -float("inf")
@@ -270,7 +274,7 @@ def select_best_model(model_version, project_name):
 
 # 将测试集的预测结果保存为result.csv
 def test(model_version, project_name, index):
-    best_json_name = os.path.join("bestmodels_" + project_name, "best.json")
+    best_json_name = os.path.join(project_name+"/bestmodels_" + project_name, "best.json")
     # from best.json import config
     with open(best_json_name, "r") as json_file:
         best_model_info = json.load(json_file)
@@ -283,7 +287,7 @@ def test(model_version, project_name, index):
     
     test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
 
-    best_weight_name = os.path.join("bestweights_" + project_name, f"{model_version}.pkl")
+    best_weight_name = os.path.join( project_name+"/bestweights_" + project_name, f"{model_version}.pkl")
     ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
     ft_model.eval()
     all_result = []
@@ -318,7 +322,7 @@ def test(model_version, project_name, index):
 
 # 将测试集的预测结果保存为result.csv
 def test_DUDE(model_version, project_name, nolabel_file_path, index):
-    best_json_name = os.path.join("bestmodels_" + project_name, "best.json")
+    best_json_name = os.path.join(project_name+"/bestmodels_" + project_name, "best.json")
     # from best.json import config
     with open(best_json_name, "r") as json_file:
         best_model_info = json.load(json_file)
@@ -331,7 +335,7 @@ def test_DUDE(model_version, project_name, nolabel_file_path, index):
     
     test_data_loader = get_data_loader(mode='DUDE', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
 
-    best_weight_name = os.path.join("bestweights_" + project_name, f"{model_version}.pkl")
+    best_weight_name = os.path.join( project_name+"/bestweights_"+project_name, f"{model_version}.pkl")
     ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
     ft_model.eval()
     all_result = []
@@ -353,4 +357,10 @@ def test_DUDE(model_version, project_name, nolabel_file_path, index):
         df.to_csv(result_file_path, index=False)
 
     print(f'Screen through ' + project_name + '/test_nolabel.csv')
+
+def is_task_done(project_name, finetune_model_config, lr, head_lr, dropout_rate, ft_time, batch_size):
+    filename = project_name + f"/checkpoints/{finetune_model_config}_{lr}_{head_lr}_{dropout_rate}_{ft_time}_{batch_size}.pt"
+    if os.path.exists(filename):
+        print(f"Task already done: {filename}")
+    return os.path.exists(filename)
     

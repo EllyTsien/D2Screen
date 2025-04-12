@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 import pandas as pd
 import os
 
-from finetune import run_finetune, test, select_best_model
+from finetune import run_finetune, test, select_best_model, is_task_done
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from dataloader import sort_and_filter_csv
 
@@ -71,7 +71,8 @@ def main(args):
     drop_list = [0.2]
     batch_size_list = [32,128]
     '''
-
+    
+    os.makedirs(os.path.join(project_name, "checkpoints"), exist_ok=True)
     # 创建参数组合
     tasks = []
     for finetune_model_config in model_config_list:
@@ -79,7 +80,10 @@ def main(args):
             for dropout_rate in drop_list:
                 for batch_size in batch_size_list:
                     for ft_time in range(1, 2):
-                        tasks.append((finetune_model_config, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version))
+                        if not is_task_done(project_name, finetune_model_config, lr, head_lr, dropout_rate, ft_time, batch_size):
+                            tasks.append((finetune_model_config, lr, head_lr, dropout_rate, ft_time, batch_size, project_name, finetune_dataset, model_version))
+                        else:
+                            print(f"Skipping trained config: {finetune_model_config}, lr={lr}, head_lr={head_lr}, dropout={dropout_rate}, time={ft_time}, batch={batch_size}")
     
     start_time = time.time()  # 记录开始时间
     # 并行处理任务
