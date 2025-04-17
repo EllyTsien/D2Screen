@@ -12,16 +12,31 @@ def main(args):
         print("No receptor specified. Use '--receptor <receptor_file_name.pdbqt>'")
         exit(-1)
 
+    if args.ligand_dir is None:
+        print("No ligand directory specified. Use '--ligand_dir <ligand_directory>'")
+        exit(-1)    
+    else:
+        print(f"Using ligand directory: {args.ligand_dir}")
+        ligand_dir = args.ligand_dir
+
+    if args.grid_center is None:
+        print("Using default grid center, datasets/crystal_ligand.pdb")
+        grid_center = 'datasets/crystal_ligand.pdb'
+        if not os.path.exists(grid_center):
+            raise FileNotFoundError(f"The file '{grid_center}' does not exist.")
+    else:
+        grid_center = args.grid_center
+        print(f"Using grid center: {grid_center}")
+        if not os.path.exists(grid_center):
+            raise FileNotFoundError(f"The file '{grid_center}' does not exist.")
+
     # Initialize Vina object
     v = Vina()
-
     # Set receptor
     v.set_receptor(rigid_pdbqt_filename=args.receptor)
 
-    # Directory containing ligand files
-    ligand_dir = 'datasets/ligand_prep/'
     
-    GB = GridBox("datasets/target_protein/native_lig.pdb")
+    GB = GridBox(grid_center)
     center, bxsize = GB.labox()
     print('Center:', center)
     print('Box size:', bxsize)
@@ -118,8 +133,10 @@ def sort_scores(file_path):
 if __name__ == "__main__":
     # Argument parsing moved here
     parser = ArgumentParser()
-    parser.add_argument('--receptor', default='datasets/target_protein/receptor.pdbqt', type=str, help='Processed receptor protein pdb file')
+    parser.add_argument('--receptor', default=None, type=str, help='Processed receptor protein pdb file')
+    parser.add_argument('--ligand_dir', default=None, type=str, help='Processed ligand folder')
     parser.add_argument('--seed', default=42, type=int, help='Random seed for reproducibility (default: 42)')
+    parser.add_argument('--grid_center', default='datasets/crystal_ligand.pdb', type=str, help='Specify grid center by input a crystal ligand pdb file(required)')
     
     args = parser.parse_args()
     main(args)
