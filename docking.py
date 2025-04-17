@@ -37,7 +37,7 @@ def main(args):
 
     
     GB = GridBox(grid_center)
-    center, bxsize = GB.labox()
+    center, bxsize = GB.autodock_grid()
     print('Center:', center)
     print('Box size:', bxsize)
     v.compute_vina_maps(center=center, box_size=bxsize)
