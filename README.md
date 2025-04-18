@@ -1,4 +1,4 @@
-# DeepScreenZine
+# D2Screen
 
 ![Workflow of DeepScreenZinc](DeepScreenZinc.gif)
 
