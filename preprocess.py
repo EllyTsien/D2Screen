@@ -79,15 +79,18 @@ class Input_ligand_preprocess:
             print(f'len of DUDE/{self.project_name} test_nolabel_df after standardizing smiles is {len(self.train_df)}')
 
     def remove_duplicates(self):
-        duplicate_rows = self.train_df[self.train_df.duplicated('SMILES', keep=False)]
-        for smiles, group in duplicate_rows.groupby('SMILES'):
-            if len(group.drop_duplicates(subset=['label'])) == 1:
-                self.train_df.drop(index=group.index[1:], inplace=True)
-            else:
-                self.train_df.drop(index=group.index, inplace=True)
         if self.mode == 'train':
-            print(f'len of train_df after removing duplicates is {len(self.train_df)}')
+            duplicate_rows = self.train_df[self.train_df.duplicated('SMILES', keep=False)]
+            for smiles, group in duplicate_rows.groupby('SMILES'):
+                if len(group.drop_duplicates(subset=['label'])) == 1:
+                    self.train_df.drop(index=group.index[1:], inplace=True)
+                else:
+                    self.train_df.drop(index=group.index, inplace=True)    
+                print(f'len of train_df after removing duplicates is {len(self.train_df)}')
         elif self.mode == 'DUDE':
+            duplicate_rows = self.train_df[self.train_df.duplicated('SMILES', keep=False)]
+            for smiles, group in duplicate_rows.groupby('SMILES'):
+                self.train_df.drop(index=group.index[1:], inplace=True)
             print(f'len of DUDE/{self.project_name} test_nolabel_df after removing duplicates is {len(self.train_df)}')
 
     def save_processed_data(self):
