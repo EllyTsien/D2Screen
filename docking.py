@@ -7,7 +7,12 @@ from grid_box import GridBox
 
 def main(args):
     np.random.seed(args.seed)
-    
+    if args.project_name is None:
+        print("Using default project name, finetune")
+        project_name = "finetune"
+    else:
+        project_name = args.project_name
+
     if args.receptor is None:
         print("No receptor specified. Use '--receptor <receptor_file_name.pdbqt>'")
         exit(-1)
@@ -43,8 +48,10 @@ def main(args):
     v.compute_vina_maps(center=center, box_size=bxsize)
     
     # Path for the score file
-    score_file_path = 'docking_results/vina_score.txt'
-    
+    score_file_path = project_name + '/docking_results/vina_score.txt'
+    if not os.path.exists(project_name + '/docking_results'):
+        os.makedirs(project_name + '/docking_results')
+
     # Open the output file for scores
     with open(score_file_path, 'a') as score_file:
         # Loop through each ligand file in the directory
@@ -54,7 +61,7 @@ def main(args):
                 
                 # Remove 'aligned' suffix from the ligand file name
                 folder_name = ligand_file.replace('.pdbqt', '').replace('_aligned', '')
-                folder_path = os.path.join('docking_results', folder_name)
+                folder_path = os.path.join(project_name, 'docking_results', folder_name)
                 if not os.path.exists(folder_path):
                     os.makedirs(folder_path)
                 
@@ -137,6 +144,6 @@ if __name__ == "__main__":
     parser.add_argument('--ligand_dir', default=None, type=str, help='Processed ligand folder')
     parser.add_argument('--seed', default=42, type=int, help='Random seed for reproducibility (default: 42)')
     parser.add_argument('--grid_center', default='datasets/crystal_ligand.pdb', type=str, help='Specify grid center by input a crystal ligand pdb file(required)')
-    
+    parser.add_argument('--project_name', default='test', type=str, help='Name your project on the wandb website')
     args = parser.parse_args()
     main(args)
