@@ -56,6 +56,7 @@ def get_data_loader(mode, batch_size, index, project_name):
     if mode == 'train':
         # 训练模式下将train_data_list划分训练集和验证集，返回对应的DataLoader
         data_list = pkl.load(open(project_name +'/work/train_data_list.pkl', 'rb'))  # 读取data_list
+        print('Loading data_list from', project_name +'/work/train_data_list.pkl')
         train_data_list, remaining_data_list = train_test_split(data_list, test_size=0.2, random_state=42) 
         valid_data_list, test_data_list = train_test_split(remaining_data_list, test_size=0.5, random_state=42) 
         print(f'train: {len(train_data_list)}, valid: {len(valid_data_list)}, test: {len(test_data_list)}')
