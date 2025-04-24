@@ -167,15 +167,14 @@ def run_finetune(params):
             })
  
         if epoch > current_best_epoch + max_bearable_epoch:
-            model_cp_path = project_name+f"/checkpoints/{finetune_model_layer}_{lr}_{head_lr}_{dropout_rate}_{ft_time}_{batch_size}.pt"
-            with open(model_cp_path, 'w') as f:
-                f.write("done")
-                print(f"[INFO] Finished and saved checkpoint for model={finetune_model_layer}, lr={lr}, head_lr={head_lr}, dropout={dropout_rate}, time={ft_time}, batch={batch_size}")
             break
-        
         pdl.device.cuda.empty_cache()
-
+    model_cp_path = project_name+f"/checkpoints/{finetune_model_layer}_{lr}_{head_lr}_{dropout_rate}_{ft_time}_{batch_size}.pt"
+    
     # summarize data ***
+    with open(model_cp_path, 'w') as f:
+        f.write("done")
+        print(f"[INFO] Finished and saved checkpoint for model={finetune_model_layer}, lr={lr}, head_lr={head_lr}, dropout={dropout_rate}, time={ft_time}, batch={batch_size}")
     for metric, records in metric_logs.items():
         # 构造 DataFrame
         df = pd.DataFrame(records, columns=["epoch", "dataset", metric])
@@ -300,7 +299,9 @@ def test(model_version, project_name, index):
     df = pd.read_csv(nolabel_file_path)
     # df = pd.read_csv('datasets/ZINC20_processed/test_nolabel.csv')
     df['pred'] = all_result
-    result_file_path = 'datasets/DL_pred/result_' + project_name + '.csv'
+    result_file_path = project_name + '/ZINC20/ZINC20_DL_result.csv'
+    if not os.path.exists(project_name + '/ZINC20'):
+        os.makedirs(project_name + '/ZINC20')
     # 检查文件是否存在
     if index == 1:
         if os.path.exists(result_file_path):
@@ -316,7 +317,7 @@ def test(model_version, project_name, index):
         else:
             # 如果文件不存在，则创建文件并写入数据
             df.to_csv(result_file_path, index=False)
-    print(f'Screen through {index}_ZINC20_nolabel_' + project_name + '.csv')
+    print(f'{project_name}: Screen through {index}_ZINC20_nolabel.csv')
 
     
 
