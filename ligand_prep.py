@@ -69,9 +69,9 @@ class LigandPrep:
         :param output_file: 输出mol文件的路径
         """
         # 添加3D坐标
-        output_file_pdbqt = output_file.split(".")[0] + '.pdbqt'
-        output_file_aligned_sdf = output_file.split(".")[0] + '_aligned.pdb'
-        output_file_aligned_pdbqt = output_file.split(".")[0] + '_aligned.pdbqt'
+        output_file_pdbqt = output_file.rsplit(".", 1)[0] + '.pdbqt'
+        output_file_aligned_sdf = output_file.rsplit(".", 1)[0] + '_aligned.pdb'
+        output_file_aligned_pdbqt = output_file.rsplit(".", 1)[0] + '_aligned.pdbqt'
         self.rdkit_mol = Chem.MolFromSmiles(self.smiles)
         self.rdkit_mol = Chem.AddHs(self.rdkit_mol)  # 添加氢原子
         if AllChem.EmbedMolecule(self.rdkit_mol) != 0:
