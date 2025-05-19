@@ -52,7 +52,6 @@ if __name__ == '__main__':
     mp.set_start_method('spawn')
     parser = ArgumentParser()
     parser.add_argument('--project_name', default='finetune', type=str, help='Name your project on the wandb website')
-    parser.add_argument('--mode', default=None, type=str, help='Select mode: ZINC or DUDE')
     parser.add_argument('--dataset', default='input.csv', type=str, help='Choose dataset (required)')
     parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples (default: all)')
     parser.add_argument('--threshold', default=0.9, type=float, help="Threshold for predict value (defalt 0.9)")

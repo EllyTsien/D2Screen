@@ -63,6 +63,9 @@ class Input_ligand_preprocess:
         elif self.mode == 'DUDE':
             self.train_df = pd.read_csv(self.train_file)
             print(f'len of DUDE/{self.project_name} test_nolabel_df is {len(self.train_df)}')
+        elif self.mode == 'ratio':
+            self.train_df = pd.read_csv(self.train_file)
+            print(f'len of {self.project_name} test_nolabel_df is {len(self.train_df)}')
 
     def standardize_smiles(self):
         RDLogger.DisableLog('rdApp.*')
@@ -77,6 +80,8 @@ class Input_ligand_preprocess:
             print(f'len of train_df after standardizing smiles is {len(self.train_df)}')
         elif self.mode == 'DUDE':
             print(f'len of DUDE/{self.project_name} test_nolabel_df after standardizing smiles is {len(self.train_df)}')
+        elif self.mode == 'ratio':
+            print(f'len of {self.project_name} test_nolabel_df after standardizing smiles is {len(self.train_df)}')
 
     def remove_duplicates(self):
         if self.mode == 'train':
@@ -92,6 +97,11 @@ class Input_ligand_preprocess:
             for smiles, group in duplicate_rows.groupby('SMILES'):
                 self.train_df.drop(index=group.index[1:], inplace=True)
             print(f'len of DUDE/{self.project_name} test_nolabel_df after removing duplicates is {len(self.train_df)}')
+        elif self.mode == 'ratio':
+            duplicate_rows = self.train_df[self.train_df.duplicated('SMILES', keep=False)]
+            for smiles, group in duplicate_rows.groupby('SMILES'):
+                self.train_df.drop(index=group.index[1:], inplace=True)
+            print(f'len of {self.project_name} test_nolabel_df after removing duplicates is {len(self.train_df)}')
 
     def save_processed_data(self):
         save_path = self.project_name
@@ -101,6 +111,8 @@ class Input_ligand_preprocess:
             self.train_df.to_csv(self.project_name + '/train_preprocessed.csv', index=False)
         elif self.mode == 'DUDE':
             self.train_df.to_csv(self.project_name + '/DUDE_test_nolabel_preprocessed.csv', index=False)
+        elif self.mode == 'ratio':
+            self.train_df.to_csv(self.project_name + '/test_preprocessed.csv', index=False)
 
     def save_smiles_list(self):
         train_smiles_list = self.train_df["SMILES"].tolist()
@@ -111,6 +123,8 @@ class Input_ligand_preprocess:
             pkl.dump(train_smiles_list, open(self.project_name + '/work/train_smiles_list.pkl', 'wb'))
         elif self.mode == 'DUDE':
             pkl.dump(train_smiles_list, open(self.project_name + '/work/DUDE_test_nolabel_smiles_list.pkl', 'wb'))
+        elif self.mode == 'ratio':
+            pkl.dump(train_smiles_list, open(self.project_name + '/work/test_nolabel_smiles_list.pkl', 'wb'))
 
     def preprocess(self):
         self.load_data()
@@ -122,6 +136,9 @@ class Input_ligand_preprocess:
             processed_input_path = self.project_name + '/train_preprocessed.csv'
         elif self.mode == 'DUDE':
             processed_input_path = self.project_name + '/DUDE_test_nolabel_preprocessed.csv'
+        elif self.mode == 'ratio':
+            processed_input_path = self.project_name + '/test_preprocessed.csv'
+        print(f'Preprocessing {self.mode} data is Done!')
         return processed_input_path
 
 class SMILES_Transfer:
@@ -186,6 +203,14 @@ class SMILES_Transfer:
                     for s in self.invalid_smiles:
                         f.write(s + '\n')
 
+        elif self.mode == 'ratio':
+            pkl.dump(self.smiles_to_graph_dict, open(self.project_name + '/work/test_nolabel_smiles_to_graph_dict.pkl', 'wb'))
+            print( self.project_name + ' test_nolabel preprocessing is Done!')
+            if len(self.invalid_smiles) > 0:
+                with open(self.project_name + '/work/test_nolabel_invalid_smiles.txt', 'a') as f:
+                    for s in self.invalid_smiles:
+                        f.write(s + '\n')
+
     def save_data_list(self):
         if self.mode == 'train':
             train_data_list = []
@@ -214,6 +239,21 @@ class SMILES_Transfer:
                 }
                 train_data_list.append(data_item)
             pkl.dump(train_data_list, open(self.project_name + '/work/DUDE_test_nolabel_data_list.pkl', 'wb'))
+
+        elif self.mode == 'ratio':
+            train_data_list = []
+            for index, row in self.train_df.iterrows():
+                smiles = row["SMILES"]
+                if smiles not in self.smiles_to_graph_dict:
+                    continue
+                data_item = {
+                    "smiles": smiles,
+                    "graph": self.smiles_to_graph_dict[smiles],
+                    "label": 0,
+                }
+                train_data_list.append(data_item)
+            pkl.dump(train_data_list, open(self.project_name + '/work/test_nolabel_data_list.pkl', 'wb'))
+        
         print('Data lists have been saved!')
 
     def run(self):
