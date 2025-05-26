@@ -74,6 +74,7 @@ def get_data_loader(mode, batch_size, index, project_name):
     elif mode == 'test':
         # 推理模式下直接读取test_data_list, 返回test_data_loader
         file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_data_list.pkl'
+        print('Loading data_list from', file_path)
         data_list = pkl.load(open(file_path, 'rb'))
         if len(data_list) == 0:
             raise ValueError("Dataset is empty")
@@ -85,6 +86,7 @@ def get_data_loader(mode, batch_size, index, project_name):
     elif mode == 'DUDE':
         # 推理模式下直接读取test_data_list, 返回test_data_loader
         file_path = project_name + '/work/DUDE_test_nolabel_data_list.pkl'
+        print('Loading data_list from', file_path)
         data_list = pkl.load(open(file_path, 'rb'))
         if len(data_list) == 0:
             raise ValueError("Dataset is empty")
