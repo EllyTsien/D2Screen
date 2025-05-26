@@ -17,7 +17,6 @@ import shutil
 from finetunemodels import mlp
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from evaluation_train import evaluation_train
-from prediction import ModelTester
 from dataloader import collate_fn, get_data_loader, sort_and_filter_csv
 from pahelix.model_zoo.gem_model import GeoGNNModel
 
@@ -349,6 +348,43 @@ def test_DUDE(model_version, project_name, nolabel_file_path, index):
     df = pd.read_csv(nolabel_file_path)
     df[f'pred'] = all_result
     result_file_path = project_name + '/DL_DUDE_result.csv'
+    # 检查文件是否存在
+    if os.path.exists(result_file_path):
+        # 如果文件存在，则覆盖
+        df.to_csv(result_file_path, index=False)
+    else:
+        # 如果文件不存在，则创建文件并写入数据
+        df.to_csv(result_file_path, index=False)
+
+    print(f'Screen through ' + project_name + '/test_nolabel.csv')
+
+def test_ratio(model_version, project_name, nolabel_file_path, index):
+    best_json_name = os.path.join(project_name+"/bestmodels_" + project_name, "best.json")
+    # from best.json import config
+    with open(best_json_name, "r") as json_file:
+        best_model_info = json.load(json_file)
+    if best_model_info["finetune_model_layer"] == "mlp4":
+        ft_model = mlp.MLP4()
+    elif best_model_info["finetune_model_layer"] == "mlp6":
+        ft_model = mlp.MLP6()
+    else:
+        raise ValueError("Unknown model configuration specified in best.json")    
+    
+    test_data_loader = get_data_loader(mode='ratio', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
+
+    best_weight_name = os.path.join( project_name+"/bestweights_"+project_name, f"{model_version}.pkl")
+    ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
+    ft_model.eval()
+    all_result = []
+    for (atom_bond_graph, bond_angle_graph, label_true_batch) in test_data_loader:
+        label_predict_batch = ft_model(atom_bond_graph, bond_angle_graph)
+        label_predict_batch = F.softmax(label_predict_batch)
+        result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
+        all_result.extend(result)
+    protein_ID = project_name.split('_')[0]
+    df = pd.read_csv(nolabel_file_path)
+    df[f'pred'] = all_result
+    result_file_path = project_name + '/DL_result.csv'
     # 检查文件是否存在
     if os.path.exists(result_file_path):
         # 如果文件存在，则覆盖

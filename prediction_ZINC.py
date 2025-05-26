@@ -23,7 +23,7 @@ def main(args):
     select_best_model(model_version, project_name)
     
     #first-stage screen of ZINC20 library
-    for index in range(1, 23): 
+    for index in range(1, 10): 
         test(model_version='1', project_name=project_name, index=index)
     # Sort, filter and log the final result
     sort_and_filter_csv(project_name + '/ZINC20/ZINC20_DL_result.csv', args.threshold, project_name + '/ZINC20/DL_top.csv')

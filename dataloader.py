@@ -95,6 +95,18 @@ def get_data_loader(mode, batch_size, index, project_name):
             batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
         return test_data_loader
     
+    elif mode == 'ratio':
+        # 推理模式下直接读取test_data_list, 返回test_data_loader
+        file_path = project_name + '/work/test_nolabel_data_list.pkl'
+        print('Loading data_list from', file_path)
+        data_list = pkl.load(open(file_path, 'rb'))
+        if len(data_list) == 0:
+            raise ValueError("Dataset is empty")
+        test_dataset = InMemoryDataset(data_list)
+        test_data_loader = test_dataset.get_data_loader(
+            batch_size=batch_size, num_workers=1, shuffle=False, collate_fn=collate_fn)
+        return test_data_loader
+    
 
 def sort_and_filter_csv(file_path, threshold, output_file_path):
     """
