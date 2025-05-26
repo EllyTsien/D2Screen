@@ -7,6 +7,8 @@ from scipy.special import expit
 from sklearn.metrics import (precision_recall_curve, average_precision_score,
                              accuracy_score, precision_score, recall_score, f1_score)
 
+
+
 def plot_precision_recall_curve(y_true, y_scores, plot=True):
     """
     计算并绘制 Precision-Recall 曲线，同时返回精确率、召回率、阈值数组以及 Average Precision (AP) 值。
@@ -172,7 +174,7 @@ def main(args):
     """
     # 读取预测数据和标签数据
     target = project_name.split('_')[0]
-    df_pred = pd.read_csv(project_name + '/DL_DUDE_result')
+    df_pred = pd.read_csv(project_name + '/DL_DUDE_result.csv')
     df_label = pd.read_csv('datasets/DUD-E/'+ target +'/test.csv')
     
     # 根据公共键 "ID"（或其它，如 "SMILES"）合并数据
