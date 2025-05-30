@@ -31,7 +31,7 @@ def main(args):
         processed_input_path = 'datasets/train_preprocessed.csv'
     else:
         finetune_dataset = args.dataset
-        input_ligands_path = 'datasets/' + args.dataset
+        input_ligands_path = args.dataset
         print(f"Using dataset: {input_ligands_path}")
         if not os.path.exists(input_ligands_path):
             raise FileNotFoundError(f"The file '{input_ligands_path}' does not exist.")
