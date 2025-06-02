@@ -16,31 +16,33 @@ def txt_to_csv(txt_path, csv_path):
     return csv_path
 
 def compute_enrichment_factor(y_true, y_scores, top_pct=0.01):
-    n_total = len(y_true)
-    n_actives = np.sum(y_true)
-    sorted_indices = np.argsort(y_scores)[::-1]
-    n_top = max(1, int(np.floor(n_total * top_pct)))
-    top_indices = sorted_indices[:n_top]
-    n_actives_top = np.sum(y_true[top_indices])
+    y_true = np.asarray(y_true).astype(bool)
+    n_total   = y_true.size
+    n_actives = y_true.sum()
     if n_actives == 0:
-        return None
+        return np.nan                       # 全库没活性 → 无 EF
+
+    n_top = max(1, int(np.floor(n_total * top_pct)))
+    n_actives_top = y_true[:n_top].sum()
+
     return (n_actives_top / n_top) / (n_actives / n_total)
 
 def compute_bedroc(y_true, y_scores, alpha=20.0):
-    y_true = np.asarray(y_true)
-    y_scores = np.asarray(y_scores)
-    n = len(y_true)
-    n_pos = np.sum(y_true)
-    n_neg = n - n_pos
+    y_true = np.asarray(y_true).astype(int)
+    n      = len(y_true)
+    n_pos  = y_true.sum()
+    n_neg  = n - n_pos
     if n_pos == 0 or n_neg == 0:
-        return None
-    sorted_indices = np.argsort(y_scores)[::-1]
+        return np.nan
+
     ranks = np.arange(1, n + 1)
-    y_true_sorted = y_true[sorted_indices]
-    ri = ranks[y_true_sorted == 1]
-    sum_exp = np.sum(np.exp(-alpha * (ri - 1) / n))
-    ra = n_pos / n
-    return (sum_exp * alpha) / (n * ra * (1 - np.exp(-alpha))) + (1 - np.exp(-alpha * ra)) / (1 - np.exp(-alpha))
+    ri    = ranks[y_true == 1]          # 直接在当前顺序取正样本名次
+
+    sum_exp = np.exp(-alpha * (ri - 1) / n).sum()
+    ra      = n_pos / n
+    bedroc  = (sum_exp * alpha) / (n * ra * (1 - np.exp(-alpha))) \
+            + (1 - np.exp(-alpha * ra)) / (1 - np.exp(-alpha))
+    return bedroc
 
 def plot_precision_recall_curve(y_true, y_scores, strategy_name, output_dir):
     precision, recall, _ = precision_recall_curve(y_true, y_scores)
@@ -71,12 +73,14 @@ def evaluate_dl_classification(df, threshold=0.9):
 
     # Ranking metrics
     ap = average_precision_score(y_true, y_scores)
+    ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
     ef1 = compute_enrichment_factor(y_true, y_scores, 0.01)
     ef5 = compute_enrichment_factor(y_true, y_scores, 0.05)
     bedroc_8 = compute_bedroc(y_true, y_scores, 8.0)
     bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
     bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
     bedroc_160 = compute_bedroc(y_true, y_scores,160.9)
+    bedroc_321_9 = compute_bedroc(y_true, y_scores, 321.9)
 
     # Output
     print("\n== DL Classification ==")
@@ -85,12 +89,14 @@ def evaluate_dl_classification(df, threshold=0.9):
     print(f"Recall:     {rec:.4f}")
     print(f"F1 Score:   {f1:.4f}")
     print(f"AP:         {ap:.4f}")
+    print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
     print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
     print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
     print(f"bedROC(α = 8.0):     {bedroc_8:.4f}" if bedroc_8 is not None else "bedROC(α = 8.0 :     N/A")
     print(f"bedROC(α = 16.1):     {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1） :     N/A")
     print(f"bedROC(α = 20.0):     {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0） :     N/A")
     print(f"bedROC(α = 160.9):     {bedroc_160:.4f}" if bedroc_160 is not None else "bedROC(α = 160.9） :     N/A")
+    print(f"bedROC(α = 321.9):     {bedroc_321_9:.4f}" if bedroc_321_9 is not None else "bedROC(α = 321.9） :     N/A")
 
     return {
         "Strategy": f"DL (threshold>{threshold})",
@@ -99,12 +105,14 @@ def evaluate_dl_classification(df, threshold=0.9):
         "Recall": rec,
         "F1 Score": f1,
         "AP": ap,
+        "EF@0.5%": ef0_5,
         "EF@1%": ef1,
         "EF@5%": ef5,
         "bedROC(α = 8.0)": bedroc_8,
         "bedROC(α = 16.1)": bedroc_16,
         "bedROC(α = 20.0)": bedroc_20,
-        "bedROC(α = 160.9)": bedroc_160
+        "bedROC(α = 160.9)": bedroc_160,
+        "bedROC(α = 321.9)": bedroc_321_9
     }
 
 
@@ -114,12 +122,14 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
 
     # Ranking-based metrics
     ap = average_precision_score(y_true, y_scores)
+    ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
     ef1 = compute_enrichment_factor(y_true, y_scores, 0.01)
     ef5 = compute_enrichment_factor(y_true, y_scores, 0.05)
     bedroc_8 = compute_bedroc(y_true, y_scores, 8.0)
     bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
     bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
     bedroc_160 = compute_bedroc(y_true, y_scores, 160.9)
+    bedroc_321_9 = compute_bedroc(y_true, y_scores, 321.9)
 
     # Classification by top-k count
     df_sorted = df.sort_values(by=score_column, ascending=True)
@@ -144,12 +154,14 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
     print(f"Recall:     {rec:.4f}")
     print(f"F1 Score:   {f1:.4f}")
     print(f"AP:         {ap:.4f}")
+    print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
     print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
     print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
     print(f"bedROC(α = 8.0):     {bedroc_8:.4f}" if bedroc_8 is not None else "bedROC(α = 8.0):     N/A")
     print(f"bedROC(α = 16.1):    {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1):    N/A")
     print(f"bedROC(α = 20.0):    {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0):    N/A")
     print(f"bedROC(α = 160.9):   {bedroc_160:.4f}" if bedroc_160 is not None else "bedROC(α = 160.9):   N/A")
+    print(f"bedROC(α = 321.9):   {bedroc_321_9:.4f}" if bedroc_321_9 is not None else "bedROC(α = 321.9):   N/A")
 
     # 保存预测标签到文件
     if output_file is not None:
@@ -167,12 +179,14 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
         "Recall": rec,
         "F1 Score": f1,
         "AP": ap,
+        "EF@0.5%": ef0_5,
         "EF@1%": ef1,
         "EF@5%": ef5,
         "bedROC(α = 8.0)": bedroc_8,
         "bedROC(α = 16.1)": bedroc_16,
         "bedROC(α = 20.0)": bedroc_20,
-        "bedROC(α = 160.9)": bedroc_160
+        "bedROC(α = 160.9)": bedroc_160,
+        "bedROC(α = 321.9)": bedroc_321_9
     }
 
 def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=None):
@@ -184,12 +198,14 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
 
     # ---------- 排名式指标 ----------
     ap        = average_precision_score(y_true, y_scores)
+    ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
     ef1       = compute_enrichment_factor(y_true, y_scores, 0.01)
     ef5       = compute_enrichment_factor(y_true, y_scores, 0.05)
     bedroc_8  = compute_bedroc(y_true, y_scores, 8.0)
     bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
     bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
     bedroc_160= compute_bedroc(y_true, y_scores, 160.9)
+    bedroc_321_9 = compute_bedroc(y_true, y_scores, 321.9)
 
     # ---------- 阈值分类 ----------
     y_pred = (df[score_column] < threshold).astype(int).values
@@ -204,12 +220,14 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
     print(f"Recall:     {rec:.4f}")
     print(f"F1 Score:   {f1:.4f}")
     print(f"AP:         {ap:.4f}")
+    print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
     print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
     print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
     print(f"bedROC(α = 8.0):     {bedroc_8:.4f}"  if bedroc_8  is not None else "bedROC(α = 8.0):     N/A")
     print(f"bedROC(α = 16.1):    {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1):    N/A")
     print(f"bedROC(α = 20.0):    {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0):    N/A")
     print(f"bedROC(α = 160.9):   {bedroc_160:.4f}"if bedroc_160 is not None else "bedROC(α = 160.9):   N/A")
+    print(f"bedROC(α = 321.9):   {bedroc_321_9:.4f}" if bedroc_321_9 is not None else "bedROC(α = 321.9):   N/A")
 
     # ---------- 保存 CSV ----------
     if output_file is not None:
@@ -226,12 +244,14 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
         "Recall":          rec,
         "F1 Score":        f1,
         "AP":              ap,
+        "EF@0.5%":         ef0_5,
         "EF@1%":           ef1,
         "EF@5%":           ef5,
         "bedROC(α = 8.0)":   bedroc_8,
         "bedROC(α = 16.1)":  bedroc_16,
         "bedROC(α = 20.0)":  bedroc_20,
-        "bedROC(α = 160.9)": bedroc_160
+        "bedROC(α = 160.9)": bedroc_160,
+        "bedROC(α = 321.9)": bedroc_321_9
     }
 
 def main():
@@ -288,6 +308,7 @@ def main():
 
     # Strategy 1: DL
     df_dl_full = df_dl.merge(df_label, on="ID")
+    df_dl_full.sort_values(by="pred", ascending=False, inplace=True)
     results.append(evaluate_dl_classification(df_dl_full, args.dl_threshold))
     ### evaluation ranking: args.top_k_count输入改成输入百分比，
     results.append(evaluate_ranking(df_dl_full, "pred", "Deep Learning", args.top_k_count, output_file=os.path.join(args.output_dir, "evaluation_dl.csv")))
@@ -296,6 +317,7 @@ def main():
     # Strategy 2: All docking
     df_dock_all = df_all_dock.merge(df_label, on="ID", how="right")
     df_dock_all["docking_score"] = df_dock_all["docking_score"].fillna(0)
+    df_dock_all.sort_values(by="docking_score", ascending=True, inplace=True)
     # df_dock_all["-docking_score"] = -df_dock_all["docking_score"]
     # ount,  output_file = os.path.join(args.output_dir, "evaluation_all_docking.csv")))
     if args.score_threshold != 0:
@@ -321,6 +343,7 @@ def main():
     df_d2screen = df_dl_dock.merge(df_label, on="ID", how="right")
     df_d2screen = df_d2screen.rename(columns={"docking_score": "D2Screen"})
     df_d2screen["D2Screen"] = df_d2screen["D2Screen"].fillna(0)
+    df_d2screen.sort_values(by="D2Screen", ascending=True, inplace=True)
     if not df_d2screen.empty:
         results.append(evaluate_ranking(df_d2screen, "D2Screen", f"D2Screen ({args.dl_threshold})", args.top_k_count, os.path.join(args.output_dir, "evaluation_D2Screen_ranking.csv")))
         plot_precision_recall_curve(df_d2screen["label"].values, -df_d2screen["D2Screen"].values, f"D2Screen ({args.dl_threshold})", args.output_dir)
@@ -344,7 +367,7 @@ def main():
         print("\n⚠️ No molecules passed DL threshold; skipping joint strategy.")
 
     # Save summary
-    columns = ["Strategy", "Accuracy", "Precision", "Recall", "F1 Score", "AP", "EF@1%", "EF@5%", "bedROC(α = 8.0)", "bedROC(α = 16.1)", "bedROC(α = 20.0)", "bedROC(α = 160.9)"]
+    columns = ["Strategy", "Accuracy", "Precision", "Recall", "F1 Score", "AP", "EF@0.5%", "EF@1%", "EF@5%", "bedROC(α = 8.0)", "bedROC(α = 16.1)", "bedROC(α = 20.0)", "bedROC(α = 160.9)", "bedROC(α = 321.9)"]
     df_result = pd.DataFrame(results)[columns]
     df_result.to_csv(os.path.join(args.output_dir, "evaluation_summary.csv"), index=False)
     print("✅ Saved evaluation_summary.csv")
