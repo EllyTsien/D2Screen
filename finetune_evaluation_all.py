@@ -80,7 +80,7 @@ def evaluate_dl_classification(df, threshold=0.9):
     bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
     bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
     bedroc_160 = compute_bedroc(y_true, y_scores,160.9)
-    bedroc_321_9 = compute_bedroc(y_true, y_scores, 321.9)
+    bedroc_1609 = compute_bedroc(y_true, y_scores, 1609)
 
     # Output
     print("\n== DL Classification ==")
@@ -96,7 +96,7 @@ def evaluate_dl_classification(df, threshold=0.9):
     print(f"bedROC(α = 16.1):     {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1） :     N/A")
     print(f"bedROC(α = 20.0):     {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0） :     N/A")
     print(f"bedROC(α = 160.9):     {bedroc_160:.4f}" if bedroc_160 is not None else "bedROC(α = 160.9） :     N/A")
-    print(f"bedROC(α = 321.9):     {bedroc_321_9:.4f}" if bedroc_321_9 is not None else "bedROC(α = 321.9） :     N/A")
+    print(f"bedROC(α = 1609):     {bedroc_1609:.4f}" if bedroc_1609 is not None else "bedROC(α = 1609） :     N/A")
 
     return {
         "Strategy": f"DL (threshold>{threshold})",
@@ -112,7 +112,7 @@ def evaluate_dl_classification(df, threshold=0.9):
         "bedROC(α = 16.1)": bedroc_16,
         "bedROC(α = 20.0)": bedroc_20,
         "bedROC(α = 160.9)": bedroc_160,
-        "bedROC(α = 321.9)": bedroc_321_9
+        "bedROC(α = 1609)": bedroc_1609
     }
 
 
@@ -129,7 +129,7 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
     bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
     bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
     bedroc_160 = compute_bedroc(y_true, y_scores, 160.9)
-    bedroc_321_9 = compute_bedroc(y_true, y_scores, 321.9)
+    bedroc_1609 = compute_bedroc(y_true, y_scores, 1609)
 
     # Classification by top-k count
     df_sorted = df.sort_values(by=score_column, ascending=True)
@@ -161,7 +161,7 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
     print(f"bedROC(α = 16.1):    {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1):    N/A")
     print(f"bedROC(α = 20.0):    {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0):    N/A")
     print(f"bedROC(α = 160.9):   {bedroc_160:.4f}" if bedroc_160 is not None else "bedROC(α = 160.9):   N/A")
-    print(f"bedROC(α = 321.9):   {bedroc_321_9:.4f}" if bedroc_321_9 is not None else "bedROC(α = 321.9):   N/A")
+    print(f"bedROC(α = 1609):   {bedroc_1609:.4f}" if bedroc_1609 is not None else "bedROC(α = 1609):   N/A")
 
     # 保存预测标签到文件
     if output_file is not None:
@@ -186,7 +186,7 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
         "bedROC(α = 16.1)": bedroc_16,
         "bedROC(α = 20.0)": bedroc_20,
         "bedROC(α = 160.9)": bedroc_160,
-        "bedROC(α = 321.9)": bedroc_321_9
+        "bedROC(α = 1609)": bedroc_1609
     }
 
 def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=None):
@@ -205,7 +205,7 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
     bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
     bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
     bedroc_160= compute_bedroc(y_true, y_scores, 160.9)
-    bedroc_321_9 = compute_bedroc(y_true, y_scores, 321.9)
+    bedroc_1609 = compute_bedroc(y_true, y_scores, 1609)
 
     # ---------- 阈值分类 ----------
     y_pred = (df[score_column] < threshold).astype(int).values
@@ -227,7 +227,7 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
     print(f"bedROC(α = 16.1):    {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1):    N/A")
     print(f"bedROC(α = 20.0):    {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0):    N/A")
     print(f"bedROC(α = 160.9):   {bedroc_160:.4f}"if bedroc_160 is not None else "bedROC(α = 160.9):   N/A")
-    print(f"bedROC(α = 321.9):   {bedroc_321_9:.4f}" if bedroc_321_9 is not None else "bedROC(α = 321.9):   N/A")
+    print(f"bedROC(α = 1609):   {bedroc_1609:.4f}" if bedroc_1609 is not None else "bedROC(α = 1609):   N/A")
 
     # ---------- 保存 CSV ----------
     if output_file is not None:
@@ -251,7 +251,7 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
         "bedROC(α = 16.1)":  bedroc_16,
         "bedROC(α = 20.0)":  bedroc_20,
         "bedROC(α = 160.9)": bedroc_160,
-        "bedROC(α = 321.9)": bedroc_321_9
+        "bedROC(α = 1609)": bedroc_1609
     }
 
 def main():
@@ -367,7 +367,7 @@ def main():
         print("\n⚠️ No molecules passed DL threshold; skipping joint strategy.")
 
     # Save summary
-    columns = ["Strategy", "Accuracy", "Precision", "Recall", "F1 Score", "AP", "EF@0.5%", "EF@1%", "EF@5%", "bedROC(α = 8.0)", "bedROC(α = 16.1)", "bedROC(α = 20.0)", "bedROC(α = 160.9)", "bedROC(α = 321.9)"]
+    columns = ["Strategy", "Accuracy", "Precision", "Recall", "F1 Score", "AP", "EF@0.5%", "EF@1%", "EF@5%", "bedROC(α = 8.0)", "bedROC(α = 16.1)", "bedROC(α = 20.0)", "bedROC(α = 160.9)", "bedROC(α = 1609)"]
     df_result = pd.DataFrame(results)[columns]
     df_result.to_csv(os.path.join(args.output_dir, "evaluation_summary.csv"), index=False)
     print("✅ Saved evaluation_summary.csv")
