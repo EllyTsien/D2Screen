@@ -156,6 +156,7 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
         df_out = df.copy()
         df_out["y_pred"] = 0
         df_out.loc[selected_indices, "y_pred"] = 1
+        df_out.sort_values(by=score_column, ascending=True, inplace=True)
         df_out.to_csv(output_file, index=False)
         print(f"\n[✔] Output saved to {output_file}")
 
@@ -174,6 +175,64 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
         "bedROC(α = 160.9)": bedroc_160
     }
 
+def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=None):
+    """
+    score_column < threshold 判为阳性。其它指标与 evaluate_ranking_D2Screen 相同。
+    """
+    y_scores = df[score_column].values
+    y_true   = df["label"].values
+
+    # ---------- 排名式指标 ----------
+    ap        = average_precision_score(y_true, y_scores)
+    ef1       = compute_enrichment_factor(y_true, y_scores, 0.01)
+    ef5       = compute_enrichment_factor(y_true, y_scores, 0.05)
+    bedroc_8  = compute_bedroc(y_true, y_scores, 8.0)
+    bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
+    bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
+    bedroc_160= compute_bedroc(y_true, y_scores, 160.9)
+
+    # ---------- 阈值分类 ----------
+    y_pred = (df[score_column] < threshold).astype(int).values
+    acc  = accuracy_score(y_true, y_pred)
+    prec = precision_score(y_true, y_pred, zero_division=0)
+    rec  = recall_score(y_true, y_pred, zero_division=0)
+    f1   = f1_score(y_true, y_pred, zero_division=0)
+
+    print(f"\n== {name} (< {threshold}) ==")
+    print(f"Accuracy:   {acc:.4f}")
+    print(f"Precision:  {prec:.4f}")
+    print(f"Recall:     {rec:.4f}")
+    print(f"F1 Score:   {f1:.4f}")
+    print(f"AP:         {ap:.4f}")
+    print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
+    print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
+    print(f"bedROC(α = 8.0):     {bedroc_8:.4f}"  if bedroc_8  is not None else "bedROC(α = 8.0):     N/A")
+    print(f"bedROC(α = 16.1):    {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1):    N/A")
+    print(f"bedROC(α = 20.0):    {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0):    N/A")
+    print(f"bedROC(α = 160.9):   {bedroc_160:.4f}"if bedroc_160 is not None else "bedROC(α = 160.9):   N/A")
+
+    # ---------- 保存 CSV ----------
+    if output_file is not None:
+        df_out = df.copy()
+        df_out["y_pred"] = y_pred
+        df_out.sort_values(by=score_column, ascending=True, inplace=True)
+        df_out.to_csv(output_file, index=False)
+        print(f"[✔] Output saved to {output_file}")
+
+    return {
+        "Strategy":        f"{name} (< {threshold})",
+        "Accuracy":        acc,
+        "Precision":       prec,
+        "Recall":          rec,
+        "F1 Score":        f1,
+        "AP":              ap,
+        "EF@1%":           ef1,
+        "EF@5%":           ef5,
+        "bedROC(α = 8.0)":   bedroc_8,
+        "bedROC(α = 16.1)":  bedroc_16,
+        "bedROC(α = 20.0)":  bedroc_20,
+        "bedROC(α = 160.9)": bedroc_160
+    }
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate DL + docking strategies from txt inputs.")
@@ -184,6 +243,8 @@ def main():
     parser.add_argument("--dl_threshold", type=float, default=0.9, help="DL threshold")
     parser.add_argument("--top_k_count", type=int, default=None, help="Top K count for ranking evaluation")
     parser.add_argument("--output_dir", type=str, default=".", help="Directory to save output files")
+    parser.add_argument("--score_threshold", type=float, help="Docking score threshold; score < T is positive in D2Screen")
+
 
     args = parser.parse_args()
     if args.top_k_count is None:
@@ -216,7 +277,7 @@ def main():
     df_final = df_final.merge(df_all_dock.rename(columns={"docking_score": "docking_all"}), on="ID", how="left")
     df_joint_score = df_dl[df_dl["pred"] > args.dl_threshold][["ID"]].merge(
         df_dl_dock.rename(columns={"docking_score": "D2Screen"}), on="ID", how="left")
-    df_final = df_final.merge(df_joint_score, on="ID", how="left")
+    df_final = df_final.merge(df_dl_dock.rename(columns={"docking_score": "D2Screen"}), on="ID", how="left")
     df_final["D2Screen"] = df_final["D2Screen"].fillna(0)
     df_final = df_final[["ID", "SMILES", "pred", "docking_all", "D2Screen", "label"]]
     df_final.sort_values(by="D2Screen", ascending=True, inplace=True)
@@ -228,21 +289,57 @@ def main():
     # Strategy 1: DL
     df_dl_full = df_dl.merge(df_label, on="ID")
     results.append(evaluate_dl_classification(df_dl_full, args.dl_threshold))
+    ### evaluation ranking: args.top_k_count输入改成输入百分比，
     results.append(evaluate_ranking(df_dl_full, "pred", "Deep Learning", args.top_k_count, output_file=os.path.join(args.output_dir, "evaluation_dl.csv")))
     plot_precision_recall_curve(df_dl_full["label"].values, df_dl_full["pred"].values, "Deep Learning", args.output_dir)
 
     # Strategy 2: All docking
-    df_dock_all = df_all_dock.merge(df_label, on="ID")
+    df_dock_all = df_all_dock.merge(df_label, on="ID", how="right")
+    df_dock_all["docking_score"] = df_dock_all["docking_score"].fillna(0)
     # df_dock_all["-docking_score"] = -df_dock_all["docking_score"]
-    results.append(evaluate_ranking(df_dock_all, "docking_score", "Docking (All)", args.top_k_count,  output_file = os.path.join(args.output_dir, "evaluation_all_docking.csv")))
+    # ount,  output_file = os.path.join(args.output_dir, "evaluation_all_docking.csv")))
+    if args.score_threshold != 0:
+        results.append(
+            evaluate_threshold_D2Screen(
+                df_dock_all,
+                "docking_score",
+                "docking_score_threshold",
+                threshold=args.score_threshold,
+                output_file=os.path.join(args.output_dir, "evaluation_docking_threshold.csv")
+            )
+        )
+        plot_precision_recall_curve(
+            df_dock_all["label"].values,
+            -df_dock_all["docking_score"].values,
+            f"docking_score <{args.score_threshold}",
+            args.output_dir
+        )
     plot_precision_recall_curve(df_dock_all["label"].values, -df_dock_all["docking_score"].values, "Docking (All)", args.output_dir)
 
     # Strategy 3: DL filter + docking
-    df_passed = df_dl[df_dl["pred"] > args.dl_threshold]
-    df_dock_joint = df_dl_dock.merge(df_passed[["ID"]], on="ID").merge(df_label, on="ID")
-    if not df_dock_joint.empty:
-        results.append(evaluate_ranking(df_dock_joint, "docking_score", f"D2Screen ({args.dl_threshold})", args.top_k_count, os.path.join(args.output_dir, "evaluation_D2Screen.csv")))
-        plot_precision_recall_curve(df_dock_joint["label"].values, -df_dock_joint["docking_score"].values, f"D2Screen ({args.dl_threshold})", args.output_dir)
+    # df_passed = df_dl[df_dl["pred"] > args.dl_threshold]
+    df_d2screen = df_dl_dock.merge(df_label, on="ID", how="right")
+    df_d2screen = df_d2screen.rename(columns={"docking_score": "D2Screen"})
+    df_d2screen["D2Screen"] = df_d2screen["D2Screen"].fillna(0)
+    if not df_d2screen.empty:
+        results.append(evaluate_ranking(df_d2screen, "D2Screen", f"D2Screen ({args.dl_threshold})", args.top_k_count, os.path.join(args.output_dir, "evaluation_D2Screen_ranking.csv")))
+        plot_precision_recall_curve(df_d2screen["label"].values, -df_d2screen["D2Screen"].values, f"D2Screen ({args.dl_threshold})", args.output_dir)
+        if args.score_threshold != 0:
+            results.append(
+                evaluate_threshold_D2Screen(
+                    df_d2screen,
+                    "D2Screen",
+                    "D2Screen_threshold",
+                    threshold=args.score_threshold,
+                    output_file=os.path.join(args.output_dir, "evaluation_D2Screen_threshold.csv")
+                )
+            )
+            plot_precision_recall_curve(
+                df_d2screen["label"].values,
+                -df_d2screen["D2Screen"].values,
+                f"D2Screen <{args.score_threshold}",
+                args.output_dir
+            )
     else:
         print("\n⚠️ No molecules passed DL threshold; skipping joint strategy.")
 
