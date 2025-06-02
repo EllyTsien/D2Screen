@@ -132,9 +132,9 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
     bedroc_1609 = compute_bedroc(y_true, y_scores, 1609)
 
     # Classification by top-k count
-    df_sorted = df.sort_values(by=score_column, ascending=True)
-    k = min(top_k_count, len(df_sorted))  # 避免 top_k_count 超出长度
-    selected_indices = df_sorted.head(k).index
+
+    k = min(top_k_count, len(df))  # 避免 top_k_count 超出长度
+    selected_indices = df.head(k).index
 
     # 构造 y_pred，按原顺序
     y_pred = pd.Series(0, index=df.index)
@@ -168,7 +168,6 @@ def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None)
         df_out = df.copy()
         df_out["y_pred"] = 0
         df_out.loc[selected_indices, "y_pred"] = 1
-        df_out.sort_values(by=score_column, ascending=True, inplace=True)
         df_out.to_csv(output_file, index=False)
         print(f"\n[✔] Output saved to {output_file}")
 
@@ -311,7 +310,7 @@ def main():
     df_dl_full.sort_values(by="pred", ascending=False, inplace=True)
     results.append(evaluate_dl_classification(df_dl_full, args.dl_threshold))
     ### evaluation ranking: args.top_k_count输入改成输入百分比，
-    results.append(evaluate_ranking(df_dl_full, "pred", "Deep Learning", args.top_k_count, output_file=os.path.join(args.output_dir, "evaluation_dl.csv")))
+    results.append(evaluate_ranking(df_dl_full, "pred", "Deep Learning", args.top_k_count, output_file=os.path.join(args.output_dir, "evaluation_dl_ranking.csv")))
     plot_precision_recall_curve(df_dl_full["label"].values, df_dl_full["pred"].values, "Deep Learning", args.output_dir)
 
     # Strategy 2: All docking
