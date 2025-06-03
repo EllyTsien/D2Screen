@@ -116,8 +116,80 @@ def evaluate_dl_classification(df, threshold=0.9):
     }
 
 
-def evaluate_ranking(df, score_column, name, top_k_count=None, output_file=None):
+def evaluate_ranking_dl(df, score_column, name, top_k_count=None, output_file=None):
     y_scores = df[score_column].values
+    y_true = df["label"].values
+
+    # Ranking-based metrics
+    ap = average_precision_score(y_true, y_scores)
+    ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
+    ef1 = compute_enrichment_factor(y_true, y_scores, 0.01)
+    ef5 = compute_enrichment_factor(y_true, y_scores, 0.05)
+    bedroc_8 = compute_bedroc(y_true, y_scores, 8.0)
+    bedroc_16 = compute_bedroc(y_true, y_scores, 16.1)
+    bedroc_20 = compute_bedroc(y_true, y_scores, 20.0)
+    bedroc_160 = compute_bedroc(y_true, y_scores, 160.9)
+    bedroc_1609 = compute_bedroc(y_true, y_scores, 1609)
+
+    # Classification by top-k count
+
+    k = min(top_k_count, len(df))  # 避免 top_k_count 超出长度
+    selected_indices = df.head(k).index
+
+    # 构造 y_pred，按原顺序
+    y_pred = pd.Series(0, index=df.index)
+    y_pred.loc[selected_indices] = 1
+    y_pred = y_pred.values
+
+    # 分类指标（与 y_true 顺序对齐）
+    acc = accuracy_score(y_true, y_pred)
+    prec = precision_score(y_true, y_pred, zero_division=0)
+    rec = recall_score(y_true, y_pred, zero_division=0)
+    f1 = f1_score(y_true, y_pred, zero_division=0)
+
+    # 打印所有指标
+    print(f"\n== {name} Ranking (Top {top_k_count} entries by {score_column}) ==")
+    print(f"Accuracy:   {acc:.4f}")
+    print(f"Precision:  {prec:.4f}")
+    print(f"Recall:     {rec:.4f}")
+    print(f"F1 Score:   {f1:.4f}")
+    print(f"AP:         {ap:.4f}")
+    print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
+    print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
+    print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
+    print(f"bedROC(α = 8.0):     {bedroc_8:.4f}" if bedroc_8 is not None else "bedROC(α = 8.0):     N/A")
+    print(f"bedROC(α = 16.1):    {bedroc_16:.4f}" if bedroc_16 is not None else "bedROC(α = 16.1):    N/A")
+    print(f"bedROC(α = 20.0):    {bedroc_20:.4f}" if bedroc_20 is not None else "bedROC(α = 20.0):    N/A")
+    print(f"bedROC(α = 160.9):   {bedroc_160:.4f}" if bedroc_160 is not None else "bedROC(α = 160.9):   N/A")
+    print(f"bedROC(α = 1609):   {bedroc_1609:.4f}" if bedroc_1609 is not None else "bedROC(α = 1609):   N/A")
+
+    # 保存预测标签到文件
+    if output_file is not None:
+        df_out = df.copy()
+        df_out["y_pred"] = 0
+        df_out.loc[selected_indices, "y_pred"] = 1
+        df_out.to_csv(output_file, index=False)
+        print(f"\n[✔] Output saved to {output_file}")
+
+    return {
+        "Strategy": f"{name} Ranking (Top {top_k_count})",
+        "Accuracy": acc,
+        "Precision": prec,
+        "Recall": rec,
+        "F1 Score": f1,
+        "AP": ap,
+        "EF@0.5%": ef0_5,
+        "EF@1%": ef1,
+        "EF@5%": ef5,
+        "bedROC(α = 8.0)": bedroc_8,
+        "bedROC(α = 16.1)": bedroc_16,
+        "bedROC(α = 20.0)": bedroc_20,
+        "bedROC(α = 160.9)": bedroc_160,
+        "bedROC(α = 1609)": bedroc_1609
+    }
+
+def evaluate_ranking_D2Screen(df, score_column, name, top_k_count=None, output_file=None):
+    y_scores = -df[score_column].values
     y_true = df["label"].values
 
     # Ranking-based metrics
@@ -192,7 +264,7 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
     """
     score_column < threshold 判为阳性。其它指标与 evaluate_ranking_D2Screen 相同。
     """
-    y_scores = df[score_column].values
+    y_scores = -df[score_column].values
     y_true   = df["label"].values
 
     # ---------- 排名式指标 ----------
@@ -294,7 +366,7 @@ def main():
     df_final = df_label.copy()
     df_final = df_final.merge(df_dl[["ID", "pred"]], on="ID", how="left")
     df_final = df_final.merge(df_all_dock.rename(columns={"docking_score": "docking_all"}), on="ID", how="left")
-    df_joint_score = df_dl[df_dl["pred"] > args.dl_threshold][["ID"]].merge(
+    df_joint_score = df_dl[df_dl["pred"] > args.dl_threshold][["ID"]].merge( # 这里是大于号吗？
         df_dl_dock.rename(columns={"docking_score": "D2Screen"}), on="ID", how="left")
     df_final = df_final.merge(df_dl_dock.rename(columns={"docking_score": "D2Screen"}), on="ID", how="left")
     df_final["D2Screen"] = df_final["D2Screen"].fillna(0)
@@ -310,7 +382,7 @@ def main():
     df_dl_full.sort_values(by="pred", ascending=False, inplace=True)
     results.append(evaluate_dl_classification(df_dl_full, args.dl_threshold))
     ### evaluation ranking: args.top_k_count输入改成输入百分比，
-    results.append(evaluate_ranking(df_dl_full, "pred", "Deep Learning", args.top_k_count, output_file=os.path.join(args.output_dir, "evaluation_dl_ranking.csv")))
+    results.append(evaluate_ranking_dl(df_dl_full, "pred", "Deep Learning", args.top_k_count, output_file=os.path.join(args.output_dir, "evaluation_dl_ranking.csv")))
     plot_precision_recall_curve(df_dl_full["label"].values, df_dl_full["pred"].values, "Deep Learning", args.output_dir)
 
     # Strategy 2: All docking
@@ -344,7 +416,7 @@ def main():
     df_d2screen["D2Screen"] = df_d2screen["D2Screen"].fillna(0)
     df_d2screen.sort_values(by="D2Screen", ascending=True, inplace=True)
     if not df_d2screen.empty:
-        results.append(evaluate_ranking(df_d2screen, "D2Screen", f"D2Screen ({args.dl_threshold})", args.top_k_count, os.path.join(args.output_dir, "evaluation_D2Screen_ranking.csv")))
+        results.append(evaluate_ranking_D2Screen(df_d2screen, "D2Screen", f"D2Screen ({args.dl_threshold})", args.top_k_count, os.path.join(args.output_dir, "evaluation_D2Screen_ranking.csv")))
         plot_precision_recall_curve(df_d2screen["label"].values, -df_d2screen["D2Screen"].values, f"D2Screen ({args.dl_threshold})", args.output_dir)
         if args.score_threshold != 0:
             results.append(
