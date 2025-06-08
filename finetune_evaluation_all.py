@@ -5,7 +5,8 @@ import os
 import matplotlib.pyplot as plt
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
-    average_precision_score, precision_recall_curve
+    average_precision_score, precision_recall_curve,
+    roc_auc_score, roc_curve
 )
 
 def txt_to_csv(txt_path, csv_path):
@@ -60,6 +61,26 @@ def plot_precision_recall_curve(y_true, y_scores, strategy_name, output_dir):
     plt.close()
     print(f"📈 Saved PR curve for {strategy_name} to: {output_path}")
 
+def plot_roc_curve(y_true, y_scores, strategy_name, output_dir):
+    fpr, tpr, _ = roc_curve(y_true, y_scores)
+    auc = roc_auc_score(y_true, y_scores)
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, label=f'{strategy_name} (AUC = {auc:.2f})')
+    plt.plot([0, 1], [0, 1], linestyle='--')
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title(f'ROC Curve: {strategy_name}')
+    plt.legend()
+    plt.grid(True)
+    os.makedirs(output_dir, exist_ok=True)
+    path = os.path.join(
+        output_dir,
+        f'ROC_curve_{strategy_name.replace(" ", "_").replace("(", "").replace(")", "")}.png'
+    )
+    plt.savefig(path)
+    plt.close()
+    print(f"📈 Saved ROC curve for {strategy_name} to: {path}")
+
 def evaluate_dl_classification(df, threshold=0.9):
     y_true = df["label"].values
     y_pred = (df["pred"].values > threshold).astype(int)
@@ -73,6 +94,7 @@ def evaluate_dl_classification(df, threshold=0.9):
 
     # Ranking metrics
     ap = average_precision_score(y_true, y_scores)
+    auc = roc_auc_score(y_true, y_scores)  
     ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
     ef1 = compute_enrichment_factor(y_true, y_scores, 0.01)
     ef5 = compute_enrichment_factor(y_true, y_scores, 0.05)
@@ -89,6 +111,7 @@ def evaluate_dl_classification(df, threshold=0.9):
     print(f"Recall:     {rec:.4f}")
     print(f"F1 Score:   {f1:.4f}")
     print(f"AP:         {ap:.4f}")
+    print(f"AUC-ROC:         {auc:.4f}")
     print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
     print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
     print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
@@ -105,6 +128,7 @@ def evaluate_dl_classification(df, threshold=0.9):
         "Recall": rec,
         "F1 Score": f1,
         "AP": ap,
+        "AUC-ROC": auc,
         "EF@0.5%": ef0_5,
         "EF@1%": ef1,
         "EF@5%": ef5,
@@ -115,13 +139,13 @@ def evaluate_dl_classification(df, threshold=0.9):
         "bedROC(α = 1609)": bedroc_1609
     }
 
-
 def evaluate_ranking_dl(df, score_column, name, top_k_count=None, output_file=None):
     y_scores = df[score_column].values
     y_true = df["label"].values
 
     # Ranking-based metrics
     ap = average_precision_score(y_true, y_scores)
+    auc = roc_auc_score(y_true, y_scores)  
     ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
     ef1 = compute_enrichment_factor(y_true, y_scores, 0.01)
     ef5 = compute_enrichment_factor(y_true, y_scores, 0.05)
@@ -154,6 +178,7 @@ def evaluate_ranking_dl(df, score_column, name, top_k_count=None, output_file=No
     print(f"Recall:     {rec:.4f}")
     print(f"F1 Score:   {f1:.4f}")
     print(f"AP:         {ap:.4f}")
+    print(f"AUC-ROC:         {auc:.4f}")
     print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
     print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
     print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
@@ -178,6 +203,7 @@ def evaluate_ranking_dl(df, score_column, name, top_k_count=None, output_file=No
         "Recall": rec,
         "F1 Score": f1,
         "AP": ap,
+        "AUC-ROC": auc,
         "EF@0.5%": ef0_5,
         "EF@1%": ef1,
         "EF@5%": ef5,
@@ -194,6 +220,7 @@ def evaluate_ranking_D2Screen(df, score_column, name, top_k_count=None, output_f
 
     # Ranking-based metrics
     ap = average_precision_score(y_true, y_scores)
+    auc = roc_auc_score(y_true, y_scores)  
     ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
     ef1 = compute_enrichment_factor(y_true, y_scores, 0.01)
     ef5 = compute_enrichment_factor(y_true, y_scores, 0.05)
@@ -226,6 +253,7 @@ def evaluate_ranking_D2Screen(df, score_column, name, top_k_count=None, output_f
     print(f"Recall:     {rec:.4f}")
     print(f"F1 Score:   {f1:.4f}")
     print(f"AP:         {ap:.4f}")
+    print(f"AUC-ROC:         {auc:.4f}")
     print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
     print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
     print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
@@ -250,6 +278,7 @@ def evaluate_ranking_D2Screen(df, score_column, name, top_k_count=None, output_f
         "Recall": rec,
         "F1 Score": f1,
         "AP": ap,
+        "AUC-ROC": auc,
         "EF@0.5%": ef0_5,
         "EF@1%": ef1,
         "EF@5%": ef5,
@@ -269,6 +298,7 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
 
     # ---------- 排名式指标 ----------
     ap        = average_precision_score(y_true, y_scores)
+    auc       = roc_auc_score(y_true, y_scores)  
     ef0_5 = compute_enrichment_factor(y_true, y_scores, 0.005)
     ef1       = compute_enrichment_factor(y_true, y_scores, 0.01)
     ef5       = compute_enrichment_factor(y_true, y_scores, 0.05)
@@ -291,6 +321,7 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
     print(f"Recall:     {rec:.4f}")
     print(f"F1 Score:   {f1:.4f}")
     print(f"AP:         {ap:.4f}")
+    print(f"AUC-ROC:         {auc:.4f}")
     print(f"EF@0.5%:      {ef0_5:.4f}" if ef1 is not None else "EF@0.5%:      N/A")
     print(f"EF@1%:      {ef1:.4f}" if ef1 is not None else "EF@1%:      N/A")
     print(f"EF@5%:      {ef5:.4f}" if ef5 is not None else "EF@5%:      N/A")
@@ -315,6 +346,7 @@ def evaluate_threshold_D2Screen(df, score_column, name, threshold, output_file=N
         "Recall":          rec,
         "F1 Score":        f1,
         "AP":              ap,
+        "AUC-ROC":         auc,
         "EF@0.5%":         ef0_5,
         "EF@1%":           ef1,
         "EF@5%":           ef5,
@@ -334,7 +366,8 @@ def main():
     parser.add_argument("--dl_threshold", type=float, default=0.9, help="DL threshold")
     parser.add_argument("--top_k_count", type=int, default=None, help="Top K count for ranking evaluation")
     parser.add_argument("--output_dir", type=str, default=".", help="Directory to save output files")
-    parser.add_argument("--score_threshold", type=float, help="Docking score threshold; score < T is positive in D2Screen")
+    parser.add_argument("--D2Screen_score_threshold", type=float, help="D2Screen score threshold; score < T is positive in D2Screen")
+    parser.add_argument("--docking_score_threshold", type=float, help="Docking score threshold; score < T is positive in AutoDock Vina")
 
 
     args = parser.parse_args()
@@ -373,7 +406,7 @@ def main():
     df_final = df_final[["ID", "SMILES", "pred", "docking_all", "D2Screen", "label"]]
     df_final.sort_values(by="D2Screen", ascending=True, inplace=True)
     df_final.to_csv(os.path.join(args.output_dir, "evaluation_combined_scores.csv"), index=False)
-    print(f"\n✅ Final combined score table saved to: {args.output_dir}/evaluation_combined_scores.csv")
+    print(f"\nFinal combined score table saved to: {args.output_dir}/evaluation_combined_scores.csv")
 
     results = []
 
@@ -384,6 +417,7 @@ def main():
     ### evaluation ranking: args.top_k_count输入改成输入百分比，
     results.append(evaluate_ranking_dl(df_dl_full, "pred", "Deep Learning", args.top_k_count, output_file=os.path.join(args.output_dir, "evaluation_dl_ranking.csv")))
     plot_precision_recall_curve(df_dl_full["label"].values, df_dl_full["pred"].values, "Deep Learning", args.output_dir)
+    plot_roc_curve(df_dl_full["label"].values, df_dl_full["pred"].values, "Deep Learning", args.output_dir)
 
     # Strategy 2: All docking
     df_dock_all = df_all_dock.merge(df_label, on="ID", how="right")
@@ -391,25 +425,32 @@ def main():
     df_dock_all.sort_values(by="docking_score", ascending=True, inplace=True)
     # df_dock_all["-docking_score"] = -df_dock_all["docking_score"]
     # ount,  output_file = os.path.join(args.output_dir, "evaluation_all_docking.csv")))
-    if args.score_threshold != 0:
+    if args.docking_score_threshold != 0:
         results.append(
             evaluate_threshold_D2Screen(
                 df_dock_all,
                 "docking_score",
                 "docking_score_threshold",
-                threshold=args.score_threshold,
+                threshold=args.docking_score_threshold,
                 output_file=os.path.join(args.output_dir, "evaluation_docking_threshold.csv")
             )
         )
         plot_precision_recall_curve(
             df_dock_all["label"].values,
             -df_dock_all["docking_score"].values,
-            f"docking_score <{args.score_threshold}",
+            f"docking_score <{args.docking_score_threshold}",
+            args.output_dir
+        )
+        plot_roc_curve(
+            df_dock_all["label"].values,
+            -df_dock_all["docking_score"].values,
+            f"docking_score <{args.docking_score_threshold}",
             args.output_dir
         )
     plot_precision_recall_curve(df_dock_all["label"].values, -df_dock_all["docking_score"].values, "Docking (All)", args.output_dir)
+    plot_roc_curve(df_dock_all["label"].values, -df_dock_all["docking_score"].values, "Docking (All)", args.output_dir)
 
-    # Strategy 3: DL filter + docking
+    # Strategy 3: D2Screen (DL filter + docking)
     # df_passed = df_dl[df_dl["pred"] > args.dl_threshold]
     df_d2screen = df_dl_dock.merge(df_label, on="ID", how="right")
     df_d2screen = df_d2screen.rename(columns={"docking_score": "D2Screen"})
@@ -418,27 +459,34 @@ def main():
     if not df_d2screen.empty:
         results.append(evaluate_ranking_D2Screen(df_d2screen, "D2Screen", f"D2Screen ({args.dl_threshold})", args.top_k_count, os.path.join(args.output_dir, "evaluation_D2Screen_ranking.csv")))
         plot_precision_recall_curve(df_d2screen["label"].values, -df_d2screen["D2Screen"].values, f"D2Screen ({args.dl_threshold})", args.output_dir)
-        if args.score_threshold != 0:
+        plot_roc_curve(df_d2screen["label"].values, -df_d2screen["D2Screen"].values, f"D2Screen ({args.dl_threshold})", args.output_dir)
+        if args.D2Screen_score_threshold != 0:
             results.append(
                 evaluate_threshold_D2Screen(
                     df_d2screen,
                     "D2Screen",
                     "D2Screen_threshold",
-                    threshold=args.score_threshold,
+                    threshold=args.D2Screen_score_threshold,
                     output_file=os.path.join(args.output_dir, "evaluation_D2Screen_threshold.csv")
                 )
             )
             plot_precision_recall_curve(
                 df_d2screen["label"].values,
                 -df_d2screen["D2Screen"].values,
-                f"D2Screen <{args.score_threshold}",
+                f"D2Screen <{args.D2Screen_score_threshold}",
+                args.output_dir
+            )
+            plot_roc_curve(
+                df_d2screen["label"].values,
+                -df_d2screen["D2Screen"].values,
+                f"D2Screen <{args.D2Screen_score_threshold}",
                 args.output_dir
             )
     else:
         print("\n⚠️ No molecules passed DL threshold; skipping joint strategy.")
 
     # Save summary
-    columns = ["Strategy", "Accuracy", "Precision", "Recall", "F1 Score", "AP", "EF@0.5%", "EF@1%", "EF@5%", "bedROC(α = 8.0)", "bedROC(α = 16.1)", "bedROC(α = 20.0)", "bedROC(α = 160.9)", "bedROC(α = 1609)"]
+    columns = ["Strategy", "Accuracy", "Precision", "Recall", "F1 Score", "AP", "AUC-ROC", "EF@0.5%", "EF@1%", "EF@5%", "bedROC(α = 8.0)", "bedROC(α = 16.1)", "bedROC(α = 20.0)", "bedROC(α = 160.9)", "bedROC(α = 1609)"]
     df_result = pd.DataFrame(results)[columns]
     df_result.to_csv(os.path.join(args.output_dir, "evaluation_summary.csv"), index=False)
     print("✅ Saved evaluation_summary.csv")
