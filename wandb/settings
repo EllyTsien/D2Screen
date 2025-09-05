@@ -1,5 +1,0 @@
-[default]
-entity = 121090453-the-chinese-university-of-hong-kong-shenzhen
-project = your_project_name
-base_url = https://api.wandb.ai
-
