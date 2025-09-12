@@ -52,7 +52,7 @@ def collate_fn(data_batch):
     return atom_bond_graph, bond_angle_graph, np.array(label_list, dtype=np.float32)
 
 
-def get_data_loader(mode, batch_size, index, project_name):
+def get_data_loader(mode, batch_size, index, project_name, zinc_dir):
     if mode == 'train':
         # 训练模式下将train_data_list划分训练集和验证集，返回对应的DataLoader
         data_list = pkl.load(open(project_name +'/work/train_data_list.pkl', 'rb'))  # 读取data_list
@@ -73,7 +73,7 @@ def get_data_loader(mode, batch_size, index, project_name):
     
     elif mode == 'test':
         # 推理模式下直接读取test_data_list, 返回test_data_loader
-        file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_data_list.pkl'
+        file_path = f'{zinc_dir}{index}_ZINC20_data_list.pkl'
         print('Loading data_list from', file_path)
         data_list = pkl.load(open(file_path, 'rb'))
         if len(data_list) == 0:

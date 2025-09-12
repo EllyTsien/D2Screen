@@ -2,7 +2,6 @@ import paddle as pdl
 from paddle import optimizer 
 import numpy as np
 import json
-from rdkit import RDLogger
 from pahelix.datasets.inmemory_dataset import InMemoryDataset
 import random
 import pandas as pd
@@ -13,7 +12,6 @@ import os
 import wandb
 import glob
 import shutil
-
 from finetunemodels import mlp
 from preprocess import Input_ligand_preprocess,  SMILES_Transfer
 from evaluation_train import evaluation_train
@@ -82,7 +80,7 @@ def run_finetune(params):
     head_opt = optimizer.Adam(head_scheduler, parameters=head_params, weight_decay=1e-5)
 
     # 创建dataloader
-    train_data_loader, valid_data_loader, test_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0, project_name=project_name)
+    train_data_loader, valid_data_loader, test_data_loader = get_data_loader(mode='train', batch_size=batch_size, index=0, project_name=project_name, zinc_dir=None)
     current_best_metric = -1e10
     max_bearable_epoch = 20    # 设置早停的轮数为20，若连续20轮内验证集的评价指标没有提升，则停止训练
     current_best_epoch = 0
@@ -271,7 +269,7 @@ def select_best_model(model_version, project_name):
 
 
 # 将测试集的预测结果保存为result.csv
-def test(model_version, project_name, index):
+def test(model_version, project_name, index, zinc_dir):
     best_json_name = os.path.join(project_name+"/bestmodels_" + project_name, "best.json")
     # from best.json import config
     with open(best_json_name, "r") as json_file:
@@ -283,7 +281,7 @@ def test(model_version, project_name, index):
     else:
         raise ValueError("Unknown model configuration specified in best.json")    
     
-    test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
+    test_data_loader = get_data_loader(mode='test', batch_size=best_model_info["batch_size"], index=index, project_name=project_name, zinc_dir=zinc_dir)
 
     best_weight_name = os.path.join( project_name+"/bestweights_" + project_name, f"{model_version}.pkl")
     ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
@@ -294,7 +292,7 @@ def test(model_version, project_name, index):
         label_predict_batch = F.softmax(label_predict_batch)
         result = label_predict_batch[:, 1].cpu().numpy().reshape(-1).tolist()
         all_result.extend(result)
-    nolabel_file_path = f'//8tb-disk/05.ZINC20_druglike/{index}_ZINC20_nolabel.csv'
+    nolabel_file_path = f'{zinc_dir}/{index}_ZINC20_nolabel.csv'
     df = pd.read_csv(nolabel_file_path)
     # df = pd.read_csv('datasets/ZINC20_processed/test_nolabel.csv')
     df['pred'] = all_result
@@ -333,7 +331,7 @@ def test_DUDE(model_version, project_name, nolabel_file_path, index):
     else:
         raise ValueError("Unknown model configuration specified in best.json")    
     
-    test_data_loader = get_data_loader(mode='DUDE', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
+    test_data_loader = get_data_loader(mode='DUDE', batch_size=best_model_info["batch_size"], index=index, project_name=project_name, zinc_dir=None)
 
     best_weight_name = os.path.join( project_name+"/bestweights_"+project_name, f"{model_version}.pkl")
     ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重
@@ -370,7 +368,7 @@ def test_ratio(model_version, project_name, nolabel_file_path, index):
     else:
         raise ValueError("Unknown model configuration specified in best.json")    
     
-    test_data_loader = get_data_loader(mode='ratio', batch_size=best_model_info["batch_size"], index=index, project_name=project_name)
+    test_data_loader = get_data_loader(mode='ratio', batch_size=best_model_info["batch_size"], index=index, project_name=project_name, zinc_dir=None)
 
     best_weight_name = os.path.join( project_name+"/bestweights_"+project_name, f"{model_version}.pkl")
     ft_model.set_state_dict(pdl.load(best_weight_name))   # 导入训练好的的模型权重

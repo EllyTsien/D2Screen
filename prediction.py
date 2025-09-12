@@ -45,24 +45,37 @@ def main(args):
 
     select_best_model(model_version, project_name)
     
-    #preprocess DUDE/test_nolabel.csv to .pkl
-    processor = Input_ligand_preprocess(input_ligands_path, project_name, mode)
-    processed_input_path = processor.preprocess() 
-    processed_input_csv = pd.read_csv(processed_input_path)
-    SMILES_transfer = SMILES_Transfer(processed_input_csv, project_name, mode)
-    SMILES_transfer.run()
-    print(processed_input_path)
     if mode == 'ZINC':
+        if args.ZINC_dir is None:    
+            raise FileNotFoundError(f"ZINC20 processced file fold does not specified.")
+        else:
+            zinc_dir = args.ZINC_dir
         #first-stage screen of ZINC20 library
-        for index in range(1, 10): 
-            test(model_version='1', project_name=project_name, index=index)
+        for index in range(1, 22): 
+            test(model_version='1', project_name=project_name, index=index, zinc_dir=zinc_dir)
         # Sort, filter and log the final result
         sort_and_filter_csv(project_name + '/ZINC20/ZINC20_DL_result.csv', args.threshold, project_name + '/ZINC20/DL_top.csv')
+
+
     elif mode == 'DUDE':    
+        #preprocess DUDE/test_nolabel.csv to .pkl
+        processor = Input_ligand_preprocess(input_ligands_path, project_name, mode)
+        processed_input_path = processor.preprocess() 
+        processed_input_csv = pd.read_csv(processed_input_path)
+        SMILES_transfer = SMILES_Transfer(processed_input_csv, project_name, mode)
+        SMILES_transfer.run()
+        print(processed_input_path)
         test_DUDE(model_version='1', project_name=project_name, nolabel_file_path= processed_input_path, index=0)
         # Sort, filter and log the final result
         sort_and_filter_csv(project_name + '/DL_DUDE_result.csv', args.threshold, project_name + '/DL_DUDE_top.csv')
     elif mode == 'ratio':
+        #preprocess DUDE/test_nolabel.csv to .pkl
+        processor = Input_ligand_preprocess(input_ligands_path, project_name, mode)
+        processed_input_path = processor.preprocess() 
+        processed_input_csv = pd.read_csv(processed_input_path)
+        SMILES_transfer = SMILES_Transfer(processed_input_csv, project_name, mode)
+        SMILES_transfer.run()
+        print(processed_input_path)
         test_ratio(model_version='1', project_name=project_name, nolabel_file_path= processed_input_path, index=0)
         # Sort, filter and log the final result
         sort_and_filter_csv(project_name + '/DL_result.csv', args.threshold, project_name + '/DL_top.csv')
@@ -78,6 +91,7 @@ if __name__ == '__main__':
     parser.add_argument('--n_samples', default=-1, type=int, help='Number of samples (default: all)')
     parser.add_argument('--threshold', default=0.9, type=float, help="Threshold for predict value (defalt 0.9)")
     parser.add_argument('--thread_num', default=1, type=int, help='Number of thread used for finetuning (default: 1)')
+    parser.add_argument('--ZINC_dir', default=None, type=str, help="ZINC20 processed file folder path (required if mode == ZINC). Format e.g. 'ZINC20_druglike/'.")
     args = parser.parse_args()
 
     main(args)
