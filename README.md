@@ -2,7 +2,15 @@
 
 ![Workflow of DeepScreenZinc](DeepScreenZinc.gif)
 
-## How to start
+## Installation
+
+```bash
+# Create & activate env
+conda create -n d2screen python=3.10 -y
+conda activate d2screen
+conda install -c conda-forge rdkit=2023.09.6 vina=1.2.5 biopython=1.84 -y
+pip install paddlepaddle-gpu==2.6.1.post120 #choose the wheel that matches your CUDA
+pip install -r requirements.txt
 
 ## Preparation for input data
 
