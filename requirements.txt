@@ -1,0 +1,22 @@
+# Core
+numpy==1.26.4
+pandas==2.1.4
+scikit-learn==1.7.1
+matplotlib==3.9.2
+seaborn==0.13.2
+requests==2.32.5
+PyYAML==6.0.2
+pydantic==2.11.7
+
+# DL stack (Paddle + Graph Learning)
+paddlepaddle-gpu==2.6.1.post120
+pgl==2.2.6
+
+# Cheminformatics / docking helpers (Python-side)
+biopython==1.84
+meeko==0.6.1
+prody==2.4.1
+gemmi==0.6.6
+
+# Experiment tracking (optional, comment out if not used)
+wandb==0.21.3
