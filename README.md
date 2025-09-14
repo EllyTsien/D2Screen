@@ -36,24 +36,35 @@ co-crystal ligand structure (pdb format) from the target protein should be put u
 This is used for calculation of the grid center and boxsize.
 
 
-## step 1: finetune on downstream task
+## Step 1: Finetune on downstream task and prediction
 ```
-python train.py
+python train.py --dataset <train.csv> --project_name <run_name>  --thread_num 1 
+python prediction.py --project_name <run_name> --mode 'ZINC' --threshold <cutoff score [0,1]>  --ZINC_dir <molecular libray fold>
 ```
+**Arguments** (`train.py`)
 
-## step 2: transfer smile to pdbqt
+| Argument         | Type | Default      | Description |
+|------------------|------|--------------|-------------|
+| `--dataset`      | str  | **required** | Path to the training dataset (CSV). |
+| `--project_name` | str  | `"finetune"` | Name of the project. Used to create output directories. |
+| `--thread_num`   | int  | `1`          | Number of CPU threads for preprocessing/training. |
+| `--seed`         | int  | `42`         | Random seed for reproducibility. |
+
+---
+
+## Step 2: transfer smile to pdbqt
 We provide ligand_prep.py for fast convertion of smiles representation of molecules to pdbqt format, which can be put into autodock vina. For conformation optimization, MMFF94 is ussed. All hytrogen is kept. 
 ```
-python smile2pdbqt.py
+python smile2pdbqt.py --dataset <DL_top.csv> --grid_center <crystal_ligand.pdb>
 ```
 We highly recommend you to upload your own prepared pdbqt file for more accurate 3D comformation. To do this, upload your pdbqt files under the datasets/ligand_prep/ floder. 
 
 
-## step 3: docking by vina
+## Step 3: docking by vina
 grid center and boxsize is calculated by LaBox algrithm
 Cite: Ryan Loke. (2023). RyanZR/LaBOX: LaBOX v1.0.2 (v1.0.2). Zenodo. https://doi.org/10.5281/zenodo.8241444
 ```
-python docking.py
+python docking.py --receptor <receptor.pdbqt> --ligand_dir <ligand_dir> --grid_center <crystal_ligand.pdb>
 ```
 
 ## reference
