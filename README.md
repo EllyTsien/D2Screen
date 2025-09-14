@@ -50,6 +50,18 @@ python prediction.py --project_name <run_name> --mode 'ZINC' --threshold <cutoff
 | `--thread_num`   | int  | `1`          | Number of CPU threads for preprocessing/training. |
 | `--seed`         | int  | `42`         | Random seed for reproducibility. |
 
+**Arguments** (`prediction.py`)
+
+| Argument         | Type  | Default       | Description |
+|------------------|-------|---------------|-------------|
+| `--project_name` | str   | `"finetune"`  | Project name. Used to locate trained models and organize outputs. |
+| `--mode`         | str   | **required**  | Prediction mode: `ZINC`, `DUDE`, or `ratio`. |
+| `--dataset`      | str   | `"input.csv"` | Dataset file under `datasets/` (used in `DUDE` or `ratio` mode). |
+| `--n_samples`    | int   | `-1`          | Number of samples to use (`-1` = all). |
+| `--threshold`    | float | `0.9`         | Threshold for predicted values when filtering hits. |
+| `--thread_num`   | int   | `1`           | Number of threads used for prediction. |
+| `--ZINC_dir`     | str   | `None`        | Path to processed ZINC20 library (required if `mode=ZINC`). Example: `ZINC20_druglike/`. |
+
 ---
 
 ## Step 2: transfer smile to pdbqt
@@ -57,8 +69,20 @@ We provide ligand_prep.py for fast convertion of smiles representation of molecu
 ```
 python smile2pdbqt.py --dataset <DL_top.csv> --grid_center <crystal_ligand.pdb>
 ```
+**Arguments** (`smile2pdbqt.py`)
+
+| Argument        | Type  | Default                        | Description |
+|-----------------|-------|--------------------------------|-------------|
+| `--project_name`| str   | `"finetune"`                   | Project name. Used to organize output files. |
+| `--dataset`     | str   | `"datasets/DL_pred/top.csv"`   | Input CSV file containing SMILES. |
+| `--grid_center` | str   | `"datasets/crystal_ligand.pdb"`| Crystal ligand `.pdb` used to define docking box center. |
+| `--n_samples`   | int   | `-1`                           | Number of samples to convert (`-1` = all). |
+| `--threshold`   | float | `0.9`                          | Score threshold for filtering molecules. |
+| `--thread_num`  | int   | `1`                            | Number of CPU threads used. |
+
 We highly recommend you to upload your own prepared pdbqt file for more accurate 3D comformation. To do this, upload your pdbqt files under the datasets/ligand_prep/ floder. 
 
+---
 
 ## Step 3: docking by vina
 grid center and boxsize is calculated by LaBox algrithm
@@ -66,6 +90,17 @@ Cite: Ryan Loke. (2023). RyanZR/LaBOX: LaBOX v1.0.2 (v1.0.2). Zenodo. https://do
 ```
 python docking.py --receptor <receptor.pdbqt> --ligand_dir <ligand_dir> --grid_center <crystal_ligand.pdb>
 ```
+**Arguments** (`docking.py`)
+
+| Argument        | Type | Default                        | Description |
+|-----------------|------|--------------------------------|-------------|
+| `--receptor`    | str  | `None`                         | Processed receptor protein `.pdb` file. |
+| `--ligand_dir`  | str  | `None`                         | Directory containing processed ligand files (`.pdbqt`). |
+| `--seed`        | int  | `42`                           | Random seed for reproducibility. |
+| `--grid_center` | str  | `datasets/crystal_ligand.pdb`  | Crystal ligand `.pdb` file used to define docking box center. |
+| `--project_name`| str  | `"test"`                       | Project name, used for organizing outputs. |
+
+---
 
 ## reference
 * [Fang, X., Liu, L., Lei, J., He, D., Zhang, S., Zhou, J., ... & Wang, H. (2022). Geometry-enhanced molecular representation learning for property prediction. Nature Machine Intelligence, 4(2), 127-134.](https://doi.org/10.1038/s42256-021-00438-4)
